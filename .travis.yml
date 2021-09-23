@@ -2,7 +2,6 @@ branches:
   only:
     - master
     - /^v\d+\.\d+/
-
 notifications:
   email: false
   slack:
