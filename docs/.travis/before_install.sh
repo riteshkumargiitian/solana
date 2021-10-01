@@ -7,4 +7,4 @@ sudo apt install -y nodejs
 npm install --global docusaurus-init
 docusaurus-init
 npm install --global vercel
-npm start
+
