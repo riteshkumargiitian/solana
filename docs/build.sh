@@ -27,6 +27,7 @@ fi
 # Build from /src into /build
 # npm install --global docusaurus-init
 # docusaurus-init
+npm run start
 npm run build
 echo $?
 
