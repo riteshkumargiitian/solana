@@ -10,7 +10,7 @@ jobs:
   Export_Github_Repositories:
     runs-on: ubuntu-latest
     env: 
-       SOL_VERCEL_TOKEN: ${{secrets.SOL_VERCEL_TOKEN}}
+       
        GITHUB_TOKEN: ${{secrets.PAT}} 
        GITHUB_EVENT_BEFORE: ${{ github.event.before }}
        GITHUB_EVENT_AFTER: ${{ github.event.after }}
@@ -119,6 +119,7 @@ jobs:
   
     runs-on: ubuntu-latest
     env: 
+       VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
        GITHUB_TOKEN: ${{secrets.PAT_AVI}} 
        GITHUB_EVENT_BEFORE: ${{ github.event.before }}
        GITHUB_EVENT_AFTER: ${{ github.event.after }}
