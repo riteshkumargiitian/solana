@@ -25,8 +25,8 @@ if [ "$CHANNEL" = stable ]; then
 fi
 
 # Build from /src into /build
-npm install --global docusaurus-init
-docusaurus-init
+# npm install --global docusaurus-init
+# docusaurus-init
 npm run build
 echo $?
 
