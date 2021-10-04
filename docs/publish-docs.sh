@@ -28,7 +28,7 @@ fi
 cat > "$CONFIG_FILE" <<EOF
 {
   "name": "$PROJECT_NAME",
-  "scope": "Naveenmishra1197",
+  "scope": "naveenmishra1197",
   "redirects": [
     { "source": "/apps", "destination": "/developing/programming-model/overview" },
     { "source": "/apps/bakcwards-compatibility", "destination": "/developing/backwards-compatibility" },
