@@ -102,7 +102,7 @@ jobs:
            vcpkg install openssl:x64-windows
            set VCPKG_ROOT="c:\path\to\vcpkg\installation"
            set SSL_CERT_FILE="C:\OpenSSL-Win64\certs\cacert.pem"
-           pacman -S mingw-w64-x86_64-openssl
+           choco install mingw-w64-x86_64-openssl
            bash ci/rust-version.sh
            set PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
            readlink -f .
