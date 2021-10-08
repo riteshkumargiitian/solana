@@ -97,10 +97,12 @@ jobs:
       - name:  release artifact
         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
         run: |
-           choco install gsudo
-           refreshenv
-           gsudo apt-get install pkg-config libssl-dev
-           set OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
+           set OPENSSL_DIR=C:\OpenSSL-Win64
+           set PATH=%PATH%;C:\OpenSSL-Win64\bin
+           vcpkg install openssl:x64-windows
+           set VCPKG_ROOT=c:\path\to\vcpkg\installation
+           set SSL_CERT_FILE=C:\OpenSSL-Win64\certs\cacert.pem
+           pacman -S mingw-w64-x86_64-openssl
            bash ci/rust-version.sh
            set PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
            readlink -f .
