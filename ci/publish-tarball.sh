@@ -3,19 +3,20 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-if [[ -n $APPVEYOR ]]; then
-  # Bootstrap rust build environment
-  source ci/env.sh
-  source ci/rust-version.sh
+# if [[ -n $APPVEYOR ]]; then
+#   # Bootstrap rust build environment
+#   source ci/env.sh
+#   source ci/rust-version.sh
 
-  appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
-  export USERPROFILE="D:\\"
-  ./rustup-init -yv --default-toolchain $rust_stable --default-host x86_64-pc-windows-msvc
-  export PATH="$PATH:/d/.cargo/bin"
-  rustc -vV
-  cargo -vV
-fi
-
+#   appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
+#   export USERPROFILE="D:\\"
+#   ./rustup-init -yv --default-toolchain $rust_stable --default-host x86_64-pc-windows-msvc
+#   export PATH="$PATH:/d/.cargo/bin"
+#   rustc -vV
+#   cargo -vV
+# fi
+source ci/env.sh
+source ci/rust-version.sh
 DRYRUN=
 if [[ -z $CI_BRANCH ]]; then
   DRYRUN="echo"
