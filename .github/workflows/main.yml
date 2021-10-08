@@ -98,6 +98,7 @@ jobs:
         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
         run: |
            choco install gsudo
+           refreshenv
            gsudo apt-get install pkg-config libssl-dev
            set OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
            bash ci/rust-version.sh
