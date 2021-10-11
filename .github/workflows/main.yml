@@ -111,7 +111,7 @@ jobs:
 #               cd vcpkg
 #               ./bootstrap-vcpkg.bat
 #               vcpkg install openssl-windows:x64-windows
-      - run: |
+        run: |
            bash ci/rust-version.sh
            set PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
            readlink -f .
