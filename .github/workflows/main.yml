@@ -102,8 +102,8 @@ jobs:
 #            choco install pkgconfiglite
 #            set OPENSSL_CONF ="C:\Program Files (x86)\OpenSSL-Win32\bin\openssl.cfg"
         run: |
-              powershell: $env:OPENSSL_DIR="C:\OpenSSL-Win64"
-              cmd: set OPENSSL_DIR="C:\OpenSSL-Win64"
+              powershell $env:OPENSSL_DIR="C:\OpenSSL-Win64"
+              cmd set OPENSSL_DIR="C:\OpenSSL-Win64"
               $env:OPENSSL_LIB_DIR="C:\OpenSSL-Win64\lib"
               $env:OPENSSL_INCLUDE_DIR="C:\OpenSSL-Win64\include"
               $env:OPENSSL_DIR="C:\OpenSSL-Win64"
