@@ -100,7 +100,7 @@ jobs:
            choco install openssl
            set OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
            choco install pkgconfiglite
-           set OPENSSL_CONF = C:\Program Files (x86)\OpenSSL-Win32\bin\openssl.cfg
+           set OPENSSL_CONF ="C:\Program Files (x86)\OpenSSL-Win32\bin\openssl.cfg"
       - run: |
            bash ci/rust-version.sh
            set PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
