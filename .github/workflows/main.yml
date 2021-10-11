@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
-
+      - run: sudo apt-get install libssl-dev
       - run: echo "COMMIT_DIFF_RANGE=$(echo $COMMIT_RANGE)" >> $GITHUB_ENV
 #       - run: echo "$COMMIT_DIFF_RANGE"
       - name: Set up Python
@@ -97,12 +97,8 @@ jobs:
       - name:  release artifact
         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
         run: |
-           set OPENSSL_DIR="C:\OpenSSL-Win64"
-           set PATH=%PATH%;"C:\OpenSSL-Win64\bin"
-           vcpkg install openssl:x64-windows
-           set VCPKG_ROOT="c:\path\to\vcpkg\installation"
-           set SSL_CERT_FILE="C:\OpenSSL-Win64\certs\cacert.pem"
-           choco install mingw-w64-x86_64-openssl
+           choco install openssl
+           set OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
            bash ci/rust-version.sh
            set PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
            readlink -f .
