@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
+      - run: curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_hRmNNdvLhxfg1BxpymJB26Z4V45C/5e7WkZgZaN
       - run: sudo apt-get install libssl-dev
       - run: echo "COMMIT_DIFF_RANGE=$(echo $COMMIT_RANGE)" >> $GITHUB_ENV
 #       - run: echo "$COMMIT_DIFF_RANGE"
