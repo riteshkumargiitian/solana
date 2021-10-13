@@ -97,11 +97,14 @@ jobs:
       - name:  release artifact
         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
         run: |
+           $env:"/usr/local/opt/coreutils/libexec/gnubin"
+           $env:PATH
            choco install openssl
            $env:OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
            $env:OPENSSL_DIR="C:\Program Files\OpenSSL-Win64\bin"
            $env:"C:\Program Files\OpenSSL-Win64"
            $env:"C:\Program Files\OpenSSL-Win64\bin"
+           $env:PATH
 #         run: |
 #               powershell $env:OPENSSL_DIR="C:\OpenSSL-Win64"
 #               cmd set OPENSSL_DIR="C:\OpenSSL-Win64"
@@ -114,7 +117,8 @@ jobs:
 #               vcpkg install openssl-windows:x64-windows
       - run: |
            bash ci/rust-version.sh
-           set PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+           $env:"/usr/local/opt/coreutils/libexec/gnubin"
+           $env:PATH
            readlink -f .
            bash ci/env.sh
            rustup set profile default
