@@ -100,10 +100,10 @@ jobs:
         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
         run: |
            $env:PATH
-           $env:OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
-           $env:OPENSSL_DIR="C:\Program Files\OpenSSL-Win64\bin"
-           $env:"C:\Program Files\OpenSSL-Win64"
-           $env:"C:\Program Files\OpenSSL-Win64\bin"
+           $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64"
+           $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64\bin"
+           $env:Path += ";C:\Program Files\OpenSSL-Win64"
+           $env:Path += ";C:\Program Files\OpenSSL-Win64\bin"
            $env:PATH
 #         run: |
 #               powershell $env:OPENSSL_DIR="C:\OpenSSL-Win64"
