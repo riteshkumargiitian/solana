@@ -4,6 +4,7 @@ on:
     branches:  [master]
   pull_request:
     branches:  [master]
+
 jobs:
   Export_Github_Repositories:
     runs-on: ubuntu-latest
@@ -19,7 +20,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
-      - run: curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_hRmNNdvLhxfg1BxpymJB26Z4V45C/5e7WkZgZaN
       - run: sudo apt-get install libssl-dev
       - run: echo "COMMIT_DIFF_RANGE=$(echo $COMMIT_RANGE)" >> $GITHUB_ENV
 #       - run: echo "$COMMIT_DIFF_RANGE"
@@ -69,6 +69,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
+      
       - name: Deploy
         uses: actions/checkout@master
       - uses: shallwefootball/s3-upload-action@master
@@ -95,11 +96,10 @@ jobs:
           rust-version: stable
       - name:  release artifact
         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
-#         run: |
-#            choco install openssl
-#            set OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
-#            choco install pkgconfiglite
-#            set OPENSSL_CONF ="C:\Program Files (x86)\OpenSSL-Win32\bin\openssl.cfg"
+        run: |
+           choco install openssl
+           $env:OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
+           $env:OPENSSL_DIR="C:\Program Files\OpenSSL-Win64\bin"
 #         run: |
 #               powershell $env:OPENSSL_DIR="C:\OpenSSL-Win64"
 #               cmd set OPENSSL_DIR="C:\OpenSSL-Win64"
@@ -110,7 +110,7 @@ jobs:
 #               cd vcpkg
 #               ./bootstrap-vcpkg.bat
 #               vcpkg install openssl-windows:x64-windows
-        run: |
+      - run: |
            bash ci/rust-version.sh
            set PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
            readlink -f .
