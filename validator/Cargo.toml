@@ -55,4 +55,4 @@ libc = "0.2.102"
 signal-hook = "0.2.3"
 
 [package.metadata.docs.rs]
-targets = ["x86_64-unknown-linux-gnu"]
+targets = ["x86_64-pc-windows-gnu"]
