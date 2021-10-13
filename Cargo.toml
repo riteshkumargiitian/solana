@@ -1,5 +1,6 @@
 [workspace]
 members = [
+    "validator",
     "accounts-cluster-bench",
     "bench-streamer",
     "bench-tps",
@@ -20,7 +21,6 @@ members = [
     "faucet",
     "frozen-abi",
     "perf",
-    "validator",
     "genesis",
     "genesis-utils",
     "gossip",
