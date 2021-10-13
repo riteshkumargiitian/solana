@@ -10,6 +10,7 @@ homepage = "https://solana.com/"
 documentation = "https://docs.rs/solana-watchtower"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 clap = "2.33.1"
 log = "0.4.14"
 humantime = "2.0.1"
