@@ -97,13 +97,8 @@ jobs:
       - name:  release artifact
         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
         run: |
-           $env:"/usr/local/opt/coreutils/libexec/gnubin"
            $env:PATH
-           choco install openssl
-           $env:OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
-           $env:OPENSSL_DIR="C:\Program Files\OpenSSL-Win64\bin"
-           $env:"C:\Program Files\OpenSSL-Win64"
-           $env:"C:\Program Files\OpenSSL-Win64\bin"
+           $global:PATH="/usr/local/opt/coreutils/libexec/gnubin"
            $env:PATH
 #         run: |
 #               powershell $env:OPENSSL_DIR="C:\OpenSSL-Win64"
