@@ -105,20 +105,7 @@ jobs:
            $env:Path += ";C:\Program Files\OpenSSL-Win64"
            $env:Path += ";C:\Program Files\OpenSSL-Win64\bin"
            $env:PATH
-#         run: |
-#               powershell $env:OPENSSL_DIR="C:\OpenSSL-Win64"
-#               cmd set OPENSSL_DIR="C:\OpenSSL-Win64"
-#               $env:OPENSSL_LIB_DIR="C:\OpenSSL-Win64\lib"
-#               $env:OPENSSL_INCLUDE_DIR="C:\OpenSSL-Win64\include"
-#               $env:OPENSSL_DIR="C:\OpenSSL-Win64"
-#               git clone https://github.com/Microsoft/vcpkg.git
-#               cd vcpkg
-#               ./bootstrap-vcpkg.bat
-#               vcpkg install openssl-windows:x64-windows
-      - run: |
            bash ci/rust-version.sh
-           $env:"/usr/local/opt/coreutils/libexec/gnubin"
-           $env:PATH
            readlink -f .
            bash ci/env.sh
            rustup set profile default
