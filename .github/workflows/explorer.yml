@@ -3,12 +3,10 @@ on:
   push:
    branches: [master]
    paths:
-      - '**'
       - 'explorer/**'
   pull_request:
     branches: [ master ]
     paths:
-      - '**'
       - 'explorer/**'
 jobs:
   check-explorer:
