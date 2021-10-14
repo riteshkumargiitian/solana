@@ -4,7 +4,7 @@ on:
    branches: [master]
    paths:
       - '**'
-      - '.github/workflows/explorer.yml'
+#       - '.github/workflows/explorer.yml'
       - 'explorer**'
 #   pull_request:
 #     branches: [ master ]
