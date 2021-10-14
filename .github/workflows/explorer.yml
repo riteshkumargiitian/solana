@@ -3,11 +3,11 @@ on:
   push:
     branches: [ master ]
     paths:
-      - ./explorer/**
+      - explorer/**
   pull_request:
     branches: [ master ]
     paths:
-      - ./explorer/**
+      - explorer/**
 
 
 jobs:
