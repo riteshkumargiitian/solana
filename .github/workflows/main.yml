@@ -83,11 +83,21 @@ jobs:
          SOURCE_DIR: './Docs'      # optional: defaults to entire repository
         
   windows-artifact:
-    strategy:
-      fail-fast: false 
     runs-on: windows-latest
+    strategy:
+       fail-fast: false 
+       matrix:
+         channel: [stable]
+         target:
+            - x86_64-pc-windows-msvc
+            - i686-pc-windows-msvc
     if : ${{ github.event_name == 'api' && 'cron' || 'push' || startsWith(github.ref, 'refs/tags/v')}}
     steps:
+      - uses: actions/checkout@v2
+      - uses: shogo82148/actions-setup-perl@v1
+        with:
+             perl-version: '5.32'
+             distribution: strawberry
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup | Rust
@@ -105,11 +115,12 @@ jobs:
            $env:Path += ";C:\Program Files\OpenSSL-Win64"
            $env:Path += ";C:\Program Files\OpenSSL-Win64\bin"
            $env:PATH
-           bash ci/rust-version.sh
-           readlink -f .
-           bash ci/env.sh
+           bash ci/rust-version.sh cargo ${{ matrix.target }}
+           readlink -f . 
+           bash ci/env.sh cargo ${{ matrix.target }}
            rustup set profile default
-           bash ci/publish-tarball.sh
+           $env:PATH
+           ci/publish-tarball.sh cargo ${{ matrix.target }}
       - name: checking out repo
         uses: actions/checkout@v2
       - name: Cache modules
