@@ -5,7 +5,7 @@ on:
    paths:
       - '**'
       - '.github/workflows/explorer.yml'
-#       - '!.github/workflows/**'
+      - 'explorer**'
 #   pull_request:
 #     branches: [ master ]
 #     paths:
