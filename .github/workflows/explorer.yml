@@ -25,6 +25,7 @@ jobs:
           node-version: '14'
           cache: 'npm'
           cache-dependency-path: explorer/package-lock.json
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
       - run: npm i -g npm@7
       - run: npm ci
       - run: npm run format
