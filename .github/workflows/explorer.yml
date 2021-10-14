@@ -4,8 +4,6 @@ on:
    branches: [master]
    paths:
       - 'explorer/**'
-   paths-ignore:
-      - '.github/workflows/main.yml'
   pull_request:
     branches: [ master ]
     paths:
