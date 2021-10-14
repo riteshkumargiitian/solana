@@ -3,15 +3,12 @@ on:
   push:
    branches: [master]
    paths:
-      - '**'
 #       - '.github/workflows/explorer.yml'
       - 'explorer/**'
 #   pull_request:
 #     branches: [ master ]
 #     paths:
 #       - "solana/explorer/**"
-
-
 jobs:
   check-explorer:
     runs-on: ubuntu-latest
