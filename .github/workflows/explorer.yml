@@ -2,12 +2,12 @@ name: Explorer
 on:
   push:
     branches: [ master ]
-    paths:
-      - "explorer/**"
+#     paths:
+#       - "explorer/**"
   pull_request:
     branches: [ master ]
-    paths:
-      - "explorer/**"
+#     paths:
+#       - "explorer/**"
 
 jobs:
   check-explorer:
