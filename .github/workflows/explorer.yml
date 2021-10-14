@@ -5,7 +5,7 @@ on:
    paths:
       - '**'
 #       - '.github/workflows/explorer.yml'
-      - 'explorer**'
+      - 'explorer/**'
 #   pull_request:
 #     branches: [ master ]
 #     paths:
@@ -16,9 +16,9 @@ jobs:
   check-explorer:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: explorer
+#     defaults:
+#       run:
+#         working-directory: explorer
 
     steps:
       - uses: actions/checkout@v2
