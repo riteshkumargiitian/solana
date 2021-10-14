@@ -3,11 +3,11 @@ on:
   push:
     branches: [ master ]
     paths:
-      - solana/explorer/**
+      - explorer/*
   pull_request:
     branches: [ master ]
     paths:
-      - solana/explorer/**
+      - explorer/*
 
 
 jobs:
