@@ -1,9 +1,11 @@
 name: Explorer
 on:
   push:
-    branches: [ master ]
     paths:
-      - "solana/explorer/**"
+      - '**'
+      - 'explorer/**'
+      - '.github/workflows/explorer.yml'
+      - '!.github/workflows/**'
   pull_request:
     branches: [ master ]
     paths:
