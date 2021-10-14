@@ -119,7 +119,7 @@ jobs:
            readlink -f . 
            bash ci/env.sh cargo ${{ matrix.target }}
            rustup set profile default
-           ci/publish-tarball.sh cargo ${{ matrix.target }}
+           bash ci/publish-tarball.sh cargo ${{ matrix.target }}
       - name: checking out repo
         uses: actions/checkout@v2
       - name: Cache modules
