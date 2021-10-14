@@ -6,10 +6,10 @@ on:
       - '**'
       - '.github/workflows/explorer.yml'
       - '!.github/workflows/**'
-  pull_request:
-    branches: [ master ]
-    paths:
-      - "solana/explorer/**"
+#   pull_request:
+#     branches: [ master ]
+#     paths:
+#       - "solana/explorer/**"
 
 
 jobs:
