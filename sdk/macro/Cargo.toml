@@ -13,6 +13,7 @@ edition = "2018"
 proc-macro = true
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 bs58 = "0.4.0"
 proc-macro2 = "1.0.19"
 quote = "1.0"
