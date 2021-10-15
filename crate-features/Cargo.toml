@@ -10,6 +10,7 @@ license = "Apache-2.0"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 backtrace = { version = "0.3.33", features = ["serialize-serde"] }
 bytes = { version = "0.4.12", features = ["either"] }
 cc = { version = "1.0.67", features = ["jobserver", "parallel"]}
