@@ -10,6 +10,7 @@ homepage = "https://solana.com/"
 publish = false
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 serde_json = "1.0.68"
 solana-metrics = { path = "../metrics", version = "=1.8.0" }
 
