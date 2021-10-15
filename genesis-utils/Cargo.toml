@@ -10,6 +10,7 @@ documentation = "https://docs.rs/solana-download-utils"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 solana-sdk = { path = "../sdk", version = "=1.8.0" }
 solana-download-utils = { path = "../download-utils", version = "=1.8.0" }
 solana-runtime = { path = "../runtime", version = "=1.8.0" }
