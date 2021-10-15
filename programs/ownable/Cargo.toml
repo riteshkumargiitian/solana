@@ -10,6 +10,7 @@ documentation = "https://docs.rs/solana-ownable"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 bincode = "1.3.3"
 solana-sdk = { path = "../../sdk", version = "=1.8.0" }
 num-derive = "0.3"
