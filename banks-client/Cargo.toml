@@ -10,6 +10,7 @@ documentation = "https://docs.rs/solana-banks-client"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 borsh = "0.9.1"
 futures = "0.3"
 solana-banks-interface = { path = "../banks-interface", version = "=1.8.0" }
