@@ -101,7 +101,6 @@ jobs:
         run: |
                   curl -O https://www.nasm.us/pub/nasm/releasebuilds/${WINNASMVERSION}/win64/nasm-${WINNASMVERSION}-win64.zip
                   unzip nasm-${WINNASMVERSION}-win64.zip
-                  WINNASMVERSION='2.15.05'
                   echo "$GITHUB_WORKSPACE\\nasm-${WINNASMVERSION}" >> $GITHUB_PATH
                   echo "OPENSSL_RUST_USE_NASM=1" >> $GITHUB_ENV
       - name: Checkout repository
