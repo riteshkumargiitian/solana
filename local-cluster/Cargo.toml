@@ -10,6 +10,7 @@ homepage = "https://solana.com/"
 documentation = "https://docs.rs/solana-local-cluster"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 crossbeam-channel = "0.5"
 itertools = "0.10.1"
 gag = "1.0.0"
