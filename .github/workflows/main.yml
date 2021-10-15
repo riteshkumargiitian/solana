@@ -99,10 +99,10 @@ jobs:
 #              distribution: strawberry
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Setup | Rust
-        uses: ATiltedTree/setup-rust@v1
-        with:
-          rust-version: stable
+#       - name: Setup | Rust
+#         uses: ATiltedTree/setup-rust@v1
+#         with:
+#           rust-version: stable
 #       - name: installing open ssl
 #         run: choco install openssl
       - name:  release artifact
@@ -119,25 +119,18 @@ jobs:
 #               [System.Environment]::SetEnvironmentVariable('OPENSSL_DIR', $env:OPENSSL_DIR, [System.EnvironmentVariableTarget]::User)
 #               [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
 
-#         run: |
-#            $env:PATH
-#            $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64"
-#            $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64\bin"
-#            $env:Path += ";C:\Program Files\OpenSSL-Win64"
-#            $env:Path += ";C:\Program Files\OpenSSL-Win64\bin"
-#            $env:PATH
-#            bash ci/rust-version.sh cargo
-#            readlink -f . 
-#            bash ci/env.sh cargo
-#            rustup set profile default
-#            bash ci/publish-tarball.sh
         run: |
-                   source ci/rust-version.sh
-                   PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-                   readlink -f .
-                   source ci/env.sh
-                   rustup set profile default
-                   ci/publish-tarball.sh
+           $env:PATH
+           $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64"
+           $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64\bin"
+           $env:Path += ";C:\Program Files\OpenSSL-Win64"
+           $env:Path += ";C:\Program Files\OpenSSL-Win64\bin"
+           $env:PATH
+           bash ci/rust-version.sh cargo
+           readlink -f . 
+           bash ci/env.sh cargo
+           rustup set profile default
+           bash ci/publish-tarball.sh
        
       - name: checking out repo
         uses: actions/checkout@v2
