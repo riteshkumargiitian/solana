@@ -11,6 +11,7 @@ documentation = "https://docs.rs/solana-sys-tuner"
 publish = true
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 clap = "2.33.1"
 log = "0.4.14"
 libc = "0.2.102"
