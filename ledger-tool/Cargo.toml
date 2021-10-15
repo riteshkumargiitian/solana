@@ -10,6 +10,7 @@ homepage = "https://solana.com/"
 documentation = "https://docs.rs/solana-ledger-tool"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 bs58 = "0.4.0"
 bytecount = "0.6.2"
 clap = "2.33.1"
