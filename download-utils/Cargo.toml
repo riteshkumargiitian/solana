@@ -10,6 +10,7 @@ documentation = "https://docs.rs/solana-download-utils"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 console = "0.14.1"
 indicatif = "0.16.2"
 log = "0.4.14"
