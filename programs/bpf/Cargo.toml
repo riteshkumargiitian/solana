@@ -19,6 +19,7 @@ bpf_rust = []
 walkdir = "2"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 bincode = "1.1.4"
 byteorder = "1.3.2"
 elf = "0.0.10"
