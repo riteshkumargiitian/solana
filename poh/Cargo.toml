@@ -10,6 +10,7 @@ documentation = "https://docs.rs/solana-poh"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 core_affinity = "0.5.10"
 crossbeam-channel = "0.5"
 log = "0.4.14"
