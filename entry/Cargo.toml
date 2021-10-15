@@ -10,6 +10,7 @@ documentation = "https://docs.rs/solana-poh"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 dlopen = "0.1.8"
 dlopen_derive = "0.1.4"
 log = "0.4.11"
