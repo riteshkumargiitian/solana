@@ -10,6 +10,7 @@ homepage = "https://solana.com/"
 documentation = "https://docs.rs/solana-remote-wallet"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 base32 = "0.4.0"
 console = "0.14.1"
 dialoguer = "0.8.0"
