@@ -10,6 +10,7 @@ homepage = "https://solana.com/"
 documentation = "https://docs.rs/solana-cli-output"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 base64 = "0.13.0"
 chrono = { version = "0.4.11", features = ["serde"] }
 clap = "2.33.0"
