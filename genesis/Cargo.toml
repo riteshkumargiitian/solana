@@ -10,6 +10,7 @@ homepage = "https://solana.com/"
 documentation = "https://docs.rs/solana-genesis"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 base64 = "0.12.3"
 clap = "2.33.1"
 serde = "1.0.130"
