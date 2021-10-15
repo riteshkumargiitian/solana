@@ -9,6 +9,7 @@ homepage = "https://solana.com/"
 documentation = "https://docs.rs/solana-poh-bench"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 clap = "2.33.1"
 log = "0.4.14"
 rand = "0.7.0"
