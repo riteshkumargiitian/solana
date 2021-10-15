@@ -9,6 +9,7 @@ homepage = "https://solana.com/"
 publish = false
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 clap = "2.33.1"
 solana-clap-utils = { path = "../clap-utils", version = "=1.8.0" }
 solana-streamer = { path = "../streamer", version = "=1.8.0" }
