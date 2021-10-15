@@ -97,6 +97,13 @@ jobs:
 #         with:
 #              perl-version: '5.32'
 #              distribution: strawberry
+      - name: Download nasm.exe (Windows)
+        run: |
+                  WINNASMVERSION='2.15.05'
+                  curl -O https://www.nasm.us/pub/nasm/releasebuilds/${WINNASMVERSION}/win64/nasm-${WINNASMVERSION}-win64.zip
+                  unzip nasm-${WINNASMVERSION}-win64.zip
+                  echo "$GITHUB_WORKSPACE\\nasm-${WINNASMVERSION}" >> $GITHUB_PATH
+                  echo "OPENSSL_RUST_USE_NASM=1" >> $GITHUB_ENV
       - name: Checkout repository
         uses: actions/checkout@v2
 #       - name: Setup | Rust
