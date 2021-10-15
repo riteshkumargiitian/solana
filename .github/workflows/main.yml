@@ -103,19 +103,19 @@ jobs:
         run: choco install openssl
       - name:  release artifact
         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
-        run: |
-              mkdir \Tools
-              cd \Tools
-              git clone https://github.com/Microsoft/vcpkg.git
-              cd vcpkg
-              .\bootstrap-vcpkg.bat
-              .\vcpkg.exe install openssl:x64-windows-static
-              $env:OPENSSL_DIR = 'C:\Tools\vcpkg\installed\x64-windows-static'
-              $env:OPENSSL_STATIC = 'Yes'
-              [System.Environment]::SetEnvironmentVariable('OPENSSL_DIR', $env:OPENSSL_DIR, [System.EnvironmentVariableTarget]::User)
-              [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
+#         run: |
+#               mkdir \Tools
+#               cd \Tools
+#               git clone https://github.com/Microsoft/vcpkg.git
+#               cd vcpkg
+#               .\bootstrap-vcpkg.bat
+#               .\vcpkg.exe install openssl:x64-windows-static
+#               $env:OPENSSL_DIR = 'C:\Tools\vcpkg\installed\x64-windows-static'
+#               $env:OPENSSL_STATIC = 'Yes'
+#               [System.Environment]::SetEnvironmentVariable('OPENSSL_DIR', $env:OPENSSL_DIR, [System.EnvironmentVariableTarget]::User)
+#               [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
 
-      - run: |
+        run: |
            $env:PATH
            $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64"
            $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64\bin"
