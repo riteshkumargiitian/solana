@@ -10,6 +10,7 @@ documentation = "https://docs.rs/solana-net-utils"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 bincode = "1.3.3"
 clap = "2.33.1"
 log = "0.4.14"
