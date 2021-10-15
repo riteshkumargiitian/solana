@@ -65,7 +65,7 @@ echo "Install location: $installDir ($buildVariant)"
 cd "$(dirname "$0")"/..
 
 SECONDS=0
-
+export CI_OS_NAME="$(echo "$RUNNER_OS" | tr A-Z a-z)"
 if [[ $CI_OS_NAME = windows ]]; then
   # Limit windows to end-user command-line tools.  Full validator support is not
   # yet available on windows
