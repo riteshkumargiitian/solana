@@ -10,6 +10,7 @@ homepage = "https://solana.com/"
 publish = false
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 clap = "2.33.1"
 serde = "1.0.130"
 serde_json = "1.0.68"
