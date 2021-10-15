@@ -10,6 +10,7 @@ documentation = "https://docs.rs/solana-merkle-tree"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 solana-program = { path = "../sdk/program", version = "=1.8.0" }
 fast-math = "0.1"
 
