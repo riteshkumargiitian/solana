@@ -10,6 +10,7 @@ license = "Apache-2.0"
 edition = "2018"
 
 [dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 bs58 = "0.4.0"
 bv = { version = "0.11.1", features = ["serde"] }
 log = "0.4.14"
