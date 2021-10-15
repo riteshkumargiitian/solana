@@ -86,11 +86,6 @@ jobs:
     runs-on: windows-latest
     strategy:
        fail-fast: false 
-       matrix:
-         channel: [stable]
-         target:
-            - x86_64-pc-windows-msvc
-            - i686-pc-windows-msvc
     if : ${{ github.event_name == 'api' && 'cron' || 'push' || startsWith(github.ref, 'refs/tags/v')}}
     steps:
       - uses: actions/checkout@v2
