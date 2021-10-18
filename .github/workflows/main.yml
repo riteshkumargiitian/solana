@@ -202,7 +202,7 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache-2  
   auto_bump:
-     needs: [windows-artifact,macos-artifacts]
+     needs: [windows-artifact]
      runs-on: ubuntu-latest
      steps:
        - name : checkout repo
