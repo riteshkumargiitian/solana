@@ -41,8 +41,9 @@ jobs:
           working-directory: ./explorer
           scope: ${{ secrets.TEAM_ID }}
   production:
+   needs: check-explorer
    runs-on: ubuntu-latest
-   if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+   if: ${{ github.event.pull_request.merged }}
    steps:
      - uses: actions/checkout@v2
      - uses: amondnet/vercel-action@v20
