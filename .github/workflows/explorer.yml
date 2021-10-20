@@ -6,6 +6,7 @@ on:
       - 'explorer/**'
   pull_request_target:
     branches: [ master ]
+    types: [closed]
     paths:
       - 'explorer/**'
 jobs:
@@ -43,7 +44,7 @@ jobs:
   production:
    needs: check-explorer
    runs-on: ubuntu-latest
-   if: github.ref == 'refs/heads/master'
+   if: github.event.pull_request.merged == true
    steps:
      - uses: actions/checkout@v2
      - uses: amondnet/vercel-action@v20
