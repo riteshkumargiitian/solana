@@ -10,10 +10,14 @@ on:
     types: [ closed ]
 
 jobs:
-  production:
-   runs-on: ubuntu-latest
-   if: github.event.pull_request.merged == true
-   steps:
+  check-explorer:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: explorer
+    if: github.event.pull_request.merged == true
+    steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
@@ -27,12 +31,16 @@ jobs:
       - run: npm run format
       - run: npm run build
       - run: npm run test
-      - uses: actions/checkout@v2
-      - uses: amondnet/vercel-action@v20
-        with:
+  production:
+   needs: check-explorer
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v2
+     - uses: amondnet/vercel-action@v20
+       with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           github-token: ${{ secrets.PAT }} #Optional 
-#           vercel-args: '--prod' #for production
+          vercel-args: '--prod' #for production
           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./explorer
