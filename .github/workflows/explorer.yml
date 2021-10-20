@@ -5,7 +5,8 @@ on:
    paths:
       - 'explorer/**'
   pull_request_target:
-    branches: [ master ]
+    branches:
+     - master
     types: [closed]
     paths:
       - 'explorer/**'
