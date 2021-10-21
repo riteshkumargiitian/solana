@@ -16,7 +16,7 @@ jobs:
     defaults:
       run:
         working-directory: explorer
-    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    if: github.event_name == 'pull_request_target' && github.event.action == 'opened'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
