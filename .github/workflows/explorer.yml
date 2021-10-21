@@ -40,7 +40,6 @@ jobs:
           working-directory: ./explorer
           scope: ${{ secrets.TEAM_ID }}
   production:
-   needs: check-explorer
    runs-on: ubuntu-latest
    
    defaults:
