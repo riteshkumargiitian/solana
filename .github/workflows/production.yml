@@ -8,7 +8,7 @@ on:
 jobs:
     production:
       runs-on: ubuntu-latest
-      if: github.event_name == 'push'
+#       if: github.event_name == 'push'
       defaults:
         run:
           working-directory: explorer
