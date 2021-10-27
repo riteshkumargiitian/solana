@@ -3,10 +3,11 @@ on:
   workflow_run:
     workflows: ["Explorer"]
     types: 
-      - success     
+      - completed
 jobs:
    expo_push_tr:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
       - uses: amondnet/vercel-action@v20
