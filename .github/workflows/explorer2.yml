@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows: ["Explorer"]
     types: 
-      - completed     
+      - success     
 jobs:
    expo_push_tr:
     runs-on: ubuntu-latest
