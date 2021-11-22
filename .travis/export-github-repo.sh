@@ -31,7 +31,7 @@ echo "Exporting $subdir"
 
 set -x
 rm -rf .github_export/"$repo_name"
-git clone https://"$GITHUB_TOKEN"@github.com/joeaba/"$repo_name" .github_export/"$repo_name"
+git clone https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name" .github_export/"$repo_name"
 git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
 # git config --global user.email "lerioaxl@gmail.com"
 # git config --global user.name "joeaba"
@@ -41,4 +41,4 @@ git merge
 git checkout master
 git remote -v 
 git fetch
-git -C .github_export/"$repo_name" push --force https://"$GITHUB_TOKEN"@github.com/joeaba/"$repo_name"
+git -C .github_export/"$repo_name" push --force https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name"
