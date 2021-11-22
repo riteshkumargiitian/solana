@@ -136,8 +136,23 @@ for file in "${TARBALL_BASENAME}"-$TARGET.tar.bz2 "${TARBALL_BASENAME}"-$TARGET.
   elif [[ -n $APPVEYOR ]]; then
     # Add artifacts for .appveyor.yml to upload
     appveyor PushArtifact "$file" -FileName "$CHANNEL_OR_TAG"/"$file"
+  elif [[ -z $TRAVIS ]]; then
+    # .travis.yml uploads everything in the travis-s3-upload/ directory to release.solana.com
+    echo "CHANNEL_OR_TAG is : $CHANNEL_OR_TAG"
+    mkdir -p travis-s3-upload1/"$CHANNEL_OR_TAG"
+    cp -v "$file" travis-s3-upload1/"$CHANNEL_OR_TAG"/
+    
+    echo "TAG is : $TAG"
+    if [[ -n $TAG ]]; then
+      # .travis.yaml uploads everything in the travis-release-upload/ directory to
+      # the associated Github Release
+      echo "15"
+      mkdir -p travis-release-upload1/
+      cp -v "$file" travis-release-upload1/
+    fi
   fi
 done
+
 
 
 # Create install wrapper for release.solana.com
