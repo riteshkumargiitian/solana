@@ -4,7 +4,7 @@
 #
 
 set -e
-if [[ -z $PAT_TOKEN ]]; then
+if [[ -z $GITHUB_TOKEN ]]; then
   echo GITHUB_TOKEN not defined
   exit 1
 fi
@@ -29,6 +29,6 @@ echo "Exporting $subdir"
 
 set -x
 rm -rf .github_export/"$repo_name"
-git clone https://"$PAT_TOKEN "@github.com/solana-labs/"$repo_name" .github_export/"$repo_name"
+git clone https://"$GITHUB_TOKEN "@github.com/solana-labs/"$repo_name" .github_export/"$repo_name"
 git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
-git -C .github_export/"$repo_name" push https://"$PAT_TOKEN "@github.com/solana-labs/"$repo_name"
+git -C .github_export/"$repo_name" push https://"$GITHUB_TOKEN "@github.com/solana-labs/"$repo_name"
