@@ -190,7 +190,6 @@ jobs:
   
   
   
-  
   auto_bump:
      needs: [windows-artifact,release-artifact,Docs]
      runs-on: ubuntu-latest
