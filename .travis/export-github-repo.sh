@@ -33,8 +33,8 @@ set -x
 rm -rf .github_export/"$repo_name"
 git clone https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name" .github_export/"$repo_name"
 git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
-# git config --global user.email "lerioaxl@gmail.com"
-# git config --global user.name "joeaba"
+git config --global user.email "avinash.rai147@gmail.com"
+git config --global user.name "Avnshrai"
 git fetch
 git pull origin master
 git merge
