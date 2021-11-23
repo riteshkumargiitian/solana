@@ -27,7 +27,6 @@ jobs:
           fetch-depth: 2
 
       - run: echo "COMMIT_DIFF_RANGE=$(echo $COMMIT_RANGE)" >> $GITHUB_ENV
-#       - run: echo "$COMMIT_DIFF_RANGE"
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -37,7 +36,6 @@ jobs:
         run : |
             .travis/export-github-repo.sh web3.js/ solana-web3.js
   macos-artifacts:
-    needs: [Export_Github_Repositories]
     strategy:
       fail-fast: false
     runs-on: macos-latest
@@ -79,49 +77,32 @@ jobs:
 
   
   windows-artifact:
-    needs: [Export_Github_Repositories]
     strategy:
       fail-fast: false 
     runs-on: windows-latest
-    if : ${{ github.event_name == 'api' && 'cron' || 'push' || startsWith(github.ref, 'refs/tags/v')}}
+    if : ${{ github.event_name == 'api' && 'cron' || startsWith(github.ref, 'refs/tags/v')}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup | Rust
         uses: ATiltedTree/setup-rust@v1
         with:
-          rust-version: stable          
- 
- 
- 
- 
-  release-artifact:
-    needs: windows-artifact
-    runs-on: windows-latest
-    if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
-    steps:
-      - name: release artifact 
-        run: |
+          rust-version: stable         
+      - run: |
             choco install llvm --force -y
             choco install openssl cmake make -y
-            refreshenv
-            
-      - name: Checkout repository
-        uses: actions/checkout@v2 
-      - run: |
-           bash ci/rust-version.sh
-           readlink -f .
-           bash ci/env.sh
-           export CI_BRANCH="v1.8.99"
-           export CI_TAG="v1.8.99"
-           export OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
-           export PATH="C:\Program Files\LLVM\bin:$PATH"
-           export LIBCLANG_PATH="C:\Program Files\LLVM\bin"
-           echo $PATH
-           rustup set profile default
-           bash ci/publish-tarball.sh
-           export OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
-           export PATH="C:\Program Files\LLVM\bin:$PATH"
+            bash ci/rust-version.sh
+            readlink -f .
+            bash ci/env.sh
+            export CI_BRANCH="v1.8.99"
+            export CI_TAG="v1.8.99"
+            export OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
+            export PATH="C:\Program Files\LLVM\bin:$PATH"
+            export LIBCLANG_PATH="C:\Program Files\LLVM\bin"
+            rustup set profile default
+            bash ci/publish-tarball.sh
+            export OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
+            export PATH="C:\Program Files\LLVM\bin:$PATH"
         shell: bash
       - name: Cache modules
         uses: actions/cache@v1
@@ -144,18 +125,10 @@ jobs:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           SOURCE_DIR: 'travis-s3-upload1'
           DEST_DIR: 'giitsol2'
-#             bucket-region: us-east-2
-#             delete-removed: true
-#             no-cache: true
-#             private: true
   
   
-
-
-
 
   Docs:
-    needs: [windows-artifact,release-artifact]
     runs-on: ubuntu-latest
     env: 
        GITHUB_TOKEN: ${{secrets.PAT_NEW}} 
@@ -192,12 +165,8 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache-2  
   
-  
-  
-  
-  
   auto_bump:
-     needs: [windows-artifact,release-artifact,Docs]
+     needs: [windows-artifact,macos-artifacts,Docs]
      runs-on: ubuntu-latest
      steps:
        - name : checkout repo
