@@ -11,8 +11,8 @@ jobs:
   Export_Github_Repositories:
     runs-on: ubuntu-latest
     env: 
-#        VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
-#        GITHUB_TOKEN: ${{secrets.PAT}} 
+       VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
+       GITHUB_TOKEN: ${{secrets.PAT}} 
        COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
     steps:
       - name: Checkout repo
