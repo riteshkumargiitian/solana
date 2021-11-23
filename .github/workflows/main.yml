@@ -73,9 +73,6 @@ jobs:
           SOURCE_DIR: 'travis-s3-upload1'
           DEST_DIR: 'giitsol1'
 
-
-
-  
   windows-artifact:
     strategy:
       fail-fast: false 
