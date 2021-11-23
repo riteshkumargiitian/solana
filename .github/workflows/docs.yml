@@ -1,10 +1,10 @@
-name: docs
+name: docs_push
 on:
   push:
     branches:
      - master
- 
- Docs:
+jobs :
+   Docs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
