@@ -1,9 +1,15 @@
 name : minimal 
 on:
-  workflow_run:
-    workflows: ["solana_main"]
-    types: 
-      - completed
+  push:
+    branches:  [master]
+  pull_request:
+    branches:  [master]
+# name : minimal 
+# on:
+#   workflow_run:
+#     workflows: ["solana_main"]
+#     types: 
+#       - completed
 
 jobs:
   Export_Github_Repositories:
