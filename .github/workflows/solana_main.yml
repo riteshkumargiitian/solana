@@ -10,9 +10,5 @@ jobs:
   check-explorer:
     runs-on: windows-latest
     steps:
-      - name: release artifact 
-        run: |
-            choco install llvm --force -y
-            choco install openssl cmake make -y
-            refreshenv
+      - run: echo "this job will solve PR problem"
 
