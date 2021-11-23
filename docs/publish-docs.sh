@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-
 if [[ -d .vercel ]]; then
   rm -r .vercel
 fi
