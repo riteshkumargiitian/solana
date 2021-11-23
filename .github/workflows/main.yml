@@ -2,15 +2,17 @@ name : minimal
 on:
   push:
     branches:  [master]
+    tags : /^v\d+\.\d+/
   pull_request:
     branches:  [master]
+    tags : /^v\d+\.\d+/
 
 jobs:
   Export_Github_Repositories:
     runs-on: ubuntu-latest
     env: 
-       VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
-       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} 
+#        VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
+#        GITHUB_TOKEN: ${{secrets.PAT}} 
        COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
     steps:
       - name: Checkout repo
@@ -23,7 +25,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.PAT}}
         if: ${{ github.event_name == 'push' && 'cron'&& github.ref == 'refs/heads/master'}}
       - name: cmd
         run : |
@@ -33,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
     runs-on: macos-latest
-    if : ${{ github.event_name == 'api' && 'cron' || 'push' || startsWith(github.ref, 'refs/tags/v')}}
+    if : ${{ github.event_name == 'api' && 'cron' || startsWith(github.ref, 'refs/tags/v')}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
