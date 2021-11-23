@@ -1,9 +1,9 @@
 name : minimal 
 on:
-  push:
-    branches:  [master]
-  pull_request:
-    branches:  [master]
+  workflow_run:
+    workflows: ["solana_main"]
+    types: 
+      - completed
 
 jobs:
   Export_Github_Repositories:
@@ -20,7 +20,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
-      - run: sudo apt-get install libssl-dev
       - run: echo "COMMIT_DIFF_RANGE=$(echo $COMMIT_RANGE)" >> $GITHUB_ENV
 #       - run: echo "$COMMIT_DIFF_RANGE"
       - name: Set up Python
@@ -32,146 +31,101 @@ jobs:
         run : |
             .travis/export-github-repo.sh web3.js/ solana-web3.js
             
-# #   macos-artifacts:
-# #     strategy:
-# #       fail-fast: false
-# #     runs-on: macos-latest
-# #     if : ${{ github.event_name == 'api' && 'cron' || 'push' || startsWith(github.ref, 'refs/tags/v')}}
-# #     steps:
-# #       - name: Checkout repository
-# #         uses: actions/checkout@v2
-# #       - name: Setup | Rust
-# #         uses: ATiltedTree/setup-rust@v1
-# #         with:
-# #           rust-version: stable
-# #       - name:  release artifact
-# #         run: |
-# #            source ci/rust-version.sh
-# #            brew install coreutils
-# #            export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-# #            greadlink -f .
-# #            source ci/env.sh
-# #            rustup set profile default
-# #            ci/publish-tarball.sh
-# #       - name: checking out repo
-# #         uses: actions/checkout@v2
-# #       - name: Cache modules
-# #         uses: actions/cache@v1
-# #         id: yarn-cache
-# #         with:
-# #           path: node_modules
-# #           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-# #           restore-keys: ${{ runner.os }}-yarn-
-# #       - name: Config. aws cred
-# #         uses: aws-actions/configure-aws-credentials@v1
-# #         with:
-# #           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-# #           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-# #           aws-region: us-east-2
-      
-# #       - name: Deploy
-# #         uses: actions/checkout@master
-# #       - uses: shallwefootball/s3-upload-action@master
-# #         with:
-# #           args: --acl public-read --follow-symlinks --delete
-# #         env:
-# #          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-# #          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-# #          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-# #          AWS_REGION: 'us-east-2'   # optional: defaults to us-east-1
-# #          SOURCE_DIR: './Docs'      # optional: defaults to entire repository
-        
-#   windows-artifact:
-#     runs-on: windows-latest
-#     strategy:
-#        fail-fast: false 
-#        matrix:
-#         target: 
-#              - x86_64-pc-windows-gnu
-       
-#     if : ${{ github.event_name == 'api' && 'cron' || startsWith(github.ref, 'refs/tags/v')}}
-#     steps:
-#       - uses: msys2/setup-msys2@v2
-#         with:
-#          update: true
-#          install: >-
-#            base-devel
-#            git
-#   #- run: git config --global core.autocrlf input
-#   #  shell: bash
-#       - uses: actions/checkout@v2
-# #       - uses: actions/checkout@v2
-# #       - uses: shogo82148/actions-setup-perl@v1
-# #         with:
-# #              perl-version: '5.32'
-# #              distribution: strawberry
-# #       - name: Download nasm.exe (Windows)
-# #         run: |
-# #                   curl -O https://www.nasm.us/pub/nasm/releasebuilds/${WINNASMVERSION}/win64/nasm-${WINNASMVERSION}-win64.zip
-# #                   unzip nasm-${WINNASMVERSION}-win64.zip
-# #                   echo "$GITHUB_WORKSPACE\\nasm-${WINNASMVERSION}" >> $GITHUB_PATH
-# #                   echo "OPENSSL_RUST_USE_NASM=1" >> $GITHUB_ENV
-#       - name: Checkout repository
-#         uses: actions/checkout@v2
-# #       - name: Setup | Rust
-# #         uses: ATiltedTree/setup-rust@v1
-# #         with:
-# #           rust-version: stable
-# #       - name: installing open ssl
-# #         run: choco install openssl
-#       - name:  release artifact
-#         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
-# #         run: |
-# #               mkdir \Tools
-# #               cd \Tools
-# #               git clone https://github.com/Microsoft/vcpkg.git
-# #               cd vcpkg
-# #               .\bootstrap-vcpkg.bat
-# #               .\vcpkg.exe install openssl:x64-windows-static
-# #               $env:OPENSSL_DIR = 'C:\Tools\vcpkg\installed\x64-windows-static'
-# #               $env:OPENSSL_STATIC = 'Yes'
-# #               [System.Environment]::SetEnvironmentVariable('OPENSSL_DIR', $env:OPENSSL_DIR, [System.EnvironmentVariableTarget]::User)
-# #               [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
+      - name: Report Status
+        if: always()
+        uses: ravsamhq/notify-slack-action@v1
+        with:
+           status: ${{ job.status }}
+           notify_when: 'failure'
+        env:
+         SLACK_token: ${{ secrets.SLACK_TOKEN }}
+  macos-artifacts:
+    strategy:
+      fail-fast: false
+    runs-on: macos-latest
+    if : ${{ github.event_name == 'api' && 'cron' || startsWith(github.ref, 'refs/tags/v')}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup | Rust
+        uses: ATiltedTree/setup-rust@v1
+        with:
+          rust-version: stable
+      - name:  release artifact
+        run: |
+           source ci/rust-version.sh
+           brew install coreutils
+           export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+           greadlink -f .
+           source ci/env.sh
+           rustup set profile default
+           ci/publish-tarball.sh
+        shell: bash
+      - name: Cache modules
+        uses: actions/cache@master
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
 
-#         run: |
-#            $env:PATH
-#            $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64"
-#            $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64\bin"
-#            $env:Path += ";C:\Program Files\OpenSSL-Win64"
-#            $env:Path += ";C:\Program Files\OpenSSL-Win64\bin"
-#            $env:PATH
-#            bash ci/rust-version.sh cargo
-#            readlink -f . 
-#            bash ci/env.sh cargo
-#            rustup set profile default
-#            bash ci/publish-tarball.sh
-       
-#       - name: checking out repo
-#         uses: actions/checkout@v2
-#       - name: Cache modules
-#         uses: actions/cache@v1
-#         id: yarn-cache
-#         with:
-#           path: node_modules
-#           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-#           restore-keys: ${{ runner.os }}-yarn-
-#       - name: Config. aws cred
-#         uses: aws-actions/configure-aws-credentials@v1
-#         with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: us-east-2
-#       - name: Deploy
-#         uses: shallwefootball/s3-upload-action@master
-#         with:
-#             folder: build
-#             bucket: ${{ secrets.AWS_S3_BUCKET }}
-#             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#             bucket-region: us-east-2
-#             delete-removed: true
-#             no-cache: true
-#             private: true
+      - uses: ochanje210/simple-s3-upload-action@master
+        with:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          SOURCE_DIR: 'travis-s3-upload1'
+          DEST_DIR: 'giitsol1'
+
+  windows-artifact:
+    strategy:
+      fail-fast: false 
+    runs-on: windows-latest
+    if : ${{ github.event_name == 'api' && 'cron' || startsWith(github.ref, 'refs/tags/v')}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup | Rust
+        uses: ATiltedTree/setup-rust@v1
+        with:
+          rust-version: stable         
+      - run: |
+            choco install llvm --force -y
+            choco install openssl cmake make -y
+            bash ci/rust-version.sh
+            readlink -f .
+            bash ci/env.sh
+            export CI_BRANCH="v1.8.99"
+            export CI_TAG="v1.8.99"
+            export OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
+            export PATH="C:\Program Files\LLVM\bin:$PATH"
+            export LIBCLANG_PATH="C:\Program Files\LLVM\bin"
+            rustup set profile default
+            bash ci/publish-tarball.sh
+            export OPENSSL_DIR="C:\Program Files\OpenSSL-Win64"
+            export PATH="C:\Program Files\LLVM\bin:$PATH"
+        shell: bash
+      - name: Cache modules
+        uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+      - name: Config. aws cred
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - name: Deploy
+        uses: ochanje210/simple-s3-upload-action@master
+        with:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          SOURCE_DIR: 'travis-s3-upload1'
+          DEST_DIR: 'giitsol2'
   Docs:
   
     runs-on: ubuntu-latest
