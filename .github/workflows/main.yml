@@ -18,6 +18,7 @@ jobs:
         with:
           fetch-depth: 2
 
+
       - run: echo "COMMIT_DIFF_RANGE=$(echo $COMMIT_RANGE)" >> $GITHUB_ENV
 #       - run: echo "$COMMIT_DIFF_RANGE"
       - name: Set up Python
