@@ -1,0 +1,226 @@
+name : minimal 
+on:
+  push:
+    branches:  [master]
+  pull_request:
+    branches:  [master]
+
+jobs:
+  Export_Github_Repositories:
+    runs-on: ubuntu-latest
+    env: 
+       VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
+       GITHUB_TOKEN: ${{secrets.PAT_NEW}} 
+       GITHUB_EVENT_BEFORE: ${{ github.event.before }}
+       GITHUB_EVENT_AFTER: ${{ github.event.after }}
+       COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
+       GITHUB_CONTEXT: ${{ toJson(github) }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - run: sudo apt-get install libssl-dev
+      - run: echo "COMMIT_DIFF_RANGE=$(echo $COMMIT_RANGE)" >> $GITHUB_ENV
+#       - run: echo "$COMMIT_DIFF_RANGE"
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          GITHUB_TOKEN: ${{secrets.PAT_NEW}}
+        if: ${{ github.event_name == 'push' && 'cron'&& github.ref == 'refs/heads/master'}}
+      - name: cmd
+        run : |
+            .travis/export-github-repo.sh web3.js/ solana-web3.js
+            
+# #   macos-artifacts:
+# #     strategy:
+# #       fail-fast: false
+# #     runs-on: macos-latest
+# #     if : ${{ github.event_name == 'api' && 'cron' || 'push' || startsWith(github.ref, 'refs/tags/v')}}
+# #     steps:
+# #       - name: Checkout repository
+# #         uses: actions/checkout@v2
+# #       - name: Setup | Rust
+# #         uses: ATiltedTree/setup-rust@v1
+# #         with:
+# #           rust-version: stable
+# #       - name:  release artifact
+# #         run: |
+# #            source ci/rust-version.sh
+# #            brew install coreutils
+# #            export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# #            greadlink -f .
+# #            source ci/env.sh
+# #            rustup set profile default
+# #            ci/publish-tarball.sh
+# #       - name: checking out repo
+# #         uses: actions/checkout@v2
+# #       - name: Cache modules
+# #         uses: actions/cache@v1
+# #         id: yarn-cache
+# #         with:
+# #           path: node_modules
+# #           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+# #           restore-keys: ${{ runner.os }}-yarn-
+# #       - name: Config. aws cred
+# #         uses: aws-actions/configure-aws-credentials@v1
+# #         with:
+# #           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+# #           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+# #           aws-region: us-east-2
+      
+# #       - name: Deploy
+# #         uses: actions/checkout@master
+# #       - uses: shallwefootball/s3-upload-action@master
+# #         with:
+# #           args: --acl public-read --follow-symlinks --delete
+# #         env:
+# #          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+# #          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+# #          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+# #          AWS_REGION: 'us-east-2'   # optional: defaults to us-east-1
+# #          SOURCE_DIR: './Docs'      # optional: defaults to entire repository
+        
+#   windows-artifact:
+#     runs-on: windows-latest
+#     strategy:
+#        fail-fast: false 
+#        matrix:
+#         target: 
+#              - x86_64-pc-windows-gnu
+       
+#     if : ${{ github.event_name == 'api' && 'cron' || startsWith(github.ref, 'refs/tags/v')}}
+#     steps:
+#       - uses: msys2/setup-msys2@v2
+#         with:
+#          update: true
+#          install: >-
+#            base-devel
+#            git
+#   #- run: git config --global core.autocrlf input
+#   #  shell: bash
+#       - uses: actions/checkout@v2
+# #       - uses: actions/checkout@v2
+# #       - uses: shogo82148/actions-setup-perl@v1
+# #         with:
+# #              perl-version: '5.32'
+# #              distribution: strawberry
+# #       - name: Download nasm.exe (Windows)
+# #         run: |
+# #                   curl -O https://www.nasm.us/pub/nasm/releasebuilds/${WINNASMVERSION}/win64/nasm-${WINNASMVERSION}-win64.zip
+# #                   unzip nasm-${WINNASMVERSION}-win64.zip
+# #                   echo "$GITHUB_WORKSPACE\\nasm-${WINNASMVERSION}" >> $GITHUB_PATH
+# #                   echo "OPENSSL_RUST_USE_NASM=1" >> $GITHUB_ENV
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+# #       - name: Setup | Rust
+# #         uses: ATiltedTree/setup-rust@v1
+# #         with:
+# #           rust-version: stable
+# #       - name: installing open ssl
+# #         run: choco install openssl
+#       - name:  release artifact
+#         if : ${{ github.event_name == 'api' && 'cron' || github.ref == 'refs/heads/master'}}
+# #         run: |
+# #               mkdir \Tools
+# #               cd \Tools
+# #               git clone https://github.com/Microsoft/vcpkg.git
+# #               cd vcpkg
+# #               .\bootstrap-vcpkg.bat
+# #               .\vcpkg.exe install openssl:x64-windows-static
+# #               $env:OPENSSL_DIR = 'C:\Tools\vcpkg\installed\x64-windows-static'
+# #               $env:OPENSSL_STATIC = 'Yes'
+# #               [System.Environment]::SetEnvironmentVariable('OPENSSL_DIR', $env:OPENSSL_DIR, [System.EnvironmentVariableTarget]::User)
+# #               [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
+
+#         run: |
+#            $env:PATH
+#            $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64"
+#            $env:OPENSSL_DIR += ";C:\Program Files\OpenSSL-Win64\bin"
+#            $env:Path += ";C:\Program Files\OpenSSL-Win64"
+#            $env:Path += ";C:\Program Files\OpenSSL-Win64\bin"
+#            $env:PATH
+#            bash ci/rust-version.sh cargo
+#            readlink -f . 
+#            bash ci/env.sh cargo
+#            rustup set profile default
+#            bash ci/publish-tarball.sh
+       
+#       - name: checking out repo
+#         uses: actions/checkout@v2
+#       - name: Cache modules
+#         uses: actions/cache@v1
+#         id: yarn-cache
+#         with:
+#           path: node_modules
+#           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+#           restore-keys: ${{ runner.os }}-yarn-
+#       - name: Config. aws cred
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: us-east-2
+#       - name: Deploy
+#         uses: shallwefootball/s3-upload-action@master
+#         with:
+#             folder: build
+#             bucket: ${{ secrets.AWS_S3_BUCKET }}
+#             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#             bucket-region: us-east-2
+#             delete-removed: true
+#             no-cache: true
+#             private: true
+  Docs:
+  
+    runs-on: ubuntu-latest
+    env: 
+       GITHUB_TOKEN: ${{secrets.PAT_NEW}} 
+       GITHUB_EVENT_BEFORE: ${{ github.event.before }}
+       GITHUB_EVENT_AFTER: ${{ github.event.after }}
+       COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
+       GITHUB_CONTEXT: ${{ toJson(github) }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: docs
+        if: ${{github.event_name == 'pull_request' ||'push' || startsWith(github.ref, 'refs/tags/v')}}
+        run: |
+             touch .env
+             echo "COMMIT_RANGE=($COMMIT_RANGE)" > .env
+             source ci/env.sh
+             .travis/channel_restriction.sh edge beta || exit 0
+             .travis/affects.sh docs/ .travis || exit 0
+             cd docs/
+             source .travis/before_install.sh
+             source .travis/script.sh
+      - name: setup-node
+        uses: actions/checkout@v2
+      - name: setup-node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+      - name: Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-2  
+  auto_bump:
+     needs: [windows-artifact]
+     runs-on: ubuntu-latest
+     steps:
+       - name : checkout repo
+         uses: actions/checkout@v2
+         with:
+          fetch-depth: '0'
+       - name: Bump version and push tag
+         uses: anothrNick/github-tag-action@1.26.0
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           WITH_V: true
+           DEFAULT_BUMP: patch
