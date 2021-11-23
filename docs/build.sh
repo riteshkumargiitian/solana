@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -ex
 cd "$(dirname "$0")"
-
 # shellcheck source=ci/env.sh
 source ../ci/env.sh
 
