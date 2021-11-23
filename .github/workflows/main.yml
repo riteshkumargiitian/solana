@@ -4,13 +4,7 @@ on:
     workflows: ["solana_main"]
     types: 
       - completed
-# on:
-#   push:
-#     branches:  [master]
-#     tags : /^v\d+\.\d+/
-#   pull_request:
-#     branches:  [master]
-#     tags : /^v\d+\.\d+/
+
 
 
 jobs:
