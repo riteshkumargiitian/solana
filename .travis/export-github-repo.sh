@@ -36,7 +36,8 @@ git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_n
 git config --global user.email "avinash.rai147@gmail.com"
 git config --global user.name "Avnshrai"
 git fetch
-git pull origin master
+# git pull origin master
+git config --global pull.ff only
 git merge
 git checkout master
 git remote -v 
