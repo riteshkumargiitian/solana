@@ -210,17 +210,16 @@ jobs:
           key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-npm-cache-2  
-  auto_bump:
-     needs: [windows-artifact]
-     runs-on: ubuntu-latest
-     steps:
-       - name : checkout repo
-         uses: actions/checkout@v2
-         with:
-          fetch-depth: '0'
-       - name: Bump version and push tag
-         uses: anothrNick/github-tag-action@1.26.0
-         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-           WITH_V: true
-           DEFAULT_BUMP: patch
+#   auto_bump:
+#      runs-on: ubuntu-latest
+#      steps:
+#        - name : checkout repo
+#          uses: actions/checkout@v2
+#          with:
+#           fetch-depth: '0'
+#        - name: Bump version and push tag
+#          uses: anothrNick/github-tag-action@1.26.0
+#          env:
+#            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#            WITH_V: true
+#            DEFAULT_BUMP: patch
