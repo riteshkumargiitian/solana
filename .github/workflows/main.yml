@@ -140,12 +140,12 @@ jobs:
        GITHUB_TOKEN: ${{secrets.PAT_TOKEN }} 
        GITHUB_EVENT_BEFORE: ${{ github.event.before }}
        GITHUB_EVENT_AFTER: ${{ github.event.after }}
-#        COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
+       COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
        GITHUB_CONTEXT: ${{ toJson(github) }}
 #        commit_range2: ${{ github.event.pull_request.base.ref }}
 #        commit_range1: ${{ github.sha }}
 #        COMMIT_HEAD: ${{ git rev-parse HEAD }}
-       COMMIT_RANGE:  git rev-parse HEAD...${{ github.sha }}
+#        COMMIT_RANGE:  git rev-parse HEAD...${{ github.sha }}
        
     steps:
       - name: Checkout repo
