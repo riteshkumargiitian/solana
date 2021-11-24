@@ -30,7 +30,9 @@ npm install
 # npm run start
 npm run build
 echo $?
+echo "#####################################################################"
 echo $CI_PULL_REQUEST
+echo "#####################################################################"
 # Publish only from merge commits and beta release tags
 if [[ -n $CI ]]; then
   if [[ -z $CI_PULL_REQUEST ]]; then
