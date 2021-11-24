@@ -21,9 +21,9 @@ jobs :
 #          COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
 #          GITHUB_CONTEXT: ${{ toJson(github) }}
         env: 
-          GITHUB_EVENT_BEFORE: ${{ github.event.pull_request.before }}
-          GITHUB_EVENT_AFTER: ${{ github.event.pull_request.after }}
-          COMMIT_RANGE: ${{ github.event.pull_request.before}}...${{ github.event.pull_request.after }}
+          GITHUB_EVENT_BEFORE: ${{ github.event.pull_request.base.ref }}
+          GITHUB_EVENT_AFTER: ${{ github.event.pull_request.base.sha }}
+          COMMIT_RANGE: ${{ github.event.pull_request.base.ref}}...${{ github.event.pull_request.base.sha }}
 #            GITHUB_EVENT_BEFORE: ${{ github.event.before }}
 #            GITHUB_EVENT_AFTER: ${{ github.event.after }}
 #            COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
