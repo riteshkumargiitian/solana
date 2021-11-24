@@ -1,7 +1,6 @@
 name: docs_PR
 on:
-  pull_request:
-    types: [open,synchronize]
+  pull_request_target:
     branches:
      - master
     paths:
