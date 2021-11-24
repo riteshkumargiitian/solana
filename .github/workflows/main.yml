@@ -144,7 +144,7 @@ jobs:
        GITHUB_CONTEXT: ${{ toJson(github) }}
 #        commit_range2: ${{ github.event.pull_request.base.ref }}
 #        commit_range1: ${{ github.sha }}
-       COMMIT_HEAD: ${{ git rev-parse HEAD }}
+#        COMMIT_HEAD: ${{ git rev-parse HEAD }}
        COMMIT_RANGE:  git rev-parse HEAD...${{ github.sha }}
        
     steps:
