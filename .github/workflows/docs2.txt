@@ -29,6 +29,7 @@ jobs :
 #            GITHUB_EVENT_BEFORE: ${{ github.event.before }}
 #            GITHUB_EVENT_AFTER: ${{ github.event.after }}
 #            COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
+             GITHUB_diff_url: ${{ github.event.diff_url }}
         run: |
              touch .env
              echo "COMMIT_RANGE=($COMMIT_RANGE)" > .env
