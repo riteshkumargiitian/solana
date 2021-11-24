@@ -3,7 +3,7 @@ on:
   push:
     branches:  [master]
   pull_request_target:
-    types: [synchronize]
+    types: [open,synchronize]
     branches:  [master]
 # name : minimal 
 # on:
