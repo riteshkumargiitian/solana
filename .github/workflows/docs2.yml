@@ -3,6 +3,8 @@ on:
   pull_request:
     branches:
      - master
+    paths:
+      - 'docs/**'
 jobs :
    Docs1:
     runs-on: ubuntu-latest
@@ -13,17 +15,17 @@ jobs :
           fetch-depth: 2
       - name: docs
         if: ${{github.event_name == 'pull_request' ||'push' || startsWith(github.ref, 'refs/tags/v')}}
-#         env: 
-#          VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
-#          GITHUB_TOKEN: ${{secrets.PAT_TOKEN }} 
-#          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
-#          GITHUB_EVENT_AFTER: ${{ github.event.after }}
-#          COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
-#          GITHUB_CONTEXT: ${{ toJson(github) }}
         env: 
-          GITHUB_EVENT_BEFORE: ${{ github.event.pull_request.base.ref }}
-          GITHUB_EVENT_AFTER: ${{ github.event.pull_request.base.sha }}
-          COMMIT_RANGE: ${{ github.event.pull_request.base.ref}}...${{ github.event.pull_request.base.sha }}
+         VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
+         GITHUB_TOKEN: ${{secrets.PAT_TOKEN }} 
+         GITHUB_EVENT_BEFORE: ${{ github.event.before }}
+         GITHUB_EVENT_AFTER: ${{ github.event.after }}
+         COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
+         GITHUB_CONTEXT: ${{ toJson(github) }}
+#        env: 
+         # GITHUB_EVENT_BEFORE: ${{ github.event.pull_request.base.ref }}
+         # GITHUB_EVENT_AFTER: ${{ github.event.pull_request.base.sha }}
+#           COMMIT_RANGE: ${{ github.event.pull_request.base.ref}}...${{ github.event.pull_request.base.sha }}
 #            GITHUB_EVENT_BEFORE: ${{ github.event.before }}
 #            GITHUB_EVENT_AFTER: ${{ github.event.after }}
 #            COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
@@ -33,6 +35,8 @@ jobs :
              source ci/env.sh
              .travis/channel_restriction.sh edge beta master || exit 0
              .travis/affects.sh docs/ .travis || exit 0
+      - name : changing docs
+        run: |
              cd docs/
              source .travis/before_install.sh
              source .travis/script.sh
