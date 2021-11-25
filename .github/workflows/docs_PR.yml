@@ -20,6 +20,7 @@ jobs :
          GITHUB_TOKEN: ${{secrets.PAT_TOKEN }} 
 #          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
 #          GITHUB_EVENT_AFTER: ${{ github.event.after }}
+         
          COMMIT_RANGE: ${{ github.sha }}...${{ github.event.pull_request.head.sha }}
          GITHUB_CONTEXT: ${{ toJson(github.event) }}
          SHA: ${{ github.sha }}
@@ -33,6 +34,7 @@ jobs :
 #            COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
 #              GITHUB_diff_url: ${{ github.event.diff_url }}
         run: |
+             git rev-parse FETCH_HEAD
              touch .env
              echo "COMMIT_RANGE=($COMMIT_RANGE)" > .env
              source ci/env.sh
