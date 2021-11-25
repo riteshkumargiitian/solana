@@ -53,6 +53,7 @@ jobs :
 #            COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
 #              GITHUB_diff_url: ${{ github.event.diff_url }}
         run: |
+             git commit -m "initial commit"
              git diff HEAD~2 HEAD -- ./docs
              git log --cherry-pick --format="%h" --merges --left-only $TO_BRANCH...$FROM_BRANCH
              touch .env
