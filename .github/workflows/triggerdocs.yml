@@ -1,0 +1,11 @@
+name : trigger_docs_PR
+on:
+  pull_request:
+    branches:  [master]
+    paths:
+      - 'docs/**'
+jobs:
+  docs_on_PR:
+    runs-on: windows-latest
+    steps:
+      - run: echo "this job will solve PR problem"
