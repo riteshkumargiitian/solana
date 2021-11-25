@@ -1,6 +1,6 @@
 name: docs_PR
 on:
-   push
+   pull_request
 #   workflow_run:
 #     workflows: ["solana_main"]
 #     types: 
@@ -23,6 +23,7 @@ jobs :
          
          COMMIT_RANGE: ${{ github.event.before }}...${{ github.event.after }}
          GITHUB_CONTEXT: ${{ toJson(github) }}
+         extract: ${{ github.pull_request.diff_url}}
 #          SHA: ${{ github.sha }}
 #          PULL_REQUEST_SHA: ${{ github.event.pull_request.head.sha }}
 #          MASTER_BRANCH: ${{ github.event.pull_request.base.ref }}
