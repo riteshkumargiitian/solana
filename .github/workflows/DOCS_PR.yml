@@ -38,7 +38,7 @@ jobs :
         run : |
              cd docs/
              source .travis/before_install.sh
-             source .travis/script.sh
+             source .travis/script_pr.sh
       - name: setup-node
         uses: actions/checkout@v2
       - name: setup-node
