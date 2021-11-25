@@ -30,7 +30,7 @@ jobs :
 #          PR1: ${{ github.event.pull_request.base.ref }}
 #          PR2: ${{ github.event.pull_request.base.sha }}
          FROM_BRANCH: ${{ github.event.pull_request.base.ref }} 
-         TO_BRANCH: ${{ github.event.pull_request.base.sha }}
+         TO_BRANCH: ${{ github.event.pull_request.head.ref }}
 #         COMMIT_DIFF1: ${{ git log --cherry-pick --format="%h" --merges --left-only $FROM_BRANCH...$TO_BRANCH }}
          # GITHUB_EVENT_BEFORE: ${{ github.event.pull_request.base.ref }}
          # GITHUB_EVENT_AFTER: ${{ github.event.pull_request.base.sha }}
