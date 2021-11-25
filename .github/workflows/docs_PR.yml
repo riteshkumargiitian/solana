@@ -18,9 +18,9 @@ jobs :
         env: 
          VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
          GITHUB_TOKEN: ${{secrets.PAT_TOKEN }} 
-         GITHUB_EVENT_BEFORE: ${{ github.event.before }}
-         GITHUB_EVENT_AFTER: ${{ github.event.after }}
-         COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
+#          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
+#          GITHUB_EVENT_AFTER: ${{ github.event.after }}
+         COMMIT_RANGE: ${{ github.sha }}...${{ github.event.pull_request.head.sha }}
          GITHUB_CONTEXT: ${{ toJson(github.event) }}
          SHA: ${{ github.sha }}
          PULL_REQUEST_SHA: ${{ github.event.pull_request.head.sha }}
@@ -38,8 +38,6 @@ jobs :
              source ci/env.sh
              .travis/channel_restriction.sh edge beta master || exit 0
              .travis/affects.sh docs/ .travis || exit 0
-      - name : changing docs
-        run: |
              cd docs/
              source .travis/before_install.sh
              source .travis/script.sh
