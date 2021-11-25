@@ -1,4 +1,4 @@
-name: docs_PR
+name: docs_PR_Avinash
 on:
    pull_request
 #   workflow_run:
@@ -6,7 +6,7 @@ on:
 #     types: 
 #       - completed
 jobs :
-   Docs1:
+   avinash:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
