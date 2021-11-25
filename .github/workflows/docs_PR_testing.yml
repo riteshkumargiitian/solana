@@ -53,8 +53,7 @@ jobs :
 #            COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
 #              GITHUB_diff_url: ${{ github.event.diff_url }}
         run: |
-             git checkout master
-             git diff HEAD~2 HEAD -- ./docs
+             git status
              git log --cherry-pick --format="%h" --merges --left-only $TO_BRANCH...$FROM_BRANCH
              touch .env
              echo "COMMIT_RANGE=($COMMIT_RANGE)" > .env
