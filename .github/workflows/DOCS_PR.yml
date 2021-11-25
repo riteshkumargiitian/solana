@@ -5,7 +5,7 @@ on:
     types: 
       - completed
 jobs :
-   docs_build&test:
+   docs_build_test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
