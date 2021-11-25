@@ -1,10 +1,9 @@
 name: docs_PR
 on:
-  pull_request_target:
-    branches:
-     - master
-    paths:
-      - 'docs/**'
+  workflow_run:
+    workflows: ["solana_main"]
+    types: 
+      - completed
 jobs :
    Docs1:
     runs-on: ubuntu-latest
