@@ -35,10 +35,13 @@ jobs :
          GITHUB_EVENT_AFTER: ${{ github.event.after }}
          COMMIT_RANGE: ${{ github.event.before }}...${{ github.event.after }}
          GITHUB_CONTEXT: ${{ toJson(github.event.pull_request) }}
-        run : |
+        run : | 
              cd docs/
+             sudo chmod 777 build_pr.sh
+             sudo chmod 777 publish-preview-docs.sh
+             sudo chmod 777 .travis/script_pr.sh
              source .travis/before_install.sh
-             source sudo .travis/script_pr.sh
+             source .travis/script_pr.sh
       - name: setup-node
         uses: actions/checkout@v2
       - name: setup-node
