@@ -1,4 +1,4 @@
-name: docs_PR
+name: docs_PR_testing
 on:
   pull_request_target:
     branches:
