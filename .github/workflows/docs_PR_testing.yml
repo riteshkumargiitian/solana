@@ -18,19 +18,32 @@ jobs :
         env: 
          VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
          GITHUB_TOKEN: ${{secrets.PAT_TOKEN }} 
+         xyz: ${{git diff HEAD^^ HEAD ./docs}}
 #          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
 #          GITHUB_EVENT_AFTER: ${{ github.event.after }}
          
-         COMMIT_RANGE: ${{ github.event.pull_request.base.ref }}...${{ github.event.pull_request.base.sha }}
-         GITHUB_CONTEXT: ${{ toJson(github.event) }}
+#          COMMIT_RANGE: ${{ github.event.pull_request.base.ref }}...${{ github.event.pull_request.base.sha }}
+#          GITHUB_CONTEXT: ${{ toJson(github.event) }}
+
+
+
+
 #          SHA: ${{ github.sha }}
 #          PULL_REQUEST_SHA: ${{ github.event.pull_request.head.sha }}
-         MASTER_BRANCH: ${{ github.event.pull_request.base.ref }}
-         PULL_REQUEST: ${{ github.event.pull_request.head.ref }}
+#          MASTER_BRANCH: ${{ github.event.pull_request.base.ref }}
+#          PULL_REQUEST: ${{ github.event.pull_request.head.ref }}
+
+
+
 #          PR1: ${{ github.event.pull_request.base.ref }}
 #          PR2: ${{ github.event.pull_request.base.sha }}
-         FROM_BRANCH: ${{ github.event.pull_request.base.ref }} 
-         TO_BRANCH: ${{ github.event.pull_request.head.ref }}
+
+
+#          FROM_BRANCH: ${{ github.event.pull_request.base.ref }} 
+#          TO_BRANCH: ${{ github.event.pull_request.head.ref }}
+
+
+
 #         COMMIT_DIFF1: ${{ git log --cherry-pick --format="%h" --merges --left-only $TO_BRANCH...$FROM_BRANCH }}
          # GITHUB_EVENT_BEFORE: ${{ github.event.pull_request.base.ref }}
          # GITHUB_EVENT_AFTER: ${{ github.event.pull_request.base.sha }}
