@@ -27,9 +27,11 @@ jobs :
 #          PULL_REQUEST_SHA: ${{ github.event.pull_request.head.sha }}
          MASTER_BRANCH: ${{ github.event.pull_request.base.ref }}
          PULL_REQUEST: ${{ github.event.pull_request.head.ref }}
-         PR1: ${{ github.event.pull_request.base.ref }}
-         PR2: ${{ github.event.pull_request.base.sha }}
-#        env: 
+#          PR1: ${{ github.event.pull_request.base.ref }}
+#          PR2: ${{ github.event.pull_request.base.sha }}
+         FROM_BRANCH: ${{ github.event.pull_request.base.ref }} 
+         TO_BRANCH: ${{ github.event.pull_request.base.sha }}
+         COMMIT_DIFF1: ${{ git log --cherry-pick --format="%h" --merges --left-only $FROM_BRANCH...$TO_BRANCH }}
          # GITHUB_EVENT_BEFORE: ${{ github.event.pull_request.base.ref }}
          # GITHUB_EVENT_AFTER: ${{ github.event.pull_request.base.sha }}
 #           COMMIT_RANGE: ${{ github.event.pull_request.base.ref}}...${{ github.event.pull_request.base.sha }}
@@ -38,6 +40,7 @@ jobs :
 #            COMMIT_RANGE: ${{ github.event.before}}...${{ github.event.after}}
 #              GITHUB_diff_url: ${{ github.event.diff_url }}
         run: |
+             git log --cherry-pick --format="%h" --merges --left-only $FROM_BRANCH...$TO_BRANCH
              touch .env
              echo "COMMIT_RANGE=($COMMIT_RANGE)" > .env
              source ci/env.sh
