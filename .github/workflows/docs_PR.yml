@@ -15,16 +15,8 @@ jobs :
           PATTERNS: |
             +(src|__tests__)/**/*.ts
             !src/exclude.ts
-          FILES: |
-            yarn.lock
-            .eslintrc
-      - name: Install Package dependencies
-        run: yarn install
-        if: env.GIT_DIFF
-      - name: Check code style
-        # Check only if there are differences in the source code
-        run: yarn lint
-        if: env.GIT_DIFF
+          FORMAT: json
+      - run: echo '${{ env.GIT_DIFF }}' | jq .
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
