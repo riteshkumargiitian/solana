@@ -1,9 +1,10 @@
 name: docs_PR
 on:
-  workflow_run:
-    workflows: ["solana_main"]
-    types: 
-      - completed
+   push
+#   workflow_run:
+#     workflows: ["solana_main"]
+#     types: 
+#       - completed
 jobs :
    Docs1:
     runs-on: ubuntu-latest
