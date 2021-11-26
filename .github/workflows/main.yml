@@ -204,4 +204,4 @@ jobs:
         - uses: abinoda/slack-action@master
           env :
              SLACK_TOKEN : ${{ secrets.SLACK_TOKEN}}
-          if : succesee()
+          if : success()
