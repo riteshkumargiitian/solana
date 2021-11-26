@@ -44,7 +44,7 @@ jobs:
            status: ${{ job.status }}
            notify_when: 'success'
         env:
-         SLACK_token: ${{ secrets.SLACK_TOKEN }}
+         SLACK_token: ${{ secrets.SLACK_TOKEN}}
   macos-artifacts:
     strategy:
       fail-fast: false
