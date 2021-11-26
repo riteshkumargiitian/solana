@@ -1,4 +1,4 @@
-name : trigger_docs_PR
+name : docs_PR_1
 on:
   pull_request:
     branches:  [master]
