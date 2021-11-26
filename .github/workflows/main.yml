@@ -204,4 +204,6 @@ jobs:
         - uses: abinoda/slack-action@master
           env :
             SLACK_BOT_TOKEN : ${{ secrets.SLACK_BOT_TOKEN}}
+          with:
+             args: '{\"channel\":\"C02GE1FFG9F\",\"text\":\"build success of solana main\"}'
           if : success()
