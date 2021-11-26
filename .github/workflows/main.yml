@@ -37,14 +37,14 @@ jobs:
         run : |
             .travis/export-github-repo.sh web3.js/ solana-web3.js
             
-#       - name: Report Status
-#         if: always()
-#         uses: ravsamhq/notify-slack-action@v1
-#         with:
-#            status: ${{ job.status }}
-#            notify_when: 'failure'
-#         env:
-#          SLACK_token: ${{ secrets.SLACK_TOKEN }}
+      - name: Report Status
+        if:  ${{ github.event_name != 'pull_request'}}
+        uses: ravsamhq/notify-slack-action@v1
+        with:
+           status: ${{ job.status }}
+           notify_when: 'success'
+        env:
+         SLACK_token: ${{ secrets.SLACK_TOKEN }}
   macos-artifacts:
     strategy:
       fail-fast: false
