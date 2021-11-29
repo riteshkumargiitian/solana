@@ -34,4 +34,4 @@ git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_n
 git pull
 git fetch 
 git merge FETCH_HEAD
-git -C .github_export/"$repo_name" push --force https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
+git -C .github_export/"$repo_name" push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
