@@ -40,4 +40,5 @@ git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_n
 # git add export-github-repo.sh
 # git rebase --continue
 # # git merge
+git pull
 git -C .github_export/"$repo_name" push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
