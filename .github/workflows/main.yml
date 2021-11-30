@@ -6,6 +6,7 @@ on:
     branches:  [master]
 # name : minimal 
 # on:
+
 #   workflow_run:
 #     workflows: ["solana_main"]
 #     types: 
