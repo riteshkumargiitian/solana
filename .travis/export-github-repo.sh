@@ -28,17 +28,29 @@ declare repo_name=$2
 echo "Exporting $subdir"
 
 set -x
-rm -rf .github_export/"$repo_name"
-git clone https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" .github_export/"$repo_name"
-git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
-# # git remote add origin https://github.com/Naveenmishra1197/solana-web3.js.git
-# # git pull https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" --allow-unrelated-histories
-# git pull --rebase https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" --allow-unrelated-histories
-# git fetch 
-# git merge --allow-unrelated-histories
-# git branch --set-upstream-to origin/master
-# git add export-github-repo.sh
-# git rebase --continue
-# # git merge
-git pull
-git -C .github_export/"$repo_name" push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
+
+# rm -rf .github_export/"$repo_name"
+# git clone https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" .github_export/"$repo_name"
+# git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
+# # # git remote add origin https://github.com/Naveenmishra1197/solana-web3.js.git
+# # # git pull https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" --allow-unrelated-histories
+# # git pull --rebase https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" --allow-unrelated-histories
+# # git fetch 
+# # git merge --allow-unrelated-histories
+# # git branch --set-upstream-to origin/master
+# # git add export-github-repo.sh
+# # git rebase --continue
+# # # git merge
+# git pull
+# git -C .github_export/"$repo_name" push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
+
+
+
+
+ git clone https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"solana" 
+ cd solana
+ git filter-branch --subdirectory-filter web3.js -- --all
+ git remote rm origin
+ git remote add origin solana-web3.js
+
+ git push --tags origin master
