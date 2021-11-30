@@ -33,6 +33,8 @@ git clone https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" .gith
 git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
 # git remote add origin https://github.com/Naveenmishra1197/solana-web3.js.git
 # git pull origin master
+git add export-github-repo.sh
+git rebase --continue
 git pull --rebase https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" --allow-unrelated-histories
 git fetch 
 git merge --allow-unrelated-histories
