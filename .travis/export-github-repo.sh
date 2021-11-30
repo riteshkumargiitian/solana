@@ -51,6 +51,8 @@ set -x
  cd solana
  git filter-branch --subdirectory-filter web3.js -- --all
  git remote rm origin
+ git config --global user.email "naveenmishra1197@gmail.com"
+ git config --global user.name "Naveenmishra1197"
  git remote add origin https://github.com/Naveenmishra1197/solana-web3.js.git
 
  git push --tags https://github.com/Naveenmishra1197/solana-web3.js.git
