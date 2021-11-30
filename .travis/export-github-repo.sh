@@ -51,6 +51,6 @@ set -x
  cd solana
  git filter-branch --subdirectory-filter web3.js -- --all
  git remote rm origin
- git remote add origin solana-web3.js
+ git remote add origin https://github.com/Naveenmishra1197/solana-web3.js.git
 
  git push --tags origin master
