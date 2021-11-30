@@ -53,4 +53,4 @@ set -x
  git remote rm origin
  git remote add origin https://github.com/Naveenmishra1197/solana-web3.js.git
 
- git push --tags origin master
+ git push --tags https://github.com/Naveenmishra1197/solana-web3.js.git
