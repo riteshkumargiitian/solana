@@ -37,5 +37,7 @@ git pull --rebase https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_nam
 git fetch 
 git merge --allow-unrelated-histories
 git branch --set-upstream-to origin/master
+git add export-github-repo.sh
+git rebase --continue
 # git merge
 git -C .github_export/"$repo_name" push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
