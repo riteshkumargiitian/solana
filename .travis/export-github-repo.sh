@@ -15,6 +15,7 @@ pip3 install git-filter-repo
 
 declare subdir=$1
 declare repo_name=$2
+declare origin=$3
 
 [[ -n "$subdir" ]] || {
   echo "Error: subdir not specified"
@@ -47,14 +48,17 @@ set -x
 
 
 
- git clone https://github.com/Naveenmishra1197/solana.git
- cd solana
- git filter-branch --subdirectory-filter web3.js -- --all
+ 
+
+ rm -rf .github_export/"$repo_name"
+ git clone https://github.com/Naveenmishra1197/solana.git .github_export/"$repo_name"
+ cd .github_export/"$repo_name"
+ git filter-branch --subdirectory-filter "$subdir" -- --all
  git remote rm origin
- git config --global user.email "naveenmishra1197@gmail.com"
- git config --global user.name "Naveenmishra1197"
- git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/solana-web3.js.git
+#  git config --global user.email "naveenmishra1197@gmail.com"
+#  git config --global user.name "Naveenmishra1197"
+ git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$origin"
  git config pull.rebase false
  git pull origin master --allow-unrelated-histories
  git push --set-upstream origin master
-#  git push https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/solana-web3.js.git
+#  git push https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$origin"
