@@ -14,7 +14,9 @@ cd "$(dirname "$0")/.."
 pip3 install git-filter-repo
 
 declare subdir=$1
+echo "$1"
 declare repo_name=$2
+echo "$2"
 # declare origin=$3
 
 [[ -n "$subdir" ]] || {
