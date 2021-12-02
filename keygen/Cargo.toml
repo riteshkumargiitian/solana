@@ -9,6 +9,7 @@ homepage = "https://solana.com/"
 documentation = "https://docs.rs/solana-keygen"
 edition = "2018"
 
+
 [dependencies]
 openssl = { version = "0.10", features = ["vendored"] }
 bs58 = "0.4.0"
