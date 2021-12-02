@@ -1,5 +1,6 @@
 set -e
 
+
 # Generate typescript declarations
 npx tsc -p tsconfig.d.json -d
 
