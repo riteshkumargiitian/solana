@@ -48,23 +48,23 @@ set -x
 # git -C .github_export/"$repo_name" push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
 
 
-rm -rf .github_export/"$repo_name"
-git clone https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" .github_export/"$repo_name"
-git filter-repo --subdirectory-filter "$subdir"
-#git filter-repo --to-subdirectory-filter "$subdir" --target .github_export/"$repo_name"
-git -C .github_export/"$repo_name" push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
+# rm -rf .github_export/"$repo_name"
+# git clone https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name" .github_export/"$repo_name"
+# git filter-repo --subdirectory-filter "$subdir"
+# #git filter-repo --to-subdirectory-filter "$subdir" --target .github_export/"$repo_name"
+# git -C .github_export/"$repo_name" push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
  
 
-#  rm -rf .github_export/"$repo_name"
-#  git clone https://github.com/Naveenmishra1197/solana.git .github_export/"$repo_name"
-#  cd .github_export/"$repo_name"
-#  git filter-branch --subdirectory-filter "$subdir" -- --all
-#  git remote rm origin
-#  git config --global user.email "naveenmishra1197@gmail.com"
-#  git config --global user.name "Naveenmishra1197"
-#  git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/solana-web3.js.git
-#  git config pull.rebase false
-#  git pull origin master --allow-unrelated-histories
-#  git push --set-upstream origin master
+ rm -rf .github_export/"$repo_name"
+ git clone https://github.com/Naveenmishra1197/solana.git .github_export/"$repo_name"
+ cd .github_export/"$repo_name"
+ git filter-branch --subdirectory-filter "$subdir" -- --all
+ git remote rm origin
+ git config --global user.email "naveenmishra1197@gmail.com"
+ git config --global user.name "Naveenmishra1197"
+ git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/solana-web3.js.git
+ git config pull.rebase false
+ git pull origin master --allow-unrelated-histories
+ git push --set-upstream origin master
 # #  git push https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$origin"
 
