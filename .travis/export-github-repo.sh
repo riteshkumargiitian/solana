@@ -65,7 +65,7 @@ set -x
  git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/solana-web3.js.git
  git config pull.rebase false
  git pull origin master --allow-unrelated-histories
-#  git push --set-upstream origin master
- git push 
+ git push --set-upstream origin master
+#  git push 
 # #  git push https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$origin"
 
