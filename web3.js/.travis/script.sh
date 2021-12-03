@@ -1,5 +1,6 @@
 # |source| this file
 
+
 set -ex
 solana --version
 
