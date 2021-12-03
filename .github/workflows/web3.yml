@@ -35,11 +35,11 @@ jobs:
           cache-dependency-path: web3.js/package-lock.json
       - run: npm i -g npm@7
       - run: npm ci
-      - name: commit-lint
-        if: ${{ github.event_name == 'pull_request' }}
-        run: bash commitlint.sh
-        env:
-          COMMIT_RANGE: ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
+#       - name: commit-lint
+#         if: ${{ github.event_name == 'pull_request' }}
+#         run: bash commitlint.sh
+#         env:
+#           COMMIT_RANGE: ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
       - run: npm run lint
       - run: |
           npm run build
