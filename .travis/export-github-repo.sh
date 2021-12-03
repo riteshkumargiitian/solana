@@ -2,7 +2,6 @@
 #
 # Exports a subdirectory into another github repository
 #
-
 set -e
 if [[ -z $GITHUB_TOKEN ]]; then
   echo GITHUB_TOKEN not defined
