@@ -78,6 +78,8 @@ set -x
  cd .github_export/"$repo_name"
  git filter-repo --subdirectory-filter "$subdir" 
  git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
+ git pull origin master
+ git push 
 
 
 
