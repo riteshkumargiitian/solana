@@ -70,3 +70,14 @@ set -x
 #  git push 
 # #  git push https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$origin"
 
+
+#latest 
+
+ rm -rf .github_export/"$repo_name"
+ git clone https://github.com/Naveenmishra1197/solana.git .github_export/"$repo_name"
+ cd .github_export/"$repo_name"
+ git filter-repo --subdirectory-filter "$subdir" 
+ git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
+
+
+
