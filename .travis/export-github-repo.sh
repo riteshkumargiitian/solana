@@ -58,7 +58,8 @@ set -x
  rm -rf .github_export/"$repo_name"
  git clone https://github.com/Naveenmishra1197/solana.git .github_export/"$repo_name"
  cd .github_export/"$repo_name"
- git filter-repo --subdirectory-filter "$subdir" -- --all
+#  git filter-branch --subdirectory-filter "$subdir" -- --all
+ git filter-repo --subdirectory-filter "$subdir" 
  git remote rm origin
  git config --global user.email "naveenmishra1197@gmail.com"
  git config --global user.name "Naveenmishra1197"
