@@ -79,7 +79,7 @@ set -x
  git filter-repo --subdirectory-filter "$subdir"  
 #  git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
 #  git config pull.rebase false
- git branch --set-upstream-to= master
+ git branch --set-upstream origin/master
  git pull 
  git push https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
 
