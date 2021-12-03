@@ -81,7 +81,6 @@ set -x
 #  git config pull.rebase false
  git fetch
  git branch --set-upstream-to origin/master
- git fetch
  git pull -u
  git push https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
 
