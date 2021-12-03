@@ -76,11 +76,11 @@ set -x
  rm -rf .github_export/"$repo_name"
  git clone https://github.com/Naveenmishra1197/solana.git .github_export/"$repo_name"
  cd .github_export/"$repo_name"
- git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
+ git filter-repo --subdirectory-filter "$subdir" --target 
 #  git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
 #  git config pull.rebase false
  git pull origin master
- git -C .github_export/"$repo_name" push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
+ git push  https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
 
 
 
