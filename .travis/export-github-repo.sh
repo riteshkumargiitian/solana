@@ -80,7 +80,7 @@ set -x
 #  git remote add origin https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
 #  git config pull.rebase false
  git fetch
- git branch --set-upstream-to origin/master
+ git branch --set-upstream-to=origin/master
  git pull -u
  git push https://"$GITHUB_TOKEN"@github.com/Naveenmishra1197/"$repo_name"
 
