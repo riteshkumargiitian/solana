@@ -51,9 +51,9 @@ set -x
 #  git branch --set-upstream-to origin/master
 #  git push
 
-git clone https://github.com/Avnshrai/solana.git .github_export/"$repo_name"
-cd .github_export/"$repo_name"
+git clone https://github.com/Avnshrai/solana.git
+cd solana
 git checkout master
 git filter-branch --prune-empty --subdirectory-filter "$subdir" master
 git remote set-url origin https://"$GITHUB_TOKEN"@github.com/Avnshrai/"$repo_name"
-git push -u origin https://"$GITHUB_TOKEN"@github.com/Avnshrai/"$repo_name"
+git push -u origin/master
