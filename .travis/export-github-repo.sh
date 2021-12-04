@@ -28,25 +28,25 @@ declare repo_name=$2
 echo "Exporting $subdir"
 
 set -x
-rm -rf .github_export/"$repo_name"
-# git clone https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name" .github_export/"$repo_name"
-git clone https://github.com/Avnshrai/solana.git .github_export/"$repo_name"
-git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
-git remote add origin https://"$GITHUB_TOKEN"@github.com/Avnshrai/"$repo_name"
-git config pull.rebase false
-git pull origin/master
-git -C .github_export/"$repo_name" push https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name"
+# rm -rf .github_export/"$repo_name"
+# # git clone https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name" .github_export/"$repo_name"
+# git clone https://github.com/Avnshrai/solana.git .github_export/"$repo_name"
+# git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
+# git remote add origin https://"$GITHUB_TOKEN"@github.com/Avnshrai/"$repo_name"
+# git config pull.rebase false
+# git pull origin/master
+# git -C .github_export/"$repo_name" push https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name"
 
-#  rm -rf .github_export/"$repo_name"
-#  git clone https://github.com/Avnshrai/solana.git .github_export/"$repo_name"
-#  cd .github_export/"$repo_name"
-# #  git filter-branch --subdirectory-filter "$subdir" -- --all
-#  git filter-repo --subdirectory-filter "$subdir" 
-# #  git remote rm origin
-#  git config --global user.email "Avnshrai40@gmail.com"
-#  git config --global user.name "Avnshrai"
-#  git remote add origin https://"$GITHUB_TOKEN"@github.com/Avnshrai/"$repo_name"
-#  git config pull.rebase false
-#  git pull origin master --allow-unrelated-histories
-#  git branch --set-upstream-to origin/master
-#  git push
+ rm -rf .github_export/"$repo_name"
+ git clone https://github.com/Avnshrai/solana.git .github_export/"$repo_name"
+ cd .github_export/"$repo_name"
+#  git filter-branch --subdirectory-filter "$subdir" -- --all
+ git filter-repo --subdirectory-filter "$subdir" 
+#  git remote rm origin
+ git config --global user.email "Avnshrai40@gmail.com"
+ git config --global user.name "Avnshrai"
+ git remote add origin https://"$GITHUB_TOKEN"@github.com/Avnshrai/"$repo_name"
+ git config pull.rebase false
+ git pull origin master --allow-unrelated-histories
+ git branch --set-upstream-to origin/master
+ git push
