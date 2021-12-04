@@ -29,8 +29,12 @@ echo "Exporting $subdir"
 
 set -x
 rm -rf .github_export/"$repo_name"
-git clone https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name" .github_export/"$repo_name"
+# git clone https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name" .github_export/"$repo_name"
+git clone https://github.com/Avnshrai/solana.git .github_export/"$repo_name"
 git filter-repo --subdirectory-filter "$subdir" --target .github_export/"$repo_name"
+git remote add origin https://"$GITHUB_TOKEN"@github.com/Avnshrai/"$repo_name"
+git config pull.rebase false
+git pull origin/master
 git -C .github_export/"$repo_name" push https://"$GITHUB_TOKEN"@github.com/avnshrai/"$repo_name"
 
 #  rm -rf .github_export/"$repo_name"
