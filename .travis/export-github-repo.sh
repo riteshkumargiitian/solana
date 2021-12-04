@@ -44,6 +44,6 @@ set -x
  git remote add origin https://"$GITHUB_TOKEN"@github.com/Avnshrai/"$repo_name"
  git config pull.rebase false
  git pull origin master --allow-unrelated-histories
- git branch --set-upstream-to origin master
+ git branch --set-upstream-to origin/master
  git push
 
