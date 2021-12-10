@@ -21,7 +21,7 @@ jobs:
        - run: npm i -g npm@7
        - run : ls
        - run : pwd
-       - run : cd explorer/package-lock.json
+       - run : cd explorer
        - run: npm ci
        - run: npm run format
        - run: npm run build
