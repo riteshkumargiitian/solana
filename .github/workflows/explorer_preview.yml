@@ -28,6 +28,7 @@ jobs:
 #        - run: npm run test
        - uses: amondnet/vercel-action@v20
          with:
+          github-deployment: true
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
