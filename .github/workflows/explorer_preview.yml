@@ -18,14 +18,14 @@ jobs:
            cache: 'npm'
            cache-dependency-path: explorer/package-lock.json
        
-       - run: npm i -g npm@7
-       - run : ls
-       - run : pwd
-       - run : cd explorer
-       - run: npm ci
-       - run: npm run format
-       - run: npm run build
-       - run: npm run test
+#        - run: npm i -g npm@7
+#        - run : ls
+#        - run : pwd
+#        - run : cd explorer
+#        - run: npm ci
+#        - run: npm run format
+#        - run: npm run build
+#        - run: npm run test
        - uses: amondnet/vercel-action@v20
          with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
