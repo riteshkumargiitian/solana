@@ -18,37 +18,62 @@ jobs:
       run:
         working-directory: explorer
     steps:
-       - uses: actions/checkout@v2
-       - uses: actions/setup-node@v2
-         with:
-          node-version: '14'
-          cache: 'npm'
-          cache-dependency-path: explorer/package-lock.json
-       - run: npm i -g npm@7
-       - run: npm ci
-       - run: npm run format
-       - run: npm run build
-       - run: npm run test
-      
-#        - uses: amondnet/vercel-action@v20
-#          with:
-#           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-#           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
-#           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-#           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
-#           working-directory: ./explorer
-       - run: sleep 30
-       - name: vercel-preview-url
-         uses: zentered/vercel-preview-url@v1.0.0
-         id: vercel_preview_url
-         env:
-            VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-            github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
-            vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-            vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
-            working-directory: ./explorer
-#          with:
-#             vercel_team_id: 'opstrace'
-#             vercel_project_id: 'opstrace.com'
-       - name: Get URL
-         run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
+    - id: setup
+      run: |
+        if ! [[ -z "${{ secrets.GO_TOKEN }}" ]]; then
+           echo ::set-output has_token=true
+        else
+           echo ::set-output has_token=false
+        fi
+        jq -nc '{"state": "pending", "context": "go tests"}' | \
+        curl -sL -X POST -d @- \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "${{ github.event.pull_request.statuses_url }}"
+      if: github.event_name == 'pull_request'
+    - uses: actions/checkout@v2
+      if: github.event_name == 'push' && steps.setup.outputs.has_token == 'true'
+      with:
+        fetch-depth: 0
+        token: '${{ secrets.GO_TOKEN }}'
+    - uses: actions/checkout@v2
+      if: github.event_name == 'pull_request' || steps.setup.outputs.has_token != 'true'
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14
+    - uses: actions/cache@v1
+      with:
+        path: ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+    - uses: actions/cache@v1
+      with:
+        path: ~/.cache/bazel
+        key: ${{ runner.os }}-bazel-${{ hashFiles('WORKSPACE') }}
+        restore-keys: |
+          ${{ runner.os }}-bazel-
+    - run: make build TARGETS="//:gopath"
+    - run: tools/go_branch.sh
+    - run: git checkout go && git clean -f
+    - run: go build ./...
+    - if: github.event_name == 'push'
+      run: |
+        git remote add upstream "https://github.com/${{ github.repository }}"
+        git push upstream go:go
+    - if: ${{ success() && github.event_name == 'pull_request' }}
+      run: |
+        jq -nc '{"state": "success", "context": "go tests"}' | \
+        curl -sL  -X POST -d @- \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "${{ github.event.pull_request.statuses_url }}"
+    - if: ${{ failure() && github.event_name == 'pull_request' }}
+      run: |
+        jq -nc '{"state": "failure", "context": "go tests"}' | \
+        curl -sL  -X POST -d @- \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "${{ github.event.pull_request.statuses_url }}"
