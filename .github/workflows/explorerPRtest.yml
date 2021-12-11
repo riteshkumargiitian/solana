@@ -11,20 +11,20 @@ jobs:
       run:
         working-directory: explorer
     steps:
-      - uses: actions/checkout@v2
+       - uses: actions/checkout@v2
        - uses: actions/setup-node@v2
-        with:
+         with:
           node-version: '14'
           cache: 'npm'
           cache-dependency-path: explorer/package-lock.json
-      - run: npm i -g npm@7
-      - run: npm ci
-      - run: npm run format
-      - run: npm run build
-      - run: npm run test
+       - run: npm i -g npm@7
+       - run: npm ci
+       - run: npm run format
+       - run: npm run build
+       - run: npm run test
       
-      - uses: amondnet/vercel-action@v20
-        with:
+       - uses: amondnet/vercel-action@v20
+         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
