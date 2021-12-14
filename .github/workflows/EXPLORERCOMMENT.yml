@@ -1,9 +1,13 @@
 name: Explorer_preview_build&test
 on:
-#    issue_comment:
-#      types: [created]
+   issue_comment:
+     types: [created]
    pull_request:
-    paths:
+     types:
+      - opened
+      - edited
+      - synchronize
+     paths:
       - 'explorer/**'
 jobs:
     Explorer_preview_build_test:
