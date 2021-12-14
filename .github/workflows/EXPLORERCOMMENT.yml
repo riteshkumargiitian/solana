@@ -42,22 +42,22 @@ jobs:
          with:
            ref: ${{ github.event.pull_request.head.sha }}
        - name: Deploy
-#          uses: amondnet/vercel-action@v20
-#          env:
-#           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-#           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
-#           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-#           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
-#           working-directory: ./explorer
-#           scope: ${{ secrets.TEAM_ID }}
-         uses: koj-co/deploy-pr-action@v1.0.1
+         uses: amondnet/vercel-action@v20
          with:
-          prefix: preview url 
-         env:
-           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#            vercel-args: '--prod' #for production
-           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
-           working-directory: ./explorer
-#            scope: ${{ secrets.TEAM_ID }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
+          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
+          working-directory: ./explorer
+#           scope: ${{ secrets.TEAM_ID }}
+#          uses: koj-co/deploy-pr-action@v1.0.1
+#          with:
+#           prefix: preview url 
+#          env:
+#            vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+#            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# #            vercel-args: '--prod' #for production
+#            vercel-org-id: ${{ secrets.ORG_ID}}  #Required
+#            vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
+#            working-directory: ./explorer
+# #            scope: ${{ secrets.TEAM_ID }}
