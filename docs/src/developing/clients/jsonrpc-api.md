@@ -363,9 +363,6 @@ Result:
 
 ### getBlock
 
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedBlock](jsonrpc-api.md#getconfirmedblock) for solana-core v1.6**
-
 Returns identity and transaction information about a confirmed block in the ledger
 
 #### Parameters:
@@ -394,10 +391,10 @@ The result field will be an object with the following fields:
       - `fee: <u64>` - fee this transaction was charged, as u64 integer
       - `preBalances: <array>` - array of u64 account balances from before the transaction was processed
       - `postBalances: <array>` - array of u64 account balances after the transaction was processed
-      - `innerInstructions: <array|undefined>` - List of [inner instructions](#inner-instructions-structure) or omitted if inner instruction recording was not yet enabled during this transaction
+      - `innerInstructions: <array|null>` - List of [inner instructions](#inner-instructions-structure) or `null` if inner instruction recording was not enabled during this transaction
       - `preTokenBalances: <array|undefined>` - List of [token balances](#token-balances-structure) from before the transaction was processed or omitted if token balance recording was not yet enabled during this transaction
       - `postTokenBalances: <array|undefined>` - List of [token balances](#token-balances-structure) from after the transaction was processed or omitted if token balance recording was not yet enabled during this transaction
-      - `logMessages: <array>` - array of string log messages or omitted if log message recording was not yet enabled during this transaction
+      - `logMessages: <array|null>` - array of string log messages or `null` if log message recording was not enabled during this transaction
       - DEPRECATED: `status: <object>` - Transaction status
         - `"Ok": <null>` - Transaction was successful
         - `"Err": <ERR>` - Transaction failed with TransactionError
@@ -520,8 +517,8 @@ Result:
         "meta": {
           "err": null,
           "fee": 5000,
-          "innerInstructions": [],
-          "logMessages": [],
+          "innerInstructions": null,
+          "logMessages": null,
           "postBalances": [
             499998932500,
             26858640,
@@ -768,9 +765,6 @@ Result:
 
 ### getBlocks
 
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedBlocks](jsonrpc-api.md#getconfirmedblocks) for solana-core v1.6**
-
 Returns a list of confirmed blocks between two slots
 
 #### Parameters:
@@ -801,9 +795,6 @@ Result:
 ```
 
 ### getBlocksWithLimit
-
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedBlocksWithLimit](jsonrpc-api.md#getconfirmedblockswithlimit) for solana-core v1.6**
 
 Returns a list of confirmed blocks starting at the given slot
 
@@ -999,7 +990,7 @@ Result:
 ### getFeeForMessage
 
 **NEW: This method is only available in solana-core v1.9 or newer. Please use
-[getFees](jsonrpc-api.md#getfees) for solana-core v1.7/v1.8**
+[getFees](jsonrpc-api.md#getfees) for solana-core v1.8**
 
 Get the fee the network will charge for a particular Message
 
@@ -1156,7 +1147,7 @@ Unhealthy Result (if additional information is available)
 ### getHighestSnapshotSlot
 
 **NEW: This method is only available in solana-core v1.9 or newer. Please use
-[getSnapshotSlot](jsonrpc-api.md#getsnapshotslot) for solana-core v1.7/v1.8**
+[getSnapshotSlot](jsonrpc-api.md#getsnapshotslot) for solana-core v1.8**
 
 Returns the highest slot information that the node has snapshots for.
 
@@ -1463,6 +1454,9 @@ Result:
 ```
 
 ### getLatestBlockhash
+
+**NEW: This method is only available in solana-core v1.9 or newer. Please use
+[getRecentBlockhash](jsonrpc-api.md#getrecentblockhash) for solana-core v1.8**
 
 Returns the latest blockhash
 
@@ -1975,9 +1969,6 @@ Result:
 ```
 
 ### getSignaturesForAddress
-
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedSignaturesForAddress2](jsonrpc-api.md#getconfirmedsignaturesforaddress2) for solana-core v1.6**
 
 
 Returns confirmed signatures for transactions involving an
@@ -2727,9 +2718,6 @@ Result:
 
 ### getTransaction
 
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedTransaction](jsonrpc-api.md#getconfirmedtransaction) for solana-core v1.6**
-
 Returns transaction details for a confirmed transaction
 
 #### Parameters:
@@ -2752,10 +2740,10 @@ Returns transaction details for a confirmed transaction
     - `fee: <u64>` - fee this transaction was charged, as u64 integer
     - `preBalances: <array>` - array of u64 account balances from before the transaction was processed
     - `postBalances: <array>` - array of u64 account balances after the transaction was processed
-    - `innerInstructions: <array|undefined>` - List of [inner instructions](#inner-instructions-structure) or omitted if inner instruction recording was not yet enabled during this transaction
+    - `innerInstructions: <array|null>` - List of [inner instructions](#inner-instructions-structure) or `null` if inner instruction recording was not enabled during this transaction
     - `preTokenBalances: <array|undefined>` - List of  [token balances](#token-balances-structure) from before the transaction was processed or omitted if token balance recording was not yet enabled during this transaction
     - `postTokenBalances: <array|undefined>` - List of [token balances](#token-balances-structure) from after the transaction was processed or omitted if token balance recording was not yet enabled during this transaction
-    - `logMessages: <array>` - array of string log messages or omitted if log message recording was not yet enabled during this transaction
+    - `logMessages: <array|null>` - array of string log messages or `null` if log message recording was not enabled during this transaction
     - DEPRECATED: `status: <object>` - Transaction status
       - `"Ok": <null>` - Transaction was successful
       - `"Err": <ERR>` - Transaction failed with TransactionError
@@ -2958,7 +2946,7 @@ curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
 
 Result:
 ```json
-{"jsonrpc":"2.0","result":{"solana-core": "1.9.0"},"id":1}
+{"jsonrpc":"2.0","result":{"solana-core": "1.10.0"},"id":1}
 ```
 
 ### getVoteAccounts
@@ -3073,6 +3061,9 @@ Result:
 ```
 
 ### isBlockhashValid
+
+**NEW: This method is only available in solana-core v1.9 or newer. Please use
+[getFeeCalculatorForBlockhash](jsonrpc-api.md#getfeecalculatorforblockhash) for solana-core v1.8**
 
 Returns whether a blockhash is still valid or not
 
@@ -4144,10 +4135,10 @@ The result field will be an object with the following fields:
       - `fee: <u64>` - fee this transaction was charged, as u64 integer
       - `preBalances: <array>` - array of u64 account balances from before the transaction was processed
       - `postBalances: <array>` - array of u64 account balances after the transaction was processed
-      - `innerInstructions: <array|undefined>` - List of [inner instructions](#inner-instructions-structure) or omitted if inner instruction recording was not yet enabled during this transaction
+      - `innerInstructions: <array|null>` - List of [inner instructions](#inner-instructions-structure) or `null` if inner instruction recording was not enabled during this transaction
       - `preTokenBalances: <array|undefined>` - List of [token balances](#token-balances-structure) from before the transaction was processed or omitted if token balance recording was not yet enabled during this transaction
       - `postTokenBalances: <array|undefined>` - List of [token balances](#token-balances-structure) from after the transaction was processed or omitted if token balance recording was not yet enabled during this transaction
-      - `logMessages: <array>` - array of string log messages or omitted if log message recording was not yet enabled during this transaction
+      - `logMessages: <array|null>` - array of string log messages or `null` if log message recording was not enabled during this transaction
       - DEPRECATED: `status: <object>` - Transaction status
         - `"Ok": <null>` - Transaction was successful
         - `"Err": <ERR>` - Transaction failed with TransactionError
@@ -4460,10 +4451,10 @@ Returns transaction details for a confirmed transaction
     - `fee: <u64>` - fee this transaction was charged, as u64 integer
     - `preBalances: <array>` - array of u64 account balances from before the transaction was processed
     - `postBalances: <array>` - array of u64 account balances after the transaction was processed
-    - `innerInstructions: <array|undefined>` - List of [inner instructions](#inner-instructions-structure) or omitted if inner instruction recording was not yet enabled during this transaction
+    - `innerInstructions: <array|null>` - List of [inner instructions](#inner-instructions-structure) or `null` if inner instruction recording was not enabled during this transaction
     - `preTokenBalances: <array|undefined>` - List of  [token balances](#token-balances-structure) from before the transaction was processed or omitted if token balance recording was not yet enabled during this transaction
     - `postTokenBalances: <array|undefined>` - List of [token balances](#token-balances-structure) from after the transaction was processed or omitted if token balance recording was not yet enabled during this transaction
-    - `logMessages: <array>` - array of string log messages or omitted if log message recording was not yet enabled during this transaction
+    - `logMessages: <array|null>` - array of string log messages or `null` if log message recording was not enabled during this transaction
     - DEPRECATED: `status: <object>` - Transaction status
       - `"Ok": <null>` - Transaction was successful
       - `"Err": <ERR>` - Transaction failed with TransactionError
