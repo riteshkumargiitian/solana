@@ -1,0 +1,13 @@
+on: 
+   issue_comment
+   workflow_run:
+    workflows: ["naveendeploy"]
+    types: 
+      - completed
+   
+jobs:
+  deploy:
+    steps:
+      - uses: alexjurkiewicz/pr-comment-github-deployment@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
