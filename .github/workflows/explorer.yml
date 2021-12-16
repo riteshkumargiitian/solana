@@ -26,4 +26,18 @@ jobs:
       - run: npm run format
       - run: npm run build
       - run: npm run test
+      - name: get before and after
+        run: |
+             echo pull_request =${{ github.event.pull_request.base.ref }}
+             echo pull =${{ github.event.pull_request.base.sha }}
+      - uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
 
