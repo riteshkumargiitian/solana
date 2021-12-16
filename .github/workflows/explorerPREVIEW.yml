@@ -17,14 +17,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
-          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
-          working-directory: ./explorer
-          scope: ${{ secrets.TEAM_ID }}
+#       - uses: amondnet/vercel-action@v20
+#         with:
+#           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+#           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+#           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
+#           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
+#           working-directory: ./explorer
+#           scope: ${{ secrets.TEAM_ID }}
       - name: get before and after
         run: |
              echo pull_request =${{ github.event.pull_request.base.ref }}
