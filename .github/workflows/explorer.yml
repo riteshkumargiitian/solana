@@ -35,9 +35,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} # Required
           GITHUB_TOKEN: ${{ secrets.PAT }} #Optional 
-          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID}}  #Required
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./explorer
-          scope: "avnshrai"  
+#           scope: "avnshrai"  
