@@ -1,8 +1,13 @@
-name: Explorer_build&test_on_PR
+name: Explorer
 on:
+  push:
+   branches: [master]
+   paths:
+      - 'explorer/**'
   pull_request:
     branches:
      - master
+    types: [opened, synchronize, reopened]
     paths:
       - 'explorer/**'
 jobs:
@@ -12,6 +17,7 @@ jobs:
     defaults:
       run:
         working-directory: explorer
+    if: "!contains(github.event.head_commit.message, '[skip ci]')" 
     steps:
       - uses: actions/checkout@v2
         with:
@@ -26,3 +32,12 @@ jobs:
       - run: npm run format
       - run: npm run build
       - run: npm run test
+      - uses: actions/checkout@v2
+      - uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          GITHUB_TOKEN: ${{ secrets.PAT }} #Optional 
+          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
+          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
+          working-directory: ./explorer
+          scope: "avnshrai"  
