@@ -65,6 +65,24 @@ jobs:
     #  os: linux
     #  before_install:
     #    - sudo apt-get install libssl-dev libudev-dev
+    - name: "explorer"
+      if: type = pull_request AND branch = master
+
+      language: node_js
+      node_js:
+        - "lts/*"
+
+      cache:
+        directories:
+          - ~/.npm
+
+      before_install:
+        - .travis/affects.sh explorer/ .travis || travis_terminate 0
+        - cd explorer
+
+      script:
+        - npm run build
+        - npm run format
 
     # docs pull request
     - name: "docs"
