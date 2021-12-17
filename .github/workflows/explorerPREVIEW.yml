@@ -25,9 +25,14 @@ jobs:
 #           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
 #           working-directory: ./explorer
 #           scope: ${{ secrets.TEAM_ID }}
-      - name: get before and after
-        run: |
-             echo pull_request =${{ github.event.pull_request.base.ref }}
-             echo pull =${{ github.event.pull_request.base.sha }}
-             cd explorer
-             source ./publish.sh
+      - name: Get deployment URL
+        id: deployment
+        uses: dorshinar/get-deployment-url@master
+#         timeout-minutes: 5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run end-to-end tests
+        run: npm run test:e2e
+        env:
+          deployment: ${{ steps.deployment.outputs.deployment }}
