@@ -25,14 +25,11 @@ jobs:
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./explorer
           scope: ${{ secrets.TEAM_ID }}
-      - name: Get deployment URL
-        id: deployment
-        uses: dorshinar/get-deployment-url@master
-#         timeout-minutes: 5
+      - name: Waiting for 200 from the Vercel Preview
+        uses: patrickedqvist/wait-for-vercel-preview@v1.1.1
+        id: waitFor200
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run end-to-end tests
-        run: npm run test:e2e
-        env:
-          deployment: ${{ steps.deployment.outputs.deployment }}
+          max_timeout: 60
+  # access preview url
+      - run: echo ${{steps.waitFor200.outputs.url}}
