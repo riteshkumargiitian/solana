@@ -19,25 +19,35 @@ jobs:
         working-directory: explorer
     if: "!contains(github.event.head_commit.message, '[skip ci]')" 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/setup-node@v2
-        with:
+     - id: script
+       uses: actions/github-script@v3
+       with:
+          script: |
+            const isPr = [ 'pull_request', 'pull_request_target' ].includes(context.eventName)
+            core.setOutput('ref', isPr ? context.payload.pull_request.head.ref : context.ref)
+            core.setOutput('repo', isPr ? context.payload.pull_request.head.repo.full_name : context.repo.full_name)
+     - uses: actions/checkout@v2
+       with:
+#           ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ steps.script.outputs.ref }}
+          repository: ${{ steps.script.outputs.repo }}
+     - uses: actions/setup-node@v2
+       with:
           node-version: '14'
           cache: 'npm'
           cache-dependency-path: explorer/package-lock.json
-      - run: npm i -g npm@7
-      - run: npm ci
-      - run: npm run format
-      - run: npm run build
-      - run: npm run test
-      - uses: actions/checkout@v2
-      - uses: amondnet/vercel-action@v20
-        with:
+     - run: npm i -g npm@7
+     - run: npm ci
+     - run: npm run format
+     - run: npm run build
+     - run: npm run test
+     - uses: actions/checkout@v2
+     - uses: amondnet/vercel-action@v20
+       with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           github-token: ${{ secrets.PAT }} #Optional 
           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
+          DEPLOY_PR_FROM_FORK: true
           working-directory: ./explorer
 #           scope: "avnshrai"  
