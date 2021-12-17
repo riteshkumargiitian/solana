@@ -16,7 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+           ref: Avnshrai:patch-55
+#           ref: ${{ github.event.pull_request.head.sha }}
       - uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
@@ -25,11 +26,11 @@ jobs:
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./explorer
           scope: ${{ secrets.TEAM_ID }}
-      - name: Waiting for 200 from the Vercel Preview
-        uses: patrickedqvist/wait-for-vercel-preview@v1.1.1
-#         id: waitFor200
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 60
-  # access preview url
-      - run: echo ${{steps.waitFor200.outputs.url}}
+#       - name: Waiting for 200 from the Vercel Preview
+#         uses: patrickedqvist/wait-for-vercel-preview@v1.1.1
+# #         id: waitFor200
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#           max_timeout: 60
+#   # access preview url
+#       - run: echo ${{steps.waitFor200.outputs.url}}
