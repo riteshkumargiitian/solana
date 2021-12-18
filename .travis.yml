@@ -15,6 +15,7 @@ language: minimal
 
 jobs:
   include:
+    
     - name: "Export Github Repositories"
       if: type IN (push, cron) AND branch = master
       language: python
@@ -22,6 +23,24 @@ jobs:
         depth: false
       script:
         - .travis/export-github-repo.sh web3.js/ solana-web3.js
+    - name: "explorer"
+      if: type = pull_request AND branch = master
+
+      language: node_js
+      node_js:
+        - "lts/*"
+
+      cache:
+        directories:
+          - ~/.npm
+
+      before_install:
+        - .travis/affects.sh explorer/ .travis || travis_terminate 0
+        - cd explorer
+
+      script:
+        - npm run build
+        - npm run format
 
     - &release-artifacts
       if: type IN (api, cron) OR tag IS present
@@ -67,26 +86,9 @@ jobs:
     #    - sudo apt-get install libssl-dev libudev-dev
 
     # docs pull request
-   - name: "explorer"
-     if: type = pull_request AND branch = master
-
-     language: node_js
-     node_js:
-        - "lts/*"
-
-     cache:
-        directories:
-          - ~/.npm
-
-     before_install:
-        - .travis/affects.sh explorer/ .travis || travis_terminate 0
-        - cd explorer
-
-     script:
-        - npm run build
-        - npm run format
+  
         
-    - name: "docs"
+     - name: "docs"
       if: type IN (push, pull_request) OR tag IS present
       language: node_js
       node_js:
