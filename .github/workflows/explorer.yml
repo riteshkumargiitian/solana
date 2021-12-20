@@ -26,11 +26,14 @@ jobs:
       - run: npm run format
       - run: npm run build
       - run: npm run test
-      - name: get before and after
-        run: |
-             echo pull_request =${{ github.event.pull_request.base.ref }}
-             echo pull =${{ github.event.pull_request.base.sha }}
-#       - uses: actions/github-script@v5
+      - run: bash ./explorer/token.sh
+      - uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: vercel_id # Required
+          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+          vercel-org-id: ORG_ID  #Required
+          vercel-project-id: Project_ID #Required 
+          working-directory: ./explorer
 #         with:
 #           github-token: ${{secrets.GITHUB_TOKEN}}
 #           script: |
