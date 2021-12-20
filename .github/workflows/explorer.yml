@@ -29,9 +29,9 @@ jobs:
       - run: |
              ls
              pwd
-             source ./..
+             cd ./..
              pwd
-             source ./..
+             cd ./..
              pwd
 #             source ./ solana/solana/explorer/token.sh
       - uses: amondnet/vercel-action@v20
