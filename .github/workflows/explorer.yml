@@ -1,6 +1,6 @@
 name: Explorer_build&test_on_PR
 on:
-  pull_request_target:
+  pull_request:
     branches:
      - master
     paths:
