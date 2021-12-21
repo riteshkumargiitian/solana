@@ -26,6 +26,9 @@ jobs:
         with:
           fetch-depth: 2
       - run: |
+            pwd
+            cd explorer/
+            pwd
             token.sh
       - uses: amondnet/vercel-action@v20
         with:
