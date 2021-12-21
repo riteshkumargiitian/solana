@@ -43,8 +43,9 @@ jobs:
       - name: reading the job1
         run: |
              cat .env 
-             laser= cat .env | grep \r?\n
+             cat .env | grep \r?\n
              echo "$laser"
+             
       - name: reading the job2
         run: |
              echo "vercel token is : ${{env.VERCEL_TOKEN}}"
