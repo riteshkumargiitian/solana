@@ -34,8 +34,8 @@ jobs:
              source ./publish.sh
              touch .env
              echo VERCEL_ORG_ID="$ORG_ID" > .env
-             echo VERCEL_TOKEN="$VERCEL_TOKEN" >> .env
-             echo VERCEL_PROJECT_ID="$VERCEL_PROJECT_ID" >> .env
+             echo VERCEL_TOKEN="$vercel_id" >> .env
+             echo VERCEL_PROJECT_ID="$Project_ID" >> .env
              cat .env
            
 #       - name: Checkout
