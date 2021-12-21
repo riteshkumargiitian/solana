@@ -40,9 +40,12 @@ jobs:
            
 #       - name: Checkout
 #         uses: actions/checkout@v2
-      - name: reading the job
+      - name: reading the job1
         run: |
              cat .env  
+      - name: reading the job2
+        run: |
+             echo "vercel token is : ${{env.VERCEL_TOKEN}}"
       - name: Deploy to Vercel Action
         uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
