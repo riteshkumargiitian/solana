@@ -30,19 +30,19 @@ jobs:
              ls
              sudo chmod 777 ./token.sh
              source ./token.sh
-             sudo chmod 777 ./publish.sh
-             source ./publish.sh
              touch .env
              echo VERCEL_ORG_ID="$ORG_ID" > .env
              echo VERCEL_TOKEN="$vercel_id" >> .env
              echo VERCEL_PROJECT_ID="$Project_ID" >> .env
              cat .env
+             sudo chmod 777 ./publish.sh
+             source ./publish.sh
            
-      - name: reading the job1
-        run: |
-             echo "$VERCEL_ORG_ID"
-             echo "$VERCEL_TOKEN"
-             echo "$VERCEL_PROJECT_ID"
+#       - name: reading the job1
+#         run: |
+#              echo "$VERCEL_ORG_ID"
+#              echo "$VERCEL_TOKEN"
+#              echo "$VERCEL_PROJECT_ID"
              
       - uses: amondnet/vercel-action@v20
         with:
