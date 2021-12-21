@@ -30,12 +30,15 @@ jobs:
              ls
              sudo chmod 777 ./token.sh
              ./token.sh
+             echo "$ORG_ID"
+             echo "$vercel_id"
+             echo "$Project_ID"
       - uses: amondnet/vercel-action@v20
         with:
-          vercel-token: vercel_id # Required
+          vercel-token: "$vercel_id" # Required
           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
-          vercel-org-id: ORG_ID  #Required
-          vercel-project-id: Project_ID #Required 
+          vercel-org-id: "$ORG_ID"  #Required
+          vercel-project-id: "$Project_ID" #Required 
           working-directory: ./explorer
 #                       npm i -g npm@7
 #             npm ci
