@@ -22,11 +22,6 @@ jobs:
           cache: 'npm'
           cache-dependency-path: explorer/package-lock.json
       - run: |
-            npm i -g npm@7
-            npm ci
-            npm run format
-            npm run build
-            npm run test
             token.sh
       - uses: amondnet/vercel-action@v20
         with:
@@ -35,7 +30,12 @@ jobs:
           vercel-org-id: ORG_ID  #Required
           vercel-project-id: Project_ID #Required 
           working-directory: ./explorer
-#         with:
+#                       npm i -g npm@7
+#             npm ci
+#             npm run format
+#             npm run build
+#             npm run test
+# #         with:
 #           github-token: ${{secrets.GITHUB_TOKEN}}
 #           script: |
 #             github.rest.issues.createComment({
