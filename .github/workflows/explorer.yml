@@ -28,6 +28,7 @@ jobs:
       - run: |
              pwd
              ls
+             sudo chmod 777 ./token.sh
              ./token.sh
       - uses: amondnet/vercel-action@v20
         with:
