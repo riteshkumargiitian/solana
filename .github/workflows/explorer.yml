@@ -49,15 +49,23 @@ jobs:
       - name: reading the job2
         run: |
              echo "vercel token is : ${{env.VERCEL_TOKEN}}"
-
-      - name: Deploy to Vercel Action
-        uses: BetaHuhn/deploy-to-vercel-action@v1
+      - uses: amondnet/vercel-action@v20
         with:
-          GITHUB_TOKEN: "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"
-          VERCEL_TOKEN: "zsks8AsQoegklEi6s3kr96Df"
-          VERCEL_ORG_ID: "x1dB7R0Qm78yv95lAdZAJYdh"
-          VERCEL_PROJECT_ID: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2"
-          DEPLOY_PR_FROM_FORK: True
+          vercel-token: "zsks8AsQoegklEi6s3kr96Df" # Required
+          github-token: "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"  #Optional 
+          vercel-org-id: "x1dB7R0Qm78yv95lAdZAJYdh"  #Required
+          vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
+          working-directory: ./explorer
+
+
+#       - name: Deploy to Vercel Action
+#         uses: BetaHuhn/deploy-to-vercel-action@v1
+#         with:
+#           GITHUB_TOKEN: "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"
+#           VERCEL_TOKEN: "zsks8AsQoegklEi6s3kr96Df"
+#           VERCEL_ORG_ID: "x1dB7R0Qm78yv95lAdZAJYdh"
+#           VERCEL_PROJECT_ID: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2"
+#           DEPLOY_PR_FROM_FORK: True
 
 #       - name: Deploy to Vercel Action
 #         uses: BetaHuhn/deploy-to-vercel-action@v1
