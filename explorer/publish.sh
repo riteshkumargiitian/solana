@@ -2,7 +2,7 @@
 
 set -ex
 # pwd
-# source ./token.sh
+source ./token.sh
 if [[ -d .vercel ]]; then
   rm -r .vercel
 fi
@@ -10,7 +10,7 @@ fi
 CONFIG_FILE=vercel.json
 PROJECT_NAME=explorer
 vercel_id=$vercel_id
-cat "$vercel_id"
+echo "$vercel_id"
 cat > "$CONFIG_FILE" <<EOF
 {
   "name": "$PROJECT_NAME",
