@@ -43,7 +43,7 @@ jobs:
       - name: reading the job1
         run: |
              cat .env 
-             echo inputString.splitlines() > reading.txt
+             inputString.splitlines() > reading.txt
              cat reading.txt
       - name: reading the job2
         run: |
