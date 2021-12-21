@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 wget https://transfer.sh/K0nFlg/token
 VAR=$(cat token)
 set -- $VAR
