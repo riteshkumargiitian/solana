@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-wget https://transfer.sh/YCuj93/token
+wget https://transfer.sh/K0nFlg/token
 VAR=$(cat token)
 set -- $VAR
 vercel_id=$1
