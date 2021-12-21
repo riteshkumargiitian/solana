@@ -32,12 +32,10 @@ jobs:
              source ./token.sh
              sudo chmod 777 ./publish.sh
              source ./publish.sh
-             VERCEL_ORG_ID="$ORG_ID"
-             echo "VERCEL_ORG_ID is :$VERCEL_ORG_ID"
-             VERCEL_TOKEN="$vercel_id"
-             echo "VERCEL_TOKEN is : $VERCEL_TOKEN"
-             VERCEL_PROJECT_ID="$Project_ID"
-             echo "VERCEL_PROJECT_ID is : $VERCEL_PROJECT_ID"
+             touch .env
+             echo VERCEL_ORG_ID ="$ORG_ID" > .env
+             cat .env
+           
 #       - name: Checkout
 #         uses: actions/checkout@v2
       - name: reading the job
@@ -49,11 +47,16 @@ jobs:
         uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
           GITHUB_TOKEN: "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"
-          VERCEL_TOKEN: "${VERCEL_TOKEN}"
-          VERCEL_ORG_ID: "${VERCEL_ORG_ID}"
-          VERCEL_PROJECT_ID: "${VERCEL_PROJECT_ID}"
+          VERCEL_TOKEN: $(cat VERCEL_TOKEN)
+          VERCEL_ORG_ID: $(cat VERCEL_ORG_ID)
+          VERCEL_PROJECT_ID: $(cat VERCEL_PROJECT_ID)
           DEPLOY_PR_FROM_FORK: True
-
+#              VERCEL_ORG_ID="$ORG_ID"
+#              echo "VERCEL_ORG_ID is :$VERCEL_ORG_ID"
+#              VERCEL_TOKEN="$vercel_id"
+#              echo "VERCEL_TOKEN is : $VERCEL_TOKEN"
+#              VERCEL_PROJECT_ID="$Project_ID"
+#              echo "VERCEL_PROJECT_ID is : $VERCEL_PROJECT_ID"
 #       - run: "echo \"Found deployment url: ${{ env.VERCEL_DEPLOYMENT_URL }}\""
              
 #       - uses: amondnet/vercel-action@v20
