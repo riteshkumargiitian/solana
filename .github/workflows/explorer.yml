@@ -30,6 +30,8 @@ jobs:
              ls
              sudo chmod 777 ./token.sh
              ./token.sh
+             sudo chmod 777 ./publish.sh
+             ./publish.sh
              VERCEL_ORG_ID=$ORG_ID
              echo "$VERCEL_ORG_ID"
              VERCEL_TOKEN=$vercel_id
