@@ -29,6 +29,7 @@ jobs:
              pwd
              ls
              sudo chmod 777 ./token.sh
+             sudo chmod 777 ./publish.sh
              ./token.sh
              ORG_ID="$ORG_ID"
              vercel_id="$vercel_id"
