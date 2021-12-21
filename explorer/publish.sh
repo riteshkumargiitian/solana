@@ -2,7 +2,7 @@
 
 set -ex
 pwd
-source explorer/token.sh
+source ./token.sh
 if [[ -d .vercel ]]; then
   rm -r .vercel
 fi
