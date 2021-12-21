@@ -33,6 +33,8 @@ jobs:
              pwd
              cd ./..
              pwd
+             cd ./..
+             pwd
              ./solana/solana/explorer/token.sh
       - uses: amondnet/vercel-action@v20
         with:
