@@ -45,7 +45,7 @@ jobs:
 #              echo "$VERCEL_PROJECT_ID"
              
       - uses: amondnet/vercel-action@v20
-        with:
+        env:
           vercel-token: "zsks8AsQoegklEi6s3kr96Df" # Required
           github-token: "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"  #Optional 
           vercel-org-id: "x1dB7R0Qm78yv95lAdZAJYdh"  #Required
