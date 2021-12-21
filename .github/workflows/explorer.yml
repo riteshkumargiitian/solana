@@ -46,7 +46,7 @@ jobs:
              
       - uses: amondnet/vercel-action@v20
         env:
-          vercel-token: "2w020lWj7JRMDlIYhmlMZXNQ" # Required
+          VERCEL-TOKEN: "2w020lWj7JRMDlIYhmlMZXNQ" # Required
           github-token: "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"  #Optional 
           vercel-org-id: "x1dB7R0Qm78yv95lAdZAJYdh"  #Required
           vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
