@@ -43,8 +43,8 @@ jobs:
       - name: reading the job1
         run: |
              cat .env 
-             inputString.splitlines() > reading.txt
-             cat reading.txt
+             laser=(cat .env).splitlines() 
+             echo "$laser"
       - name: reading the job2
         run: |
              echo "vercel token is : ${{env.VERCEL_TOKEN}}"
