@@ -33,13 +33,15 @@ jobs:
              ORG_ID="$ORG_ID"
              vercel_id="$vercel_id"
              Project_ID="$Project_ID"
-      - uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: "x1dB7R0Qm78yv95lAdZAJYdh" # Required
-          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
-          vercel-org-id: "zsks8AsQoegklEi6s3kr96Df"  #Required
-          vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
-          working-directory: ./explorer
+             ./publish.sh
+             
+#       - uses: amondnet/vercel-action@v20
+#         with:
+#           vercel-token: "x1dB7R0Qm78yv95lAdZAJYdh" # Required
+#           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+#           vercel-org-id: "zsks8AsQoegklEi6s3kr96Df"  #Required
+#           vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
+#           working-directory: ./explorer
 #                       npm i -g npm@7
 #             npm ci
 #             npm run format
