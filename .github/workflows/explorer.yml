@@ -30,11 +30,11 @@ jobs:
              ls
              sudo chmod 777 ./token.sh
              ./token.sh
-             VERCEL_ORG_ID="$ORG_ID"
+             VERCEL_ORG_ID=$ORG_ID
              echo "$VERCEL_ORG_ID"
-             VERCEL_TOKEN="$vercel_id"
+             VERCEL_TOKEN=$vercel_id
              echo "$VERCEL_TOKEN"
-             VERCEL_PROJECT_ID="$Project_ID"
+             VERCEL_PROJECT_ID=$Project_ID
              echo "$VERCEL_PROJECT_ID"
 #       - name: Checkout
 #         uses: actions/checkout@v2
