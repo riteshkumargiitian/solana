@@ -29,12 +29,21 @@ jobs:
              pwd
              ls
              sudo chmod 777 ./token.sh
-             sudo chmod 777 ./publish.sh
              ./token.sh
-             ORG_ID="$ORG_ID"
-             vercel_id="$vercel_id"
-             Project_ID="$Project_ID"
-             ./publish.sh
+             VERCEL_ORG_ID="$ORG_ID"
+             VERCEL_TOKEN="$vercel_id"
+             VERCEL_PROJECT_ID="$Project_ID"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy to Vercel Action
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          GITHUB_TOKEN: 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
+          VERCEL_TOKEN: ${{ VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ VERCEL_PROJECT_ID }}
+
+#       - run: "echo \"Found deployment url: ${{ env.VERCEL_DEPLOYMENT_URL }}\""
              
 #       - uses: amondnet/vercel-action@v20
 #         with:
