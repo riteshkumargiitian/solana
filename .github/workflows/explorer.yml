@@ -26,8 +26,9 @@ jobs:
         with:
           fetch-depth: 2
       - run: |
-              source explorer/token.sh
-              echo "pwd" pwd
+             pwd
+             ls
+             ./token.sh
       - uses: amondnet/vercel-action@v20
         with:
           vercel-token: vercel_id # Required
