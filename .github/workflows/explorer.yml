@@ -21,21 +21,13 @@ jobs:
           node-version: '14'
           cache: 'npm'
           cache-dependency-path: explorer/package-lock.json
-#       - run: npm i -g npm@7
-#       - run: npm ci
-#       - run: npm run format
-#       - run: npm run build
-#       - run: npm run test
       - run: |
-             ls
-             pwd
-             cd ./..
-             pwd
-             cd ./..
-             pwd
-             cd ./..
-             pwd
-             ./../../../solana/solana/explorer/token.sh
+            npm i -g npm@7
+            npm ci
+            npm run format
+            npm run build
+            npm run test
+            token.sh
       - uses: amondnet/vercel-action@v20
         with:
           vercel-token: vercel_id # Required
