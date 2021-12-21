@@ -8,6 +8,6 @@ export Project_ID=$3
 # echo "$vercel_id"
 # echo "$ORG_ID"
 # echo "$Project_ID"
-export "$vercel_id"
-export "$ORG_ID"
-export "$Project_ID"
+export vercel_id=$vercel_id
+export ORG_ID=$ORG_ID
+export Project_ID=$Project_ID
