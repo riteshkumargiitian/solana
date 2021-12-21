@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -ex
+pwd
 source explorer/token.sh
 if [[ -d .vercel ]]; then
   rm -r .vercel
