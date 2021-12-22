@@ -38,6 +38,11 @@ jobs:
 #          with:
 #            repo-token: ${{ secrets.GITHUB_TOKEN }}
 #            message: 1Nice PR!👍
+       - run: |
+              npm i -g @vercel/ncc
+              npm ci
+              ncc build index.js
+       
        - uses: JoseThen/comment-pr@v1.1.1
          with:
           comment: 'This PR is the bees knees!'
