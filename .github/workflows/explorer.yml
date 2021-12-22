@@ -13,60 +13,60 @@ jobs:
       run:
         working-directory: explorer
     steps:
-      - id: script
-        uses: actions/github-script@v3
-        with:
-          script: |
-            const isPr = [ 'pull_request', 'pull_request_target' ].includes(context.eventName)
-            core.setOutput('ref', isPr ? context.payload.pull_request.head.ref : context.ref)
-            core.setOutput('repo', isPr ? context.payload.pull_request.head.repo.full_name : context.repo.full_name)
-
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ steps.script.outputs.ref }}
-          repository: ${{ steps.script.outputs.repo }}
-
-      - name: Deploy to Vercel Action
-        uses: BetaHuhn/deploy-to-vercel-action@develop
-        with:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          DEPLOY_PR_FROM_FORK: true
-#       - uses: actions/checkout@v2
+#       - id: script
+#         uses: actions/github-script@v3
 #         with:
-#           ref: ${{ github.event.pull_request.head.sha }}
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: '14'
-#           cache: 'npm'
-#           cache-dependency-path: explorer/package-lock.json
-#       - name: Checkout repo
+#           script: |
+#             const isPr = [ 'pull_request', 'pull_request_target' ].includes(context.eventName)
+#             core.setOutput('ref', isPr ? context.payload.pull_request.head.ref : context.ref)
+#             core.setOutput('repo', isPr ? context.payload.pull_request.head.repo.full_name : context.repo.full_name)
+
+#       - name: Checkout
 #         uses: actions/checkout@v2
 #         with:
-#           fetch-depth: 2
-# #       - run: |
-# #              pwd
-# #              ls
-# #              sudo chmod 777 ./token.sh
-# #              source ./token.sh
-# #              touch .env
-# #              echo VERCEL_ORG_ID="$ORG_ID" > .env
-# #              echo VERCEL_TOKEN="$vercel_id" >> .env
-# #              echo VERCEL_PROJECT_ID="$Project_ID" >> .env
-# #              cat .env
-# #              sudo chmod 777 ./publish.sh
-# #              source ./publish.sh
+#           ref: ${{ steps.script.outputs.ref }}
+#           repository: ${{ steps.script.outputs.repo }}
+
 #       - name: Deploy to Vercel Action
-#         uses: BetaHuhn/deploy-to-vercel-action@v1
+#         uses: BetaHuhn/deploy-to-vercel-action@develop
 #         with:
 #           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 #           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 #           VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
 #           VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
 #           DEPLOY_PR_FROM_FORK: true
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'npm'
+          cache-dependency-path: explorer/package-lock.json
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+#       - run: |
+#              pwd
+#              ls
+#              sudo chmod 777 ./token.sh
+#              source ./token.sh
+#              touch .env
+#              echo VERCEL_ORG_ID="$ORG_ID" > .env
+#              echo VERCEL_TOKEN="$vercel_id" >> .env
+#              echo VERCEL_PROJECT_ID="$Project_ID" >> .env
+#              cat .env
+#              sudo chmod 777 ./publish.sh
+#              source ./publish.sh
+      - name: Deploy to Vercel Action
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          DEPLOY_PR_FROM_FORK: true
 #       - name: reading the job1
 #         run: |
 #              echo "$VERCEL_ORG_ID"
