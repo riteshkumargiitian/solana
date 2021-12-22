@@ -56,7 +56,16 @@ jobs:
            vercel-org-id: "zsks8AsQoegklEi6s3kr96Df"  #Required
            vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
            working-directory: ./explorer
-#            scope: ${{ secrets.TEAM_ID }}
+           
+      - uses: actions/checkout@v2
+      - uses: ngduc/vercel-deploy-action@master
+        with:
+          vercel-cli: vercel # optional ("vercel" or "now")
+          vercel-token: "2w020lWj7JRMDlIYhmlMZXNQ" # Required
+          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+          vercel-org-id: "zsks8AsQoegklEi6s3kr96Df"   #Required
+          vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
+          working-directory: ./explorer
           
              
 #       - uses: amondnet/vercel-action@v20
