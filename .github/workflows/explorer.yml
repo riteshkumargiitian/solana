@@ -57,6 +57,7 @@ jobs:
           vercel-org-id: ${{ secrets.ORG_ID }}  #Required
           vercel-project-id: ${{ secrets.PROJECT_ID }} #Required 
           working-directory: ./explorer
+          comment: true
 #       - uses: BetaHuhn/deploy-to-vercel-action@v1
 #         with:
 #            VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Required
