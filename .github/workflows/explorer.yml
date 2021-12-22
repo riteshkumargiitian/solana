@@ -50,9 +50,9 @@ jobs:
 #           vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
 #           working-directory: ./explorer
       - uses: amondnet/vercel-action@v20
-        env:
+        with:
            vercel-token: "2w020lWj7JRMDlIYhmlMZXNQ" # Required
-           github-token: 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 
+           github-token: "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" 
            vercel-org-id: "zsks8AsQoegklEi6s3kr96Df"  #Required
            vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
            working-directory: ./explorer
