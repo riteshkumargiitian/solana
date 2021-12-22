@@ -32,7 +32,7 @@ jobs:
 #        - run: npm run format
 #        - run: npm run build
 #        - run: npm run test
-       - uses: github-actions-up-and-running/pr-comment@v1.0.0
+       - uses: github-actions-up-and-running/pr-comment@v1.0.1
          with:
            repo-token: ${{ secrets.PAT_TOKEN }}
            message: 1Nice PR!👍
