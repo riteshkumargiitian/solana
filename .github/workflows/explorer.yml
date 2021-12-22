@@ -57,6 +57,7 @@ jobs:
            vercel-org-id: ${{ secrets.ORG_ID }} #Required
            vercel-project-id: ${{ secrets.PROJECT_ID }} #Required 
            working-directory: ./explorer
+           github-comment: true
            
 #       - uses: actions/checkout@v2
 #       - uses: ngduc/vercel-deploy-action@master
