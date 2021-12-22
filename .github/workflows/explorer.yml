@@ -32,10 +32,17 @@ jobs:
 #        - run: npm run format
 #        - run: npm run build
 #        - run: npm run test
-       - uses: github-actions-up-and-running/pr-comment@v1.0.1
+
+
+#        - uses: github-actions-up-and-running/pr-comment@v1.0.1
+#          with:
+#            repo-token: ${{ secrets.GITHUB_TOKEN }}
+#            message: 1Nice PR!👍
+       - uses: JoseThen/comment-pr@v1.1.1
          with:
-           repo-token: ${{ secrets.GITHUB_TOKEN }}
-           message: 1Nice PR!👍
+          comment: 'This PR is the bees knees!'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
        - uses: amondnet/vercel-action@v20
          with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
