@@ -34,9 +34,8 @@ jobs:
 #        - run: npm run test
        - uses: github-actions-up-and-running/pr-comment@v1.0.1
          with:
-           repo-token: ${{ secrets.PAT_TOKEN }}
+           repo-token: ${{ secrets.GITHUB_TOKEN }}
            message: 1Nice PR!👍
-           myInput: 2Nice PR!👍
        - uses: amondnet/vercel-action@v20
          with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
