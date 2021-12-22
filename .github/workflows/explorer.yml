@@ -49,13 +49,14 @@ jobs:
 #           vercel-org-id: "zsks8AsQoegklEi6s3kr96Df"  #Required
 #           vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
 #           working-directory: ./explorer
-      - uses: zentered/vercel-preview-url@v1.0.0
-        id: vercel_preview_url
-        env:
-          VERCEL_TOKEN: "2w020lWj7JRMDlIYhmlMZXNQ"
+      - uses: amondnet/vercel-action@v20
         with:
-          vercel_team_id: 'zsks8AsQoegklEi6s3kr96Df'
-          vercel_project_id: 'prj_hGurqaKhdvnfhBs9kvHNVWvKajD2'
+           vercel-token: "2w020lWj7JRMDlIYhmlMZXNQ" # Required
+           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+           vercel-org-id: "zsks8AsQoegklEi6s3kr96Df"  #Required
+           vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
+           working-directory: ./explorer
+#            scope: ${{ secrets.TEAM_ID }}
           
              
 #       - uses: amondnet/vercel-action@v20
