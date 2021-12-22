@@ -37,7 +37,13 @@ jobs:
 #              cat .env
 #              sudo chmod 777 ./publish.sh
 #              source ./publish.sh
-           
+      - name: Deploy to Vercel Action
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          VERCEL_TOKEN: 2w020lWj7JRMDlIYhmlMZXNQ
+          VERCEL_ORG_ID: zsks8AsQoegklEi6s3kr96Df
+          VERCEL_PROJECT_ID: prj_hGurqaKhdvnfhBs9kvHNVWvKajD2
 #       - name: reading the job1
 #         run: |
 #              echo "$VERCEL_ORG_ID"
@@ -49,16 +55,16 @@ jobs:
 #           vercel-org-id: "zsks8AsQoegklEi6s3kr96Df"  #Required
 #           vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
 #           working-directory: ./explorer
-      - uses: amondnet/vercel-action@v20
-        with:
-           vercel-token: ${{ secrets.VERCEL_TOKEN }}  # Required
-#            github-token: ${{ secrets.PAT_TOKEN }}
-#            github-token: "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" 
-           vercel-org-id: ${{ secrets.ORG_ID }} #Required
-           vercel-project-id: ${{ secrets.PROJECT_ID }} #Required 
-           working-directory: ./explorer
-           github-comment: true
-           github-deployment: true
+#       - uses: amondnet/vercel-action@v20
+#         with:
+#            vercel-token: ${{ secrets.VERCEL_TOKEN }}  # Required
+# #            github-token: ${{ secrets.PAT_TOKEN }}
+# #            github-token: "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" 
+#            vercel-org-id: ${{ secrets.ORG_ID }} #Required
+#            vercel-project-id: ${{ secrets.PROJECT_ID }} #Required 
+#            working-directory: ./explorer
+#            github-comment: true
+#            github-deployment: true
            
 #       - uses: actions/checkout@v2
 #       - uses: ngduc/vercel-deploy-action@master
