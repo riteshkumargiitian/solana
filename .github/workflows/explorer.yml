@@ -40,10 +40,10 @@ jobs:
       - name: Deploy to Vercel Action
         uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
-#           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-          VERCEL_TOKEN: 2w020lWj7JRMDlIYhmlMZXNQ
-          VERCEL_ORG_ID: zsks8AsQoegklEi6s3kr96Df
-          VERCEL_PROJECT_ID: prj_hGurqaKhdvnfhBs9kvHNVWvKajD2
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
           DEPLOY_PR_FROM_FORK: true
 #       - name: reading the job1
 #         run: |
@@ -56,14 +56,14 @@ jobs:
 #           vercel-org-id: "zsks8AsQoegklEi6s3kr96Df"  #Required
 #           vercel-project-id: "prj_hGurqaKhdvnfhBs9kvHNVWvKajD2" #Required 
 #           working-directory: ./explorer
-#       - uses: amondnet/vercel-action@v20
+#       - uses: BetaHuhn/deploy-to-vercel-action@v1
 #         with:
-#            vercel-token: ${{ secrets.VERCEL_TOKEN }}  # Required
-# #            github-token: ${{ secrets.PAT_TOKEN }}
-# #            github-token: "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" 
-#            vercel-org-id: ${{ secrets.ORG_ID }} #Required
-#            vercel-project-id: ${{ secrets.PROJECT_ID }} #Required 
+#            VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Required
+#            github-token: ${{ secrets.PAT_TOKEN }}
+#            VERCEL_ORG_ID: ${{ secrets.ORG_ID }} #Required
+#            VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }} #Required 
 #            working-directory: ./explorer
+#            DEPLOY_PR_FROM_FORK: true
 #            github-comment: true
 #            github-deployment: true
            
