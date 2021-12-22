@@ -44,6 +44,7 @@ jobs:
           VERCEL_TOKEN: 2w020lWj7JRMDlIYhmlMZXNQ
           VERCEL_ORG_ID: zsks8AsQoegklEi6s3kr96Df
           VERCEL_PROJECT_ID: prj_hGurqaKhdvnfhBs9kvHNVWvKajD2
+          DEPLOY_PR_FROM_FORK: true
 #       - name: reading the job1
 #         run: |
 #              echo "$VERCEL_ORG_ID"
