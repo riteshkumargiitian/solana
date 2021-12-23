@@ -84,7 +84,7 @@ jobs:
        - id: get-preview-url
          uses: patzick/action-get-comment-url@v1
          with:
-           token: ${{ secrets.GITHUB_TOKEN }}
+           token: ${{ secrets.PAT_TOKEN }}
            platform: Vercel
       
 #        - uses: amondnet/vercel-action@v20
