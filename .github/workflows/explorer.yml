@@ -31,6 +31,12 @@ jobs:
              pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
              echo "pull_number is: $pull_number"
              echo "GITHUB_SHA is: $GITHUB_SHA"
+             echo"GITHUB_HEAD_REF is : $GITHUB_HEAD_REF"
+             echo"GITHUB_BASE_REF is: $GITHUB_BASE_REF"
+             echo"GITHUB_API_URL is: $GITHUB_API_URL"
+             echo"$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID is: $$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+             echo"GITHUB_RUN_ID is: $GITHUB_RUN_ID"
+             
 #             npm i -g npm@7
 #        - run: npm ci
 #        - run: npm run format
