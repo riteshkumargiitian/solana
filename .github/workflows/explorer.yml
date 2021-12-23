@@ -27,7 +27,10 @@ jobs:
           node-version: '14'
           cache: 'npm'
           cache-dependency-path: explorer/package-lock.json
-#        - run: npm i -g npm@7
+       - run: |
+             pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+             echo "$pull_number"
+#             npm i -g npm@7
 #        - run: npm ci
 #        - run: npm run format
 #        - run: npm run build
