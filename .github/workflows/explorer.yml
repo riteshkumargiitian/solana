@@ -38,8 +38,8 @@ jobs:
              echo "GITHUB_RUN_ID is: $GITHUB_RUN_ID"
              pwd
              ls
-             sudo chmod +x ./commit-to-pr
-             ./../commit-to-pr
+             sudo chmod +x ./commit-to-pr.py
+             source ./commit-to-pr.py
              
 #             npm i -g npm@7
 #        - run: npm ci
