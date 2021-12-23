@@ -54,6 +54,10 @@ jobs:
          with:
           number: 1
           comment: Comment for Issue or GitHub Pull Request
+       - run: |
+              npm i -g @vercel/ncc
+              npm ci
+              ncc build index.js
       
 #        - uses: amondnet/vercel-action@v20
 #          with:
