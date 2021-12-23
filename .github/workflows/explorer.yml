@@ -69,7 +69,7 @@ jobs:
          with:
           message: "Hello world"
          env:
-           GITHUB_TOKEN: "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"
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
 #        - uses: amondnet/vercel-action@v20
 #          with:
