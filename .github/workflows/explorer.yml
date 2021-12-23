@@ -40,7 +40,7 @@ jobs:
              ls
              sudo apt-get install python3 
              sudo chmod +x ./commit-to-pr.py
-             source ./commit-to-pr.py
+             ./commit-to-pr.py
              
 #             npm i -g npm@7
 #        - run: npm ci
