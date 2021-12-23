@@ -59,12 +59,17 @@ jobs:
 #               npm i -g @vercel/ncc
 #               npm ci
 #               ncc build index.js
-       - name: Post comment
-         uses: KeisukeYamashita/create-comment@v1
+#        - name: Post comment
+#          uses: KeisukeYamashita/create-comment@v1
+#          with:
+#           comment: |
+#             Issue title must start with 'ABC-'.
+#             Auto-closing this issue.
+       - uses: NejcZdovc/comment-pr@v1
          with:
-          comment: |
-            Issue title must start with 'ABC-'.
-            Auto-closing this issue.
+          message: "Hello world"
+         env:
+           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
 #        - uses: amondnet/vercel-action@v20
 #          with:
