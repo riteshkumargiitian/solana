@@ -38,7 +38,7 @@ jobs:
              echo "GITHUB_RUN_ID is: $GITHUB_RUN_ID"
              pwd
              ls
-             sudo apt-get install python3 
+             sudo apt-get install python3 >> install_python3.txt
              python3 commit-to-pr.py
 #             sudo chmod +x ./commit-to-pr.py
 #             ./commit-to-pr.py
