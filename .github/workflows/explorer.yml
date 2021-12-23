@@ -8,7 +8,7 @@ on:
 #      - master
 #     paths:
 #       - 'explorer/**'
-  pull_request_target:
+  pull_request:
     branches:
      - master
     paths:
@@ -29,7 +29,8 @@ jobs:
           cache-dependency-path: explorer/package-lock.json
        - run: |
              pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-             echo "$pull_number"
+             echo "pull_number is: $pull_number"
+             echo "GITHUB_SHA is: $GITHUB_SHA"
 #             npm i -g npm@7
 #        - run: npm ci
 #        - run: npm run format
