@@ -49,15 +49,22 @@ jobs:
 #          with:
 #           comment: 'This PR is the bees knees!'
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       - name: Create Comment
+
+#        - name: Create Comment
+#          uses: KeisukeYamashita/create-comment@v1
+#          with:
+#           number: 1
+#           comment: Comment for Issue or GitHub Pull Request
+#        - run: |
+#               npm i -g @vercel/ncc
+#               npm ci
+#               ncc build index.js
+       - name: Post comment
          uses: KeisukeYamashita/create-comment@v1
          with:
-          number: 1
-          comment: Comment for Issue or GitHub Pull Request
-       - run: |
-              npm i -g @vercel/ncc
-              npm ci
-              ncc build index.js
+          comment: |
+            Issue title must start with 'ABC-'.
+            Auto-closing this issue.
       
 #        - uses: amondnet/vercel-action@v20
 #          with:
