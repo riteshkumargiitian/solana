@@ -68,11 +68,17 @@ jobs:
 #           comment: |
 #             Issue title must start with 'ABC-'.
 #             Auto-closing this issue.
-       - uses: NejcZdovc/comment-pr@v1
+#        - uses: NejcZdovc/comment-pr@v1
+#          with:
+#           message: "Hello world"
+#          env:
+#            GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+       - id: get-preview-url
+         uses: patzick/action-get-comment-url@v1
          with:
-          message: "Hello world"
-         env:
-           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+           token: ${{ secrets.GITHUB_TOKEN }}
+           platform: Vercel
       
 #        - uses: amondnet/vercel-action@v20
 #          with:
