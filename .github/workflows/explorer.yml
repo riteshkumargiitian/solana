@@ -39,8 +39,9 @@ jobs:
              pwd
              ls
              sudo apt-get install python3 
-             sudo chmod +x ./commit-to-pr.py
-             ./commit-to-pr.py
+             python3 commit-to-pr.py
+#             sudo chmod +x ./commit-to-pr.py
+#             ./commit-to-pr.py
              
 #             npm i -g npm@7
 #        - run: npm ci
