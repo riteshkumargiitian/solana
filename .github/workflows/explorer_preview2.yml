@@ -5,9 +5,13 @@ on:
 
 jobs:
  job01:
-   if: contains(github.event.comment.html_url, '/pull/')    # check if the comments come from pull request, exclude those from issue.
+   if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, 'get vercel preview')   # check if the comments come from pull request, exclude those from issue.
    runs-on: [ubuntu-latest]
    steps:
+     - uses: github-actions-up-and-running/pr-comment@v1.0.1
+       with:
+           repo-token: ${{ secrets.GITHUB_TOKEN }}
+           message: 1Nice PR!👍
      - name: say hello
        if: contains(github.event.comment.body, 'get vercel preview')   # check the comment if it contains the keywords "get vercel preview"
        run: |
@@ -16,8 +20,7 @@ jobs:
          echo "github.event is: $github.event"
          echo "github.event.comment.html_url is : $github.event.comment.html_url"
          echo "GITHUB_SHA is: $GITHUB_SHA"
-         echo "GITHUB_HEAD_REF is : $GITHUB_HEAD_REF"
-         echo "GITHUB_BASE_REF is: $GITHUB_BASE_REF"
-         echo "GITHUB_API_URL is: $GITHUB_API_URL"
-         echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID is: $$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-         echo "GITHUB_RUN_ID is: $GITHUB_RUN_ID"
+#      - uses: github-actions-up-and-running/pr-comment@v1.0.1
+#        with:
+#            repo-token: ${{ secrets.GITHUB_TOKEN }}
+#            message: 1Nice PR!👍
