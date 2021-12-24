@@ -12,6 +12,9 @@ jobs:
        if: contains(github.event.comment.body, 'get vercel preview')   # check the comment if it contains the keywords "get vercel preview"
        run: |
          echo say hello
+         echo "github.event.comment is: $github.event.comment"
+         echo "github.event is: $github.event"
+         echo "github.event.comment.html_url is : $github.event.comment.html_url"
          echo "GITHUB_SHA is: $GITHUB_SHA"
          echo "GITHUB_HEAD_REF is : $GITHUB_HEAD_REF"
          echo "GITHUB_BASE_REF is: $GITHUB_BASE_REF"
