@@ -36,11 +36,13 @@ jobs:
              echo "GITHUB_API_URL is: $GITHUB_API_URL"
              echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID is: $$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
              echo "GITHUB_RUN_ID is: $GITHUB_RUN_ID"
-             pwd
-             ls
-             sudo apt-get update
-             sudo apt-get install python3.7 >> install_python3.txt
-             python3 commit-to-pr.py
+#             pwd
+#             ls
+#             sudo apt-get update
+#             sudo apt-get install python3.7 >> install_python3.txt
+#             python3 commit-to-pr.py
+
+
 #             sudo chmod +x ./commit-to-pr.py
 #             ./commit-to-pr.py
              
