@@ -29,6 +29,9 @@ jobs:
           cache-dependency-path: explorer/package-lock.json
        - run: |
              pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+             echo "github.event.comment is: $github.event.comment"
+             echo "github.event is: $github.event"
+             echo "github.event.comment.html_url is : $github.event.comment.html_url"
              echo "pull_number is: $pull_number"
              echo "GITHUB_SHA is: $GITHUB_SHA"
              echo "GITHUB_HEAD_REF is : $GITHUB_HEAD_REF"
