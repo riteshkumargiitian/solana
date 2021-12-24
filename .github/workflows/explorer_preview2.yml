@@ -1,12 +1,3 @@
-
-name : explorer_preview
-on:
-  workflow_run:
-    workflows: ["deploy website"]
-    types: 
-      - completed
-
-
 name: pull request comment
 on:
   issue_comment:                                     
