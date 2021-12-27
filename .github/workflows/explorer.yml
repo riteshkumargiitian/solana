@@ -47,7 +47,7 @@ jobs:
           vercel-project-id: 'prj_GgAfmXgnKAx3rNHkYY4Ib0UqcQ45' #Required 
           DEPLOY_PR_FROM_FORK: true
           working-directory: ./explorer
-          scope: 'avnshrai'
+          scope: 'Solana Giit'
      - uses: actions/checkout@v2
      - name: vercel-preview-url
        uses: zentered/vercel-preview-url@v1.0.0
@@ -55,7 +55,7 @@ jobs:
        env:
          VERCEL_TOKEN: 'Jac34Sds5t0RgFgpTpRcicD7'
        with:
-         vercel_team_id: 'avnshrai'
+         vercel_team_id: 'team_SVvPseT3A8TYncHIATJ2cVGC'
          vercel_project_id: 'prj_GgAfmXgnKAx3rNHkYY4Ib0UqcQ45'
      - name: Get URL
        run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
