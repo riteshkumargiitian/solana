@@ -51,7 +51,7 @@ jobs:
 #           scope: 'avnshrai'
      - uses: UnlyEd/github-action-deploy-on-vercel@latest
        with:
-          command: vercel examples/static-deployment --confirm --debug --token "Jac34Sds5t0RgFgpTpRcicD7"
+          command: vercel ./explorer --confirm --debug --token "Jac34Sds5t0RgFgpTpRcicD7"
        env:
           VERCEL_TOKEN: "Jac34Sds5t0RgFgpTpRcicD7"
      - run: sleep 30
