@@ -1,4 +1,9 @@
-on: issue_comment
+on: 
+   issue_comment :
+     types: [created, edited, deleted]
+   pull_request :
+     branches:
+     - master
 
 jobs:
     stale:
