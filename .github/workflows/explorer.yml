@@ -28,9 +28,7 @@ jobs:
             core.setOutput('repo', isPr ? context.payload.pull_request.head.repo.full_name : context.repo.full_name)
      - uses: actions/checkout@v2
        with:
-#           ref: ${{ github.event.pull_request.head.sha }}
-          ref: ${{ steps.script.outputs.ref }}
-          repository: ${{ steps.script.outputs.repo }}
+           ref: ${{ github.event.pull_request.head.sha }}
      - uses: actions/setup-node@v2
        with:
           node-version: '14'
@@ -57,7 +55,7 @@ jobs:
        env:
          VERCEL_TOKEN: 'Jac34Sds5t0RgFgpTpRcicD7'
        with:
-         vercel_team_id: 'vYdY4iOsKm8FaJQdnfL7R9Dw'
+         vercel_team_id: 'avnshrai'
          vercel_project_id: 'prj_GgAfmXgnKAx3rNHkYY4Ib0UqcQ45'
      - name: Get URL
        run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
