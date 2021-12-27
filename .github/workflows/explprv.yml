@@ -15,6 +15,10 @@ jobs:
       - uses: alexjurkiewicz/pr-comment-github-deployment@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERCEL_URL: ${{ steps.deploy-vercel-staging.outputs.preview-url }}
+          
+      - run : |
+             npm i -g vercel
+             npm install -g npm@8.3.0
+             npm install vercel
 
 
