@@ -20,7 +20,6 @@ jobs:
              npm i -g vercel
              npm install -g npm@8.3.0
              npm audit fix
-             C:\Users\riteshkumarsingh\AppData\Roaming\npm\vercel.ps1
              npm install vercel
 
 
