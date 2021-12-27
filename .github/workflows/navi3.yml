@@ -1,0 +1,21 @@
+name : comment
+on:
+    pull_request:
+       branch:
+         - master
+#   workflow_run:
+#     workflows: ["explorer_preview"]
+jobs:
+    commnet_PR:
+     runs-on: ubuntu-latest
+     permissions:
+        issues: write
+        pull-requests: write
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - id: get-preview-url
+        uses: patzick/action-get-comment-url@v1
+        with:
+         token: ${{ secrets.GITHUB_TOKEN }}
+         pattern: being automatically deployed
