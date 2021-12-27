@@ -1,9 +1,9 @@
 on: 
    issue_comment :
      types: [created, edited, deleted]
-   pull_request :
-     branches:
-     - master
+#    pull_request :
+#      branches:
+#      - master
 
 jobs:
     stale:
@@ -15,5 +15,6 @@ jobs:
       - uses: alexjurkiewicz/pr-comment-github-deployment@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERCEL_URL: ${{ steps.deploy-vercel-staging.outputs.preview-url }}
 
 
