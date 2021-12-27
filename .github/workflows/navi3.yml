@@ -5,6 +5,8 @@ on:
      - master
     workflow_run:
       workflows: ["explorer_preview"]
+      types: 
+           - completed
 jobs:
     commnet_PR:
      runs-on: ubuntu-latest
