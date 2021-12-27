@@ -5,7 +5,7 @@ on:
 
 jobs:
  job01:
-   if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, 'this is deployment link')   # check if the comments come from pull request, exclude those from issue.
+   if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, 'get vercel preview')   # check if the comments come from pull request, exclude those from issue.
    runs-on: [ubuntu-latest]
    steps:
      - uses: github-actions-up-and-running/pr-comment@v1.0.1
