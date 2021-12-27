@@ -1,10 +1,10 @@
 name : comment
 on:
     pull_request:
-       branch:
-         - master
-#   workflow_run:
-#     workflows: ["explorer_preview"]
+     branches:
+     - master
+    workflow_run:
+      workflows: ["explorer_preview"]
 jobs:
     commnet_PR:
      runs-on: ubuntu-latest
