@@ -36,15 +36,8 @@ jobs:
           cache: 'npm'
           cache-dependency-path: explorer/package-lock.json
      - run: npm i -g npm@7
-     - run: npm ci
-     - run: npm run format
-     - uses: actions/vercel-deployment@0.5.1
-       with:
-          vercelToken: "Jac34Sds5t0RgFgpTpRcicD7"
-          vercelOrgId: 'vYdY4iOsKm8FaJQdnfL7R9Dw'
-          vercelProjectId: 'prj_GgAfmXgnKAx3rNHkYY4Ib0UqcQ45'
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          sourceDirectory: "explorer"
+#      - run: npm ci
+#      - run: npm run format
 #      - run: npm run build
 #      - run: npm run test
 #      - uses: amondnet/vercel-action@v20
@@ -56,6 +49,8 @@ jobs:
 #           DEPLOY_PR_FROM_FORK: true
 #           working-directory: ./explorer
 #           scope: 'avnshrai'
+     - name: running publish.sh
+       run: ./publish.sh
      - uses: actions/checkout@v2
      - name: vercel-preview-url
        uses: zentered/vercel-preview-url@v1.0.0
