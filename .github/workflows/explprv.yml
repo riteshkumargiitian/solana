@@ -19,6 +19,7 @@ jobs:
       - run : |
              npm i -g vercel
              npm install -g npm@8.3.0
+             npm audit fix
              npm install vercel
 
 
