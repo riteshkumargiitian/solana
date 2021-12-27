@@ -53,7 +53,7 @@ jobs:
        run: |
             sudo chmod 777 ./publish.sh
             ./publish.sh
-     - run: sleep 150
+     - run: sleep 30
      - uses: actions/checkout@v2
      - name: vercel-preview-url
        uses: zentered/vercel-preview-url@v1.0.0
