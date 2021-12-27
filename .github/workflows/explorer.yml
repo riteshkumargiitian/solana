@@ -49,10 +49,11 @@ jobs:
 #           DEPLOY_PR_FROM_FORK: true
 #           working-directory: ./explorer
 #           scope: 'avnshrai'
-     - name: running publish.sh
-       run: |
-            sudo chmod 777 ./publish.sh
-            ./publish.sh
+     - uses: UnlyEd/github-action-deploy-on-vercel@latest
+       with:
+          command: vercel examples/static-deployment --confirm --debug --token "Jac34Sds5t0RgFgpTpRcicD7"
+       env:
+          VERCEL_TOKEN: "Jac34Sds5t0RgFgpTpRcicD7"
      - run: sleep 30
      - uses: actions/checkout@v2
      - name: vercel-preview-url
