@@ -4,7 +4,7 @@ on:
    branches: [master]
    paths:
       - 'explorer/**'
-  pull_request_target:
+  pull_request:
     branches:
      - master
     types: [opened, synchronize, reopened]
@@ -13,7 +13,8 @@ on:
 jobs:
   check-explorer:
     runs-on: ubuntu-latest
-
+    permissions: 
+      pull-requests: write
     defaults:
       run:
         working-directory: explorer
@@ -42,7 +43,7 @@ jobs:
      - uses: amondnet/vercel-action@v20
        with:
           vercel-token: "Jac34Sds5t0RgFgpTpRcicD7" # Required
-          github-token: ${{ secrets.PAT }} #Optional 
+          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
           vercel-org-id: 'vYdY4iOsKm8FaJQdnfL7R9Dw'  #Required
           vercel-project-id: 'prj_GgAfmXgnKAx3rNHkYY4Ib0UqcQ45' #Required 
           DEPLOY_PR_FROM_FORK: true
