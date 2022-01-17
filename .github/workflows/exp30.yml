@@ -1,10 +1,10 @@
 name: Explorer
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - "explorer/**"
+#   push:
+#     branches: [ master ]
+#     paths:
+#       - "explorer/**"
   pull_request:
     branches: [ master ]
     paths:
