@@ -1,7 +1,7 @@
 name : explorer_preview
 on:
   workflow_run:
-    workflows: ["Explorer_build&test_on_PR"]
+    workflows: ["Explorer"]
     types: 
       - completed
 #   pull_request:
