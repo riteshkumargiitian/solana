@@ -4,11 +4,11 @@ on:
     workflows: ["Explorer_build&test_on_PR"]
     types: 
       - completed
-  pull_request:
-    branches:
-     - master
-    paths:
-      - 'explorer/**'
+#   pull_request:
+#     branches:
+#      - master
+#     paths:
+#       - 'explorer/**'
 jobs:
    explorer_preview:
     runs-on: ubuntu-latest
