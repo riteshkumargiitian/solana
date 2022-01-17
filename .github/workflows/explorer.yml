@@ -8,8 +8,8 @@ on:
 #      - master
 #     paths:
 #       - 'explorer/**'
-  issue_comment:                                     
-    types: [created, edited, deleted]
+#   issue_comment:                                     
+#     types: [created, edited, deleted]
   pull_request:
     branches:
      - master
