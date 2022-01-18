@@ -19,4 +19,4 @@ jobs:
           vercel_org_id: ${{ secrets.ORG_ID}}  #Required
           vercel_project_id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./explorer
-          scope: ${{ secrets.TEAM_ID }}
+#           scope: ${{ secrets.TEAM_ID }}
