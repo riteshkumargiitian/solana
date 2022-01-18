@@ -1,130 +1,28 @@
-name: deploy website
+name: Explorer_build&test_on_PR
 on:
-#   push :
-#     branches:
-#      - master
-#   pull_request_target:
-#     branches:
-#      - master
-#     paths:
-#       - 'explorer/**'
-#   issue_comment:                                     
-#     types: [created, edited, deleted]
   pull_request:
     branches:
      - master
     paths:
       - 'explorer/**'
 jobs:
-  preview_deploy:
+  check-explorer:
     runs-on: ubuntu-latest
-    
+
     defaults:
       run:
         working-directory: explorer
     steps:
-       - uses: actions/checkout@v2
-       - uses: actions/setup-node@v2
-         with:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v2
+        with:
           node-version: '14'
           cache: 'npm'
           cache-dependency-path: explorer/package-lock.json
-       - run: |
-             pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-             echo "github.event.comment is: $github.event.comment"
-             echo "github.event is: $github.event"
-             echo "github.event.comment.html_url is : $github.event.comment.html_url"
-             echo "pull_number is: $pull_number"
-             echo "GITHUB_SHA is: $GITHUB_SHA"
-             echo "GITHUB_HEAD_REF is : $GITHUB_HEAD_REF"
-             echo "GITHUB_BASE_REF is: $GITHUB_BASE_REF"
-             echo "GITHUB_API_URL is: $GITHUB_API_URL"
-             echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID is: $$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-             echo "GITHUB_RUN_ID is: $GITHUB_RUN_ID"
- 
-
-
-  job01:
-   if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, 'get vercel preview')   # check if the comments come from pull request, exclude those from issue.
-   runs-on: [ubuntu-latest]
-   steps:
-     - uses: github-actions-up-and-running/pr-comment@v1.0.1
-       with:
-           repo-token: ${{ secrets.GITHUB_TOKEN }}
-           message: 1Nice PR!👍
-     - name: say hello
-       if: contains(github.event.comment.body, 'get vercel preview')   # check the comment if it contains the keywords "get vercel preview"
-       run: |
-         echo say hello
-         echo "github.event.comment is: $github.event.comment"
-         echo "github.event is: $github.event"
-         echo "github.event.comment.html_url is : $github.event.comment.html_url"
-         echo "GITHUB_SHA is: $GITHUB_SHA"
-#             pwd
-#             ls
-#             sudo apt-get update
-#             sudo apt-get install python3.7 >> install_python3.txt
-#             python3 commit-to-pr.py
-
-
-#             sudo chmod +x ./commit-to-pr.py
-#             ./commit-to-pr.py
-             
-#             npm i -g npm@7
-#        - run: npm ci
-#        - run: npm run format
-#        - run: npm run build
-#        - run: npm run test
-
-      
-
-
-#        - uses: github-actions-up-and-running/pr-comment@v1.0.1
-#          with:
-#            repo-token: ${{ secrets.GITHUB_TOKEN }}
-#            message: 1Nice PR!👍
-#        - run: |
-#               npm i -g @vercel/ncc
-#               npm ci
-#               ncc build index.js
-       
-#        - uses: JoseThen/comment-pr@v1.1.1
-#          with:
-#           comment: 'This PR is the bees knees!'
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-#        - name: Create Comment
-#          uses: KeisukeYamashita/create-comment@v1
-#          with:
-#           number: 1
-#           comment: Comment for Issue or GitHub Pull Request
-#        - run: |
-#               npm i -g @vercel/ncc
-#               npm ci
-#               ncc build index.js
-#        - name: Post comment
-#          uses: KeisukeYamashita/create-comment@v1
-#          with:
-#           comment: |
-#             Issue title must start with 'ABC-'.
-#             Auto-closing this issue.
-#        - uses: NejcZdovc/comment-pr@v1
-#          with:
-#           message: "Hello world"
-#          env:
-#            GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-
-#        //Error: [action-get-comment-url] Parameter token or opts.auth is required
-#        - id: get-preview-url
-#          uses: patzick/action-get-comment-url@v1
-#          with:
-#            token: ${{ secrets.PAT_TOKEN }}
-#            platform: Vercel
-      
-#        - uses: amondnet/vercel-action@v20
-#          with:
-#           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-#           github-token: ${{ secrets.PAT_TOKEN }} #Optional 
-#           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-#           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
-#           working-directory: ./explorer
+      - run: npm i -g npm@7
+      - run: npm ci
+      - run: npm run format
+      - run: npm run build
+      - run: npm run test
