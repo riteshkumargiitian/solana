@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: amondnet/vercel-action@v20 2>&1 | tee previewlink
+      - uses: amondnet/vercel-action@v20 
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
@@ -20,6 +20,7 @@ jobs:
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./explorer
       - run: |
+          2>&1 | tee previewlink
           echo "previewlink"
             
 #           scope: ${{ secrets.TEAM_ID }}
