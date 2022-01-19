@@ -13,14 +13,17 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - uses: amondnet/vercel-action@v20 
-        with:
+        id: tests
+        with: 
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./explorer
-      - run: |
-          2>&1 | tee previewlink
-          echo "previewlink"
-            
-#           scope: ${{ secrets.TEAM_ID }}
+          
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@master
+        env:
+         SLACK_MESSAGE: ${{ steps.tests.outputs.stdout }}         
+         SLACK_TITLE: CI Test Suite
+         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
