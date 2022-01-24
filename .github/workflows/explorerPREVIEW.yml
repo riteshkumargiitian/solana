@@ -12,21 +12,23 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-#       - uses: amondnet/vercel-action@v20 
-#         id: tests
-#         with: 
-#           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-#           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
-#           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-#           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
+      - uses: amondnet/vercel-action@v20 
+        id: tests
+        with: 
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
+          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
 
 
 #           working-directory: ./explorer
           
       - name: vercel url
         run : |
+              pwd
               vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} > vercel_url.txt
-              #cat ./vercel_url.txt 
+              cat ./vercel_url.txt 
+              
               
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@master
