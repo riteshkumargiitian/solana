@@ -21,6 +21,9 @@ jobs:
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
 #           working-directory: ./explorer
           
+      - name: vercel url
+        run : |
+              vercel --token ${{VERCEL_DEPLOY_TOKEN}} > vercel_url.txt
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@master
         env:
