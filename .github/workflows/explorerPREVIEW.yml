@@ -27,7 +27,8 @@ jobs:
         run : |
               pwd
               vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana > vercelfile.txt
-              head -n 2 vercelfile.txt | tail -n 1 | grep ".vercel.app"
+              head -n 2 vercelfile.txt | tail -n 1 > vercelfile.txt
+              cat vercelfile.txt | grep ".vercel.app"
               #vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana | grep "latest deployment" > vercel_url.txt
               
               
