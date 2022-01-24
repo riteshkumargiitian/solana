@@ -23,7 +23,7 @@ jobs:
           
       - name: vercel url
         run : |
-              vercel --token ${{VERCEL_DEPLOY_TOKEN}} > vercel_url.txt
+              vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} > vercel_url.txt
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@master
         env:
