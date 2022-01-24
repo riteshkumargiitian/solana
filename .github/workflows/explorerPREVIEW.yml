@@ -35,6 +35,6 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@master
         env:
-         SLACK_MESSAGE: ${{ steps.tests.outputs.stdout }}         
+         SLACK_MESSAGE: ${{ steps.tests.outputs.stdout }}+"hello"
          SLACK_TITLE: CI Test Suite
          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
