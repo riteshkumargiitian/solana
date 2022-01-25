@@ -28,9 +28,9 @@ jobs:
               pwd
               vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana > vercelfile.txt
               echo "first line"
-              head -n 2 vercelfile.txt > vercelfile.txt
-              vercelfile.txt tail -n 1  > vercelfile.txt
-              filtered_url=(cut -f8 -d" " vercelfile.txt )
+              head -n 2 vercelfile.txt > vercelfile1.txt
+              vercelfile1.txt tail -n 1  > vercelfile2.txt
+              filtered_url=(cut -f8 -d" " vercelfile2.txt )
               echo "filtered_url is: $filtered_url"
               #source ./vercelfile.txt | grep ".vercel.app"
               #vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana | grep "latest deployment" > vercel_url.txt     
@@ -67,9 +67,9 @@ jobs:
               echo "first line"
               filtered_url=(head -n 2 vercelfile.txt | tail -n 1 | cut -f8 -d" ")
               echo "filtered_url is: $filtered_url"
-              head -n 2 vercelfile.txt | tail -n 1 | cut -f8 -d" " > vercelfile.txt
+              head -n 2 vercelfile.txt | tail -n 1 | cut -f8 -d" " > vercelfile1.txt
               echo "third"
-              cat vercelfile.txt
+              cat vercelfile1.txt
               #source ./vercelfile.txt | grep ".vercel.app"
               #vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana | grep "latest deployment" > vercel_url.txt     
               
