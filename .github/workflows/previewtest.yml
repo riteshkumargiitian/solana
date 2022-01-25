@@ -1,8 +1,8 @@
 name : explorer_preview
 on:
-  push
-  branch: [master]
-  paths:
+  push:
+   branches: [master]
+   paths:
       - 'explorer/**'
 jobs:
    explorer_preview:
