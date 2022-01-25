@@ -26,10 +26,16 @@ jobs:
       - name: vercel url
         run : |
               pwd
+              touch vercelfile.txt
               vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana > vercelfile.txt
               echo "first line"
               head -n 2 vercelfile.txt > vercelfile1.txt
+              echo "2 line"
+              cat vercelfile1.txt
+              touch vercelfile2.txt
               vercelfile1.txt tail -n 1  > vercelfile2.txt
+              echo "3 line"
+              cat vercelfile2.txt
               filtered_url=(cut -f8 -d" " vercelfile2.txt )
               echo "filtered_url is: $filtered_url"
               #source ./vercelfile.txt | grep ".vercel.app"
