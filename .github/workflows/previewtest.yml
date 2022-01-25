@@ -4,7 +4,6 @@
 #    branches: [master]
 #    paths:
 #       - 'explorer/**'
-
 # jobs:
 #    explorer_preview:
 #     runs-on: ubuntu-latest
@@ -110,6 +109,6 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@master
         env:
-         SLACK_MESSAGE: ${{ steps.tests.outputs.stdout }} - $filtered_url
+         SLACK_MESSAGE: ${{ steps.tests.outputs.stdout }} - ${{ env.preview1 }}
          SLACK_TITLE: Vercel Deployment Link
          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
