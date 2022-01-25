@@ -59,8 +59,6 @@ name : explorer_preview
 on:
   push:
    branches: [master]
-   paths:
-      - 'explorer/**'
 jobs:
    explorer_preview:
     runs-on: ubuntu-latest
