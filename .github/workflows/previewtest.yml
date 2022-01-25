@@ -104,8 +104,8 @@ jobs:
         run : |
               pwd
               echo "filtered_url is: $filtered_url"
-              echo "filtered_url is: ${filtered_url}"
-              echo "filtered_url is: ${{filtered_url}}"
+              #echo "filtered_url is: ${filtered_url}"
+              #echo "filtered_url is: ${{filtered_url}}"
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@master
