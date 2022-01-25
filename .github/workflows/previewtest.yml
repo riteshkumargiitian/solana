@@ -35,7 +35,7 @@ jobs:
               echo "2 line"
               cat vercelfile1.txt
               touch vercelfile2.txt
-              vercelfile1.txt tail -n 1  > vercelfile2.txt
+              tail -n 1 vercelfile1.txt > vercelfile2.txt
               echo "3 line"
               cat vercelfile2.txt
               filtered_url=(cut -f8 -d" " vercelfile2.txt )
