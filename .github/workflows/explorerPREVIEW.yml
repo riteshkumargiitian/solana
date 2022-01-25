@@ -29,6 +29,8 @@ jobs:
               touch vercelfile.txt
               vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana > vercelfile.txt
               echo "first line"
+              cat vercelfile.txt
+              touch vercelfile1.txt
               head -n 2 vercelfile.txt > vercelfile1.txt
               echo "2 line"
               cat vercelfile1.txt
