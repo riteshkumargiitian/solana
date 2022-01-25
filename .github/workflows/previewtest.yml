@@ -104,20 +104,14 @@ jobs:
         run : |
               pwd
               filtered_url=$(cat .env.preview1)
-              echo "filtered_url is: $filtered_url"
-
+              echo "::set-output name=filtered_url::$(filtered_url)\n"
+        id: run_tests
 
       - name: Slack Notification1
         uses: rtCamp/action-slack-notify@master
         env:
-         SLACK_MESSAGE: ${{ steps.tests.outputs.stdout }} - $(.env.preview1)
+         SLACK_MESSAGE: ${{join(steps.run_tests.outputs.*, '\n')}}
          SLACK_TITLE: Vercel Deployment Link
          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
 
-#       - name: Slack Notification
-#         uses: rtCamp/action-slack-notify@master
-#         env:
-#          SLACK_MESSAGE: ${{ steps.tests.outputs.stdout }} - ${{ .env.preview1 }}
-#          SLACK_TITLE: Vercel Deployment Link
-#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
