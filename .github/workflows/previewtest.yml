@@ -120,7 +120,7 @@ jobs:
         uses: rtCamp/action-slack-notify@master
         env:
          SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
-         SLACK_TITLE: Vercel Deployment Link
+         SLACK_TITLE: Vercel Preview Deployment Link
          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
 
