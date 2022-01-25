@@ -69,7 +69,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - uses: amondnet/vercel-action@v20 
-        id: tests
+        id: tests1
         with: 
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
@@ -100,17 +100,26 @@ jobs:
               echo "filtered_url is: $filtered_url"
               #source ./vercelfile.txt | grep ".vercel.app"
               #vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana | grep "latest deployment" > vercel_url.txt     
-      - name: vercel url print
-        run : |
-              pwd
-              filtered_url=$(cat .env.preview1)
-              echo "::set-output name=filtered_url::$(filtered_url)\n"
-        id: run_tests
+#       - name: vercel url print
+#         run : |
+#               pwd
+#               export filtered_url=$(cat .env.preview1)
+#               echo "filtered_url is: $filtered_url"
+#               filtered_url=$(cat .env.preview1)
+#               echo "::set-output name=filtered_url::$(filtered_url)\n"
+#         id: run_tests1
 
+      - name: Run tests
+        uses: mathiasvr/command-output@v1
+        id: tests2
+        with:
+          run: |
+               echo "$(cat .env.preview1)"
+      
       - name: Slack Notification1
         uses: rtCamp/action-slack-notify@master
         env:
-         SLACK_MESSAGE: ${{join(steps.run_tests.outputs.*, '\n')}}
+         SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
          SLACK_TITLE: Vercel Deployment Link
          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
