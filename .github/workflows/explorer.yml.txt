@@ -55,7 +55,7 @@
 #          SLACK_TITLE: Vercel Deployment Link
 #          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-name : explorer_preview
+name : explorer_giit
 on:
   push:
    branches: [master]
