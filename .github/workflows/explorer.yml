@@ -99,5 +99,6 @@ jobs:
               echo '::set-output name=filtered_url::filtered_url'
               id: filtered_url_id
       - name: filtered_url
-        run: echo "${{ steps.filtered_url_id.outputs.filtered_url }}"
+        run: |
+          echo "${{ steps.filtered_url_id.outputs.filtered_url }}"
 
