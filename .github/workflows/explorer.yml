@@ -4,6 +4,7 @@
 #    branches: [master]
 #    paths:
 #       - 'explorer/**'
+
 # jobs:
 #    explorer_preview:
 #     runs-on: ubuntu-latest
@@ -54,7 +55,7 @@
 #          SLACK_TITLE: Vercel Deployment Link
 #          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-name : explorer_preview_test
+name : explorer_preview
 on:
   push:
    branches: [master]
@@ -95,10 +96,19 @@ jobs:
               echo "3 line"
               cat vercelfile2.txt
               filtered_url=$(cut -f8 -d" " vercelfile2.txt )
+              touch .env.preview1
+              echo "$filtered_url" > .env.preview1
               echo "filtered_url is: $filtered_url"
-              echo '::set-output name=filtered_url::filtered_url'
-        id: filtered_url_id
-      - name: filtered_url
-        run: |
-          echo "${{ steps.filtered_url_id.outputs.filtered_url }}"
-
+              #source ./vercelfile.txt | grep ".vercel.app"
+              #vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana | grep "latest deployment" > vercel_url.txt     
+      - name: vercel url print
+        run : |
+              pwd
+              filtered_url=$(cat .env.preview1)
+              echo "filtered_url is: $filtered_url"
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@master
+        env:
+         SLACK_MESSAGE: ${{ steps.tests.outputs.stdout }} - filtered_url=$(cat .env.preview1)
+         SLACK_TITLE: Vercel Deployment Link
+         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
