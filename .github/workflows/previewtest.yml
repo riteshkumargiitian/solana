@@ -38,7 +38,7 @@ jobs:
               tail -n 1 vercelfile1.txt > vercelfile2.txt
               echo "3 line"
               cat vercelfile2.txt
-              filtered_url=(cut -f8 -d" " vercelfile2.txt )
+              filtered_url=$(cut -f8 -d" " vercelfile2.txt )
               echo "filtered_url is: $filtered_url"
               #source ./vercelfile.txt | grep ".vercel.app"
               #vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana | grep "latest deployment" > vercel_url.txt     
