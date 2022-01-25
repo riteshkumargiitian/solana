@@ -100,10 +100,4 @@ jobs:
               id: filtered_url_id
       - name: filtered_url
         run: echo "${{ steps.filtered_url_id.outputs.filtered_url }}"
-      - name: slack
-        uses: rtCamp/action-slack-notify@master
-        env:
-         SLACK_MESSAGE: ${{ steps.tests.outputs.stdout }} - $filtered_url
-         SLACK_TITLE: Vercel Deployment Link
-         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
