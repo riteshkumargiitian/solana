@@ -54,7 +54,7 @@
 #          SLACK_TITLE: Vercel Deployment Link
 #          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-name : explorer_preview
+name : explorer_preview_test
 on:
   push:
    branches: [master]
