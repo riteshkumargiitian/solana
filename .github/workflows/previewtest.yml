@@ -97,7 +97,13 @@ jobs:
               echo "filtered_url is: $filtered_url"
               #source ./vercelfile.txt | grep ".vercel.app"
               #vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana | grep "latest deployment" > vercel_url.txt     
-              
+
+
+      - name: vercel url print
+        run : |
+              pwd
+              echo "filtered_url is: $filtered_url"
+
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@master
         env:
