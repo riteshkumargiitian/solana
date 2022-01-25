@@ -80,7 +80,7 @@ jobs:
 #           working-directory: ./explorer
           
       - name: vercel url
-      - run : |
+        run : |
               pwd
               touch vercelfile.txt
               vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana > vercelfile.txt
