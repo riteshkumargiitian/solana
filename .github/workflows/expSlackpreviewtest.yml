@@ -75,7 +75,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
-
+          scope: ${{ secrets.TEAM_ID}}
 
 #           working-directory: ./explorer
           
@@ -83,7 +83,7 @@ jobs:
         run : |
               #pwd
               touch vercelfile.txt
-              vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}} ls solana > vercelfile.txt
+              vercel --token ${{secrets.VERCEL_DEPLOY_TOKEN}}  --scope ${{ secrets.TEAM_ID }} ls solana > vercelfile.txt
               echo "first line"
               #cat vercelfile.txt
               touch vercelfile1.txt
