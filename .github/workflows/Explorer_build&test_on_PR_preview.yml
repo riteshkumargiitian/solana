@@ -50,9 +50,19 @@ jobs:
           run: |
                echo "$(cat .env.preview1)"
       
-      - name: Slack Notification1
-        uses: rtCamp/action-slack-notify@master
-        env:
-         SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
-         SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
-         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#       - name: Slack Notification1
+#         uses: rtCamp/action-slack-notify@master
+#         env:
+#          SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
+#          SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
+#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+         
+      -  name: Slack Notification2
+         uses: ravsamhq/notify-slack-action@v1
+         if: always()
+         with:
+          status: ${{ job.status }} # required
+         env:
+          SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
+          SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
