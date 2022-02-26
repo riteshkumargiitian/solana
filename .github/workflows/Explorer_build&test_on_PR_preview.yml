@@ -24,20 +24,25 @@ jobs:
       - name: vercel url
         run : |
               touch vercelfile.txt
-              vercel --token ${{secrets.VERCEL_TOKEN}}  ls explorer --scope zsks8AsQoegklEi6s3kr96Df > vercelfile.txt
+              vercel --token ${{secrets.VERCEL_TOKEN}}  ls solana --scope zsks8AsQoegklEi6s3kr96Df > vercelfile.txt
+              echo "first line"
               cat vercelfile.txt
-              echo vercelfile.txt
               touch vercelfile1.txt
               head -n 2 vercelfile.txt > vercelfile1.txt
-              
+              echo "2 line"
+              cat vercelfile1.txt
               touch vercelfile2.txt
               tail -n 1 vercelfile1.txt > vercelfile2.txt
+              echo "3 line"              
+              cat vercelfile2.txt
               filtered_url8=$(cut -f8 -d" " vercelfile2.txt)
               echo "filtered_url8 is: $filtered_url8" 
               touch .env.preview1
               echo "$filtered_url8" > .env.preview1
               #filtered_url=$(cat vercelfile2.txt )
               #echo "$filtered_url" >> .env.preview1 
+              
+      
       - name: Run tests
         uses: mathiasvr/command-output@v1
         id: tests2
