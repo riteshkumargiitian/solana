@@ -25,8 +25,11 @@ jobs:
         run : |
               touch vercelfile.txt
               vercel --token ${{secrets.VERCEL_TOKEN}}  ls explorer --scope zsks8AsQoegklEi6s3kr96Df > vercelfile.txt
+              cat vercelfile.txt
+              echo vercelfile.txt
               touch vercelfile1.txt
               head -n 2 vercelfile.txt > vercelfile1.txt
+              
               touch vercelfile2.txt
               tail -n 1 vercelfile1.txt > vercelfile2.txt
               filtered_url8=$(cut -f8 -d" " vercelfile2.txt)
