@@ -54,7 +54,7 @@
 #          SLACK_TITLE: Vercel Deployment Link
 #          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-name : explorer_preview
+name : expSlackpreviewtest
 on:
   workflow_run:
     workflows: ["Explorer_build&test_on_PR"]
