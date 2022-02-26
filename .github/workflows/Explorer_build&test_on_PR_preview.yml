@@ -29,8 +29,8 @@ jobs:
               head -n 2 vercelfile.txt > vercelfile1.txt
               touch vercelfile2.txt
               tail -n 1 vercelfile1.txt > vercelfile2.txt
-              filtered_url7=$(cut -f7 -d" " vercelfile2.txt)
-              echo "filtered_url7 is: $filtered_url7" 
+              filtered_url8=$(cut -f8 -d" " vercelfile2.txt)
+              echo "filtered_url8 is: $filtered_url8" 
               touch .env.preview1
               echo "$filtered_url7" > .env.preview1
               #filtered_url=$(cat vercelfile2.txt )
