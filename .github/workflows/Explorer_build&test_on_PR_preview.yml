@@ -42,7 +42,7 @@ jobs:
               #filtered_url=$(cat vercelfile2.txt )
               #echo "$filtered_url" >> .env.preview1 
               PR_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)
-              echo "PR_SHA is : $PR_SHA"
+              echo "PR_SHA is : $ref"
               
       
       - name: Run tests
@@ -52,7 +52,9 @@ jobs:
           run: |
                echo "$(cat .env.preview1)"
                PR_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)
-               echo "PR_SHA is : $PR_SHA" 
+               echo "PR_SHA is : $PR_SHA"
+               PR_SHA=$ref
+               echo "PR_SHA is : $ref" 
       
       # - name: Slack Notification1
       #   uses: rtCamp/action-slack-notify@master
