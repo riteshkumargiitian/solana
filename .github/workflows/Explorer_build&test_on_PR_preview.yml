@@ -43,6 +43,7 @@ jobs:
               #echo "$filtered_url" >> .env.preview1 
               PR_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)
               echo "PR_SHA is : $ref"
+              echo "PR_SHA is : ${{ github.event.pull_request.head.sha }}"
               
       
       - name: Run tests
@@ -55,6 +56,7 @@ jobs:
                echo "PR_SHA is : $PR_SHA"
                PR_SHA=$ref
                echo "PR_SHA is : $ref" 
+               echo "PR_SHA is : ${{ github.event.pull_request.head.sha }}"
       
       # - name: Slack Notification1
       #   uses: rtCamp/action-slack-notify@master
