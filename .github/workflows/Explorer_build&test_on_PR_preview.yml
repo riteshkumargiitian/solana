@@ -66,3 +66,6 @@ jobs:
           SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
           SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE1: ${{ steps.tests2.outputs.stdout }}
+          SLACK_TITLE1: Vercel "Explorer" Preview Deployment Link
+          
