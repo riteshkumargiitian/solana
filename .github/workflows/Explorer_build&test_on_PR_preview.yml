@@ -54,18 +54,18 @@ jobs:
                PR_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)
                echo "PR_SHA is : $PR_SHA" 
       
-      - name: Slack Notification1
-        uses: rtCamp/action-slack-notify@master
-        env:
-         SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
-         SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
-         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      # - name: Slack Notification1
+      #   uses: rtCamp/action-slack-notify@master
+      #   env:
+      #    SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
+      #    SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
+      #    SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
 
       - name: Slack Notification4
         uses: rtCamp/action-slack-notify@master
         env:
-         SLACK_MESSAGE: ${{ join(steps.tests2.outputs.stdout , $PR_SHA)}}
+         SLACK_MESSAGE: ${{join(steps.tests2.outputs.stdout, '$PR_SHA')}}
          SLACK_TITLE: Vercel "Explorer" Preview Deployment Link,PR_Commit_ID
          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
