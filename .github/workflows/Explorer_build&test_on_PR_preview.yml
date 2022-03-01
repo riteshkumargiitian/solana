@@ -51,7 +51,8 @@ jobs:
         with:
           run: |
                echo "$(cat .env.preview1)"
-               echo "PR_SHA is : $(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)" 
+               PR_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)
+               echo "PR_SHA is : $PR_SHA" 
       
       - name: Slack Notification1
         uses: rtCamp/action-slack-notify@master
