@@ -62,23 +62,15 @@ jobs:
          SLACK_TITLE1: Vercel "Explorer" Preview Deployment Link1
          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-      - name: Slack Notification2
-        uses: rtCamp/action-slack-notify@master
-        env:
-         SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
-         SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
-         SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
-         SLACK_TITLE: Vercel "Explorer" Preview Deployment Link1
-         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#       - name: Slack Notification2
+#         uses: rtCamp/action-slack-notify@master
+#         env:
+#          SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
+#          SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
+#          SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
+#          SLACK_TITLE: Vercel "Explorer" Preview Deployment Link1
+#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-      - name: Slack Notification3
-        uses: rtCamp/action-slack-notify@master
-        env:
-         SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }},${{PR_SHA}}
-         SLACK_TITLE: Vercel "Explorer" Preview Deployment Link,PR_Commit_ID
-         SLACK_MESSAGE1: ${{ steps.tests2.outputs.stdout }}
-         SLACK_TITLE1: Vercel "Explorer" Preview Deployment Link1
-         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
       - name: Slack Notification4
         uses: rtCamp/action-slack-notify@master
@@ -86,6 +78,15 @@ jobs:
          SLACK_MESSAGE: ${{ join(steps.tests2.outputs.stdout , PR_SHA)}}
          SLACK_TITLE: Vercel "Explorer" Preview Deployment Link,PR_Commit_ID
          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+#       - name: Slack Notification3
+#         uses: rtCamp/action-slack-notify@master
+#         env:
+#          SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }},${{PR_SHA}}
+#          SLACK_TITLE: Vercel "Explorer" Preview Deployment Link,PR_Commit_ID
+#          SLACK_MESSAGE1: ${{ steps.tests2.outputs.stdout }}
+#          SLACK_TITLE1: Vercel "Explorer" Preview Deployment Link1
+#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
 
 #       -  name: Slack Notification2
