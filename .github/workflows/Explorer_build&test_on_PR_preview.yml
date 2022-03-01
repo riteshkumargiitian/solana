@@ -41,6 +41,8 @@ jobs:
               echo "$filtered_url8" > .env.preview1
               #filtered_url=$(cat vercelfile2.txt )
               #echo "$filtered_url" >> .env.preview1 
+              PR_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)
+              echo "PR_SHA is : $PR_SHA"
               
       
       - name: Run tests
@@ -49,16 +51,43 @@ jobs:
         with:
           run: |
                echo "$(cat .env.preview1)"
+               echo "PR_SHA is : $(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)" 
       
       - name: Slack Notification1
         uses: rtCamp/action-slack-notify@master
         env:
          SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
          SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
-         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
          SLACK_MESSAGE1: ${{ steps.tests2.outputs.stdout }}
-         SLACK_TITLE1: Vercel "Explorer" Preview Deployment Link
-         
+         SLACK_TITLE1: Vercel "Explorer" Preview Deployment Link1
+         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Slack Notification2
+        uses: rtCamp/action-slack-notify@master
+        env:
+         SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
+         SLACK_TITLE: Vercel "Explorer" Preview Deployment Link
+         SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }}
+         SLACK_TITLE: Vercel "Explorer" Preview Deployment Link1
+         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Slack Notification3
+        uses: rtCamp/action-slack-notify@master
+        env:
+         SLACK_MESSAGE: ${{ steps.tests2.outputs.stdout }},${{PR_SHA}}
+         SLACK_TITLE: Vercel "Explorer" Preview Deployment Link,PR_Commit_ID
+         SLACK_MESSAGE1: ${{ steps.tests2.outputs.stdout }}
+         SLACK_TITLE1: Vercel "Explorer" Preview Deployment Link1
+         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Slack Notification4
+        uses: rtCamp/action-slack-notify@master
+        env:
+         SLACK_MESSAGE: ${{ join(steps.tests2.outputs.stdout , PR_SHA)}}
+         SLACK_TITLE: Vercel "Explorer" Preview Deployment Link,PR_Commit_ID
+         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+
 #       -  name: Slack Notification2
 #          uses: ravsamhq/notify-slack-action@v1
 #          if: always()
