@@ -57,7 +57,8 @@ jobs:
                PR_SHA=$ref
                echo "PR_SHA is : $ref" 
                echo "PR_SHA is : ${{ github.event.pull_request.head.sha }}"
-      
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
       # - name: Slack Notification1
       #   uses: rtCamp/action-slack-notify@master
       #   env:
