@@ -41,17 +41,9 @@ jobs:
               echo "$filtered_url8" > .env.preview1
               #filtered_url=$(cat vercelfile2.txt )
               #echo "$filtered_url" >> .env.preview1 
-              HEAD_SHA=n5=$(curl -H "Accept: application/vnd.github.v3+json"  https://api.github.com/repos/Naveenmishra1197/solana/pulls | jq .[0] | jq -r .head.sha)
+              HEAD_SHA=$(curl -H "Accept: application/vnd.github.v3+json"  https://api.github.com/repos/Naveenmishra1197/solana/pulls | jq .[0] | jq -r .head.sha)
               echo ".head.sha is : $HEAD_SHA"
-              PR_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)
-              echo "PR_SHA is : $ref"
-              echo "PR_SHA is : ${{ github.event.pull_request.head.sha }}"
-      - name: sha testing
-        run: |
-              echo "github.event is : ${{ github.event }} \n\n"
-              echo "github.event.pull_request is : ${{ github.event.pull_request }} \n\n"
-              echo "github.event.pull_request.head is : ${{ github.event.pull_request.head }} \n\n"
-              echo "github.event.pull_request.head.sha is : ${{ github.event.pull_request.head.sha }} \n\n"
+
       
       - name: Run tests
         uses: mathiasvr/command-output@v1
@@ -59,11 +51,7 @@ jobs:
         with:
           run: |
                echo "$(cat .env.preview1)"
-               PR_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha)
-               echo "PR_SHA is : $PR_SHA"
-               PR_SHA=$ref
-               echo "PR_SHA is : $ref" 
-               echo "PR_SHA is : ${{ github.event.pull_request.head.sha }}"
+               echo "$HEAD_SHA"
       
       # - name: Slack Notification1
       #   uses: rtCamp/action-slack-notify@master
