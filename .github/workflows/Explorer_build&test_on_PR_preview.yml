@@ -75,7 +75,7 @@ jobs:
       - name: Slack Notification4
         uses: rtCamp/action-slack-notify@master
         env:
-         SLACK_MESSAGE: ${{join('\n Vercel Link\n',steps.test1.outputs.stdout,'\nPR Commit\n',steps.test2.outputs.stdout)}}
+         SLACK_MESSAGE: ' Vercel Link: ${{ steps.test1.outputs.stdout }}, \nPR Commit: ${{steps.test2.outputs.stdout}}'
          SLACK_TITLE: Vercel "Explorer" Preview Deployment Link , PR Commit
          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
